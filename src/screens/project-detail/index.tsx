@@ -6,7 +6,7 @@ import styles from './styles';
 const ProjectDetailScreen: React.FC<ScreenProps> = () => {
   return (
     <View style={styles.container}>
-      <Text>Project Detail Screen</Text>
+      <Text>Project Detail</Text>
     </View>
   );
 };
