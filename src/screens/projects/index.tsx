@@ -32,7 +32,7 @@ const Home: React.FC = () => {
       <FlatList
         data={projects}
         // ItemSeparatorComponent={() => <Divider />}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item?.id.toString()}
         renderItem={({ item }) => {
           return (
             <Project
