@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Pressable, StatusBar } from 'react-native';
+import { Pressable } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Home, User } from '../screens';

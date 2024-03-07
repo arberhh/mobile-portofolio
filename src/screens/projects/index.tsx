@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FlatList, SafeAreaView } from 'react-native';
 import { useTheme } from '../../context';
 import { Divider, Project } from '../../components';
-import { supabase } from '../../util/';
+import { supabase } from '../../util';
 
 const Home: React.FC = () => {
   const [projects, setProjects] = useState<any[]>([]);
