@@ -10,7 +10,7 @@
     "preview": {
       "distribution": "internal"
     },
-    "production": {}
+    "production":{"channel": "production", "ios":{"image": "default"}}
   },
   "submit": {
     "production": {}
