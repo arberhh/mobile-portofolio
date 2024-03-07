@@ -1,65 +1,32 @@
 import React from 'react';
-import { View, Image, Text, StyleSheet } from 'react-native';
+import { View, Image, Text } from 'react-native';
+import { FontAwesome5 } from '@expo/vector-icons';
+import { useTheme } from '../../context';
+import { domainIconMapping } from '../../util';
+import { ProjectProps } from '../../types';
+import { commonStyles } from '../../common';
+import styles from './styles';
 
-interface ProjectProps {
-  title: string;
-  image: string;
-  domains: string[];
-  description: string;
-}
+
 
 const Project: React.FC<ProjectProps> = ({ title, image, domains, description }) => {
+  const { theme } = useTheme();
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: theme.background }]}>
       <Image source={{ uri: image }} style={styles.image} />
-      <Text style={styles.title}>{title}</Text>
-      <View style={{ flexDirection: "row" }}>
+      <Text style={[styles.title, { color: theme.color }]}>{title}</Text>
+      <View style={commonStyles.row}>
         {
           domains.map((domain, index) => {
-            return <Text style={styles.domains} key={index}>{domain}</Text>;
+            return <Text style={[styles.domains, { color: theme.color }]} key={index}><FontAwesome5 name={domainIconMapping[domain]} size={15} /> {domain}</Text>;
           })
         }
       </View>
-      <Text style={styles.description}>{description}</Text>
+      <Text style={[styles.description, { color: theme.color }]}>{description}</Text>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    margin: 12,
-    padding: 16,
-    backgroundColor: '#fff',
-    borderRadius: 8,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
-  image: {
-    width: '100%',
-    height: 200,
-    resizeMode: 'cover',
-    borderRadius: 8,
-    marginBottom: 8,
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 4,
-  },
-  domains: {
-    fontSize: 14,
-    color: '#888',
-    marginRight: 7
-  },
-  description: {
-    fontSize: 16,
-  },
-});
+
 
 export default Project;

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList, SafeAreaView } from 'react-native';
-import { supabase } from '../../util/'; // Assuming you have a supabase configuration file
-import Project from '../../components/project';
+import { useTheme } from '../../context';
+import { Project } from '../../components';
+import { supabase } from '../../util/';
 
 const Home: React.FC = () => {
   const [projects, setProjects] = useState<any[]>([]);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -14,7 +16,6 @@ const Home: React.FC = () => {
           console.log({ error });
           throw error;
         }
-        console.log({ data });
         if (data) {
           setProjects(data);
         }
@@ -27,12 +28,11 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ backgroundColor: theme.background }}>
       <FlatList
         data={projects}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => {
-          console.log({ item });
           return (
             <Project
               title={item.title}
