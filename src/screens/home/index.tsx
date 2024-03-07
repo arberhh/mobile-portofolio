@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList, SafeAreaView } from 'react-native';
 import { useTheme } from '../../context';
-import { Project } from '../../components';
+import { Divider, Project } from '../../components';
 import { supabase } from '../../util/';
 
 const Home: React.FC = () => {
@@ -31,6 +31,7 @@ const Home: React.FC = () => {
     <SafeAreaView style={{ backgroundColor: theme.background }}>
       <FlatList
         data={projects}
+        // ItemSeparatorComponent={() => <Divider />}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => {
           return (

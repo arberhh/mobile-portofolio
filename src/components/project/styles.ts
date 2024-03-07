@@ -5,13 +5,12 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: '#fff',
     borderRadius: 8,
-    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 2,
     },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
+    shadowOpacity: 0.33,
+    shadowRadius: 4.29,
     elevation: 5,
   },
   image: {

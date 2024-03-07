@@ -1,3 +1,4 @@
 import Project from "./project";
+import Divider from "./divider";
 
-export { Project };
+export { Divider, Project };

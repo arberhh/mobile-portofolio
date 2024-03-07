@@ -12,7 +12,7 @@ import styles from './styles';
 const Project: React.FC<ProjectProps> = ({ title, image, domains, description }) => {
   const { theme } = useTheme();
   return (
-    <View style={[styles.container, { backgroundColor: theme.background }]}>
+    <View style={[styles.container, { backgroundColor: theme.background, shadowColor: theme.color }]}>
       <Image source={{ uri: image }} style={styles.image} />
       <Text style={[styles.title, { color: theme.color }]}>{title}</Text>
       <View style={commonStyles.row}>
