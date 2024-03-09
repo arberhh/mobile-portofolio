@@ -1,6 +1,6 @@
 import Props from './children'
 import { Database } from './supabase'
 import ProjectProps from './project'
-import ScrenProps from './screen'
+import ScreenProps from './screen'
 
-export { Props, Database, ProjectProps, ScrenProps }
+export { Props, Database, ProjectProps, ScreenProps }

@@ -1,29 +1,27 @@
 import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   container: {
-    margin: 12,
-    padding: 16,
-    backgroundColor: '#fff',
-    borderRadius: 8,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.33,
-    shadowRadius: 4.29,
-    elevation: 5,
+    marginHorizontal: 10,
+    marginVertical: 10
+  },
+  body: {
+    borderBottomLeftRadius: 8,
+    borderBottomRightRadius: 8,
+    paddingBottom: 20,
+    paddingHorizontal: 10
   },
   image: {
     width: '100%',
     height: 200,
     resizeMode: 'cover',
-    borderRadius: 8,
-    marginBottom: 8,
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
   },
   title: {
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 4,
+    marginVertical: 10
   },
   domains: {
     fontSize: 14,

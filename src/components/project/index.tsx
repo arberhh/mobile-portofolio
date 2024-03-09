@@ -12,17 +12,19 @@ import styles from './styles';
 const Project: React.FC<ProjectProps> = ({ title, image, domains, description }) => {
   const { theme } = useTheme();
   return (
-    <View style={[styles.container, { backgroundColor: theme.background, shadowColor: theme.color }]}>
+    <View style={[styles.container]}>
       <Image source={{ uri: image }} style={styles.image} />
-      <Text style={[styles.title, { color: theme.color }]}>{title}</Text>
-      <View style={commonStyles.row}>
-        {
-          domains.map((domain, index) => {
-            return <Text style={[styles.domains, { color: theme.color }]} key={index}><FontAwesome5 name={domainIconMapping[domain]} size={15} /> {domain}</Text>;
-          })
-        }
+      <View style={[styles.body, { backgroundColor: theme.cardBackground }]}>
+        <Text style={[styles.title, { color: theme.color }]}>{title}</Text>
+        <View style={commonStyles.row}>
+          {
+            domains.map((domain, index) => {
+              return <Text style={[styles.domains, { color: theme.color }]} key={index}><FontAwesome5 name={domainIconMapping[domain]} size={15} /> {domain}</Text>;
+            })
+          }
+        </View>
+        <Text style={[styles.description, { color: theme.color }]}>{description}</Text>
       </View>
-      <Text style={[styles.description, { color: theme.color }]}>{description}</Text>
     </View>
   );
 };
