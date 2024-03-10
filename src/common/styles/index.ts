@@ -11,6 +11,15 @@ const styles = StyleSheet.create({
   spaceBetween: { justifyContent: 'space-between' },
   verticalMargin: { marginVertical: 20 },
   verticalPadding: { paddingVertical: 20 },
+  fullPercentage: { width: '100%', height: '100%' },
+  mb10: { marginBottom: 10 },
+  mt10: { marginTop: 10 },
+  mt20: { marginTop: 20 },
+  title: { fontSize: 18, fontWeight: 'bold', marginBottom: 10 },
+  subtitle: { fontSize: 14, fontWeight: '400' },
+  justifyCenter: { justifyContent: 'center' },
+  alignCenter: { alignItems: 'center' },
+  text400: { fontSize: 16, fontWeight: '400' },
 });
 
 export default styles;

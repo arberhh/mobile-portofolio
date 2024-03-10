@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, Text } from 'react-native';
+import { View, Image, Text, Pressable } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useTheme } from '../../context';
 import { domainIconMapping } from '../../util';
@@ -9,10 +9,10 @@ import styles from './styles';
 
 
 
-const Project: React.FC<ProjectProps> = ({ title, image, domains, description }) => {
+const Project: React.FC<ProjectProps> = ({ title, image, domains, description, onPress }) => {
   const { theme } = useTheme();
   return (
-    <View style={[styles.container]}>
+    <Pressable onPress={onPress} style={[styles.container]}>
       <Image source={{ uri: image }} style={styles.image} />
       <View style={[styles.body, { backgroundColor: theme.cardBackground }]}>
         <Text style={[styles.title, { color: theme.color }]}>{title}</Text>
@@ -25,7 +25,7 @@ const Project: React.FC<ProjectProps> = ({ title, image, domains, description })
         </View>
         <Text style={[styles.description, { color: theme.color }]}>{description}</Text>
       </View>
-    </View>
+    </Pressable>
   );
 };
 

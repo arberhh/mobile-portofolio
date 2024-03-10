@@ -41,6 +41,10 @@ const Home: React.FC<ScreenProps> = ({ navigation }) => {
     fetchProjects();
   }, []);
 
+  const onPressProject = (id: number) => {
+    navigation.navigate('ProjectDetails', { id });
+  };
+
   return (
     <SafeAreaView style={[commonStyles.flex, commonStyles.horizontalPadding, { backgroundColor: theme.screenBackground }]}>
       <FlatList
@@ -51,12 +55,13 @@ const Home: React.FC<ScreenProps> = ({ navigation }) => {
         renderItem={({ item }) => {
           return (
             <Project
+              onPress={() => onPressProject(item.id)}
               title={item.title}
               image={item.banner_url}
               domains={item.domains}
               description={item.short_description}
             />
-          )
+          );
         }}
       />
     </SafeAreaView>
