@@ -14,7 +14,7 @@ const Slideshow: React.FC<SlideshowProps> = ({ images }) => {
   const { width, height } = useWindowDimensions();
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const windowWidth: number = width;
-  const slideHeight: number = height / 2.7;
+  const slideHeight: number = height / 3.2;
   const scrollViewRef = createRef<ScrollView>();
 
   const handlePrevious = () => {

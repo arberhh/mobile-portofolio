@@ -4,6 +4,7 @@ const styles = StyleSheet.create({
   center: { justifyContent: 'center', alignItems: 'center' },
   column: { flexDirection: 'column' },
   flex: { flex: 1 },
+  flexGrow: { flexGrow: 1 },
   horizontalLine: { flex: 1, borderBottomWidth: 1, marginHorizontal: 10 },
   horizontalMargin: { marginHorizontal: 20 },
   horizontalPadding: { paddingHorizontal: 20 },
@@ -20,6 +21,8 @@ const styles = StyleSheet.create({
   justifyCenter: { justifyContent: 'center' },
   alignCenter: { alignItems: 'center' },
   text400: { fontSize: 16, fontWeight: '400' },
+  borderradius10: { borderRadius: 10 },
+  borderRadius8: { borderRadius: 8 },
 });
 
 export default styles;
