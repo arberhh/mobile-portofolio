@@ -4,7 +4,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Home, ProjectDetail, User } from '../screens';
 import { useTheme } from '../context';
-import { commonStyles } from '../common';
 
 
 const Stack = createNativeStackNavigator();

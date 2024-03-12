@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, SafeAreaView, ActivityIndicator, ScrollView, Image, useWindowDimensions, Pressable } from 'react-native';
 import { Ionicons, MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import Carousel from "react-native-reanimated-carousel";
-import { FullScreenImage, List } from '../../components';
+import { FullScreenImage, List, Slideshow } from '../../components';
 import { supabase } from '../../util/supabase'; // Assuming you have a supabase client instance
 import { ScreenProps } from '../../types';
 import { useTheme } from '../../context';
@@ -58,8 +58,8 @@ const ProjectDetailScreen: React.FC<ScreenProps> = ({ navigation, route }) => {
   return (
     <SafeAreaView style={[commonStyles.flex, { backgroundColor: theme.screenBackground }]}>
       {loading ? <View style={[commonStyles.flex, commonStyles.center]}><ActivityIndicator size={'large'} color={theme.color} /></View> :
-        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={[commonStyles.flexGrow, commonStyles.mt10, commonStyles.verticalPadding]}>
-          <Carousel
+        <ScrollView nestedScrollEnabled showsVerticalScrollIndicator={false} contentContainerStyle={[commonStyles.flexGrow, commonStyles.mt10, commonStyles.verticalPadding]}>
+          {/* <Carousel
             vertical={false}
             autoPlayInterval={2000}
             data={project.images}
@@ -73,16 +73,16 @@ const ProjectDetailScreen: React.FC<ScreenProps> = ({ navigation, route }) => {
                 <Image width={400} source={{ uri: item as string }} resizeMode='contain' style={[commonStyles.fullPercentage,]} />
               </Pressable>
             )}
-          />
+          /> */}
           <FullScreenImage color={theme.color} visible={modalVisible} onClose={closeModal} imageUri={activeImage} />
           {/* custom slideshow */}
-          {/* <Slideshow images={project.images} /> */}
+          <Slideshow onImagePress={openModal} images={project.images} />
           <View style={styles.body}>
             <Text style={[commonStyles.title, { color: theme.color }]}>{project.title}</Text>
             <Text style={[commonStyles.subtitle, { color: theme.color }]}>{project.long_description}</Text>
-            <List items={project.tools_technologies} color={theme.color} title=" Tools and Technologies" icon={<Ionicons name='settings-sharp' size={24} />} />
-            <List items={project.non_technical_contributions} color={theme.color} title=" Non technical contributions" icon={<MaterialCommunityIcons name="brain" size={24} />} />
-            <List items={project.techical_contributions} color={theme.color} title=" technical contributions" icon={<MaterialIcons name="computer" size={24} />} />
+            <List items={project.tools_technologies} color={theme.color} title=" Tools and Technologies" icon={<Ionicons name='settings-sharp' size={24} color={theme.color} />} />
+            <List items={project.non_technical_contributions} color={theme.color} title=" Non technical contributions" icon={<MaterialCommunityIcons name="brain" size={24} color={theme.color} />} />
+            <List items={project.techical_contributions} color={theme.color} title=" technical contributions" icon={<MaterialIcons name="computer" size={24} color={theme.color} />} />
           </View>
         </ScrollView>
       }

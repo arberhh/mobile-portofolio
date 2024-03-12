@@ -1,5 +1,6 @@
 // themes.ts
 export interface Theme {
+  theme: 'light' | 'dark';
   screenBackground: string;
   color: string,
   text: string;
@@ -9,6 +10,7 @@ export interface Theme {
 }
 
 export const lightTheme: Theme = {
+  theme: 'light',
   screenBackground: '#F7F7F8',
   color: '#000000',
   text: '#000000',
@@ -18,6 +20,7 @@ export const lightTheme: Theme = {
 };
 
 export const darkTheme: Theme = {
+  theme: 'dark',
   screenBackground: '#1C1C1C',
   color: '#ffffff',
   text: '#ffffff',

@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
   slide: {
     alignItems: 'center',
     justifyContent: 'center',
+    borderRadius: 8,
   },
   image: {
     width: 200,

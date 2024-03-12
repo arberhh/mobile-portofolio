@@ -7,9 +7,10 @@ import styles from './styles';
 
 interface SlideshowProps {
   images: string[];
+  onImagePress: (url: string) => void;
 }
 
-const Slideshow: React.FC<SlideshowProps> = ({ images }) => {
+const Slideshow: React.FC<SlideshowProps> = ({ images, onImagePress }) => {
   const { theme } = useTheme();
   const { width, height } = useWindowDimensions();
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -51,10 +52,10 @@ const Slideshow: React.FC<SlideshowProps> = ({ images }) => {
         scrollEventThrottle={200}
       >
         {images.map((image: string, index: number) => (
-          <View key={index} style={[styles.slide, { width: windowWidth, height: slideHeight }]}>
+          <Pressable onPress={() => onImagePress(image)} key={index} style={[styles.slide, { width: windowWidth, height: slideHeight }]}>
             {/* Replace 'image' with your image component */}
-            <Image resizeMode='contain' source={{ uri: image }} style={[commonStyles.fullPercentage]} />
-          </View>
+            <Image resizeMode='contain' source={{ uri: image }} style={[commonStyles.fullPercentage]} borderRadius={8} />
+          </Pressable>
         ))}
       </ScrollView>
       <View style={styles.navigationRight}>

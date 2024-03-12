@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList, Pressable, SafeAreaView } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useTheme } from '../../context';
 import { Project } from '../../components';
@@ -47,6 +48,7 @@ const Home: React.FC<ScreenProps> = ({ navigation }) => {
 
   return (
     <SafeAreaView style={[commonStyles.flex, commonStyles.horizontalPadding, { backgroundColor: theme.screenBackground }]}>
+      <StatusBar backgroundColor={theme.screenBackground} style={theme.theme === 'dark' ? 'light' : 'dark'} />
       <FlatList
         data={projects}
         // ItemSeparatorComponent={() => <Divider />}
