@@ -52,7 +52,7 @@ const Slideshow: React.FC<SlideshowProps> = ({ images, onImagePress }) => {
         scrollEventThrottle={200}
       >
         {images.map((image: string, index: number) => (
-          <Pressable onPress={() => onImagePress(image)} key={index} style={[styles.slide, { width: windowWidth, height: slideHeight }]}>
+          <Pressable key={index} style={[styles.slide, { width: windowWidth, height: slideHeight }]}>
             {/* Replace 'image' with your image component */}
             <Image resizeMode='contain' source={{ uri: image }} style={[commonStyles.fullPercentage]} borderRadius={8} />
           </Pressable>

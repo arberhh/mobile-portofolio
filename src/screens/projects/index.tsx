@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, Pressable, SafeAreaView } from 'react-native';
+import { Appearance, FlatList, Pressable, SafeAreaView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useTheme } from '../../context';
@@ -10,7 +10,7 @@ import { commonStyles } from '../../common';
 
 const Home: React.FC<ScreenProps> = ({ navigation }) => {
   const [projects, setProjects] = useState<any[]>([]);
-  const { theme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     navigation.setOptions({
@@ -22,6 +22,14 @@ const Home: React.FC<ScreenProps> = ({ navigation }) => {
       ),
     });
   }, [theme]);
+
+  useEffect(() => {
+    Appearance.addChangeListener(({ colorScheme }) => {
+      if (colorScheme !== theme.theme) {
+        toggleTheme()
+      }
+    })
+  }, [navigation]);
 
   useEffect(() => {
     const fetchProjects = async () => {
