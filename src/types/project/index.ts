@@ -3,6 +3,7 @@ interface ProjectProps {
   image: string;
   domains: string[];
   description: string;
+  onPress: () => void;
 }
 
 export default ProjectProps;

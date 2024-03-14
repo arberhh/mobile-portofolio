@@ -1,6 +1,6 @@
 interface ScreenProps {
   navigation: any;
-  route: any;
+  route?: any;
 }
 
 export default ScreenProps;
