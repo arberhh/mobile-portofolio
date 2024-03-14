@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
   horizontalMargin: { marginHorizontal: 20 },
   horizontalPadding: { paddingHorizontal: 20 },
   row: { flexDirection: 'row', flexWrap: 'wrap' },
+  rowOnly: { flexDirection: 'row' },
   spaceBetween: { justifyContent: 'space-between' },
   verticalMargin: { marginVertical: 20 },
   verticalPadding: { paddingVertical: 20 },
@@ -20,9 +21,11 @@ const styles = StyleSheet.create({
   subtitle: { fontSize: 14, fontWeight: '400' },
   justifyCenter: { justifyContent: 'center' },
   alignCenter: { alignItems: 'center' },
+  aligLeft: { alignItems: 'flex-start' },
   text400: { fontSize: 16, fontWeight: '400' },
   borderradius10: { borderRadius: 10 },
   borderRadius8: { borderRadius: 8 },
+  icon: { marginHorizontal: 10 }
 });
 
 export default styles;
