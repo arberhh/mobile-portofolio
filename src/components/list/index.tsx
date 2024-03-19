@@ -8,7 +8,7 @@ export default function List({ items, icon, color, title }: ListProps) {
     <View>
       <View style={[commonStyles.row, commonStyles.alignCenter, commonStyles.mt20, commonStyles.mb10]}>
         {icon}
-        <Text style={[commonStyles.text400, { color: color }]}>{title}</Text>
+        <Text style={[commonStyles.title, { color: color }]}>{title}</Text>
       </View>
       {
         items.map((item: string) => <Text style={[commonStyles.subtitle, { color: color }]} key={item}>• {item}</Text>)

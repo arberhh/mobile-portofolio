@@ -8,8 +8,7 @@ const styles = StyleSheet.create({
   },
   keyTechnologyContainer: {
     paddingHorizontal: 10,
-    paddingVertical: 5,
-    paddingRight: 10,
+    paddingVertical: 4,
     marginRight: 5,// Assuming this is a color representing key technologies
     borderRadius: 20,
     alignItems: 'center',

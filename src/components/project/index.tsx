@@ -19,7 +19,7 @@ const Project: React.FC<ProjectProps> = ({ title, image, domains, description, o
         <View style={commonStyles.row}>
           {
             domains.map((domain, index) => {
-              return <Text style={[styles.domains, { color: theme.color }]} key={index}><FontAwesome5 name={domainIconMapping[domain]} size={15} /> {domain}</Text>;
+              return <Text style={[styles.domains]} key={index}><FontAwesome5 name={domainIconMapping[domain]} size={15} /> {domain}</Text>;
             })
           }
         </View>

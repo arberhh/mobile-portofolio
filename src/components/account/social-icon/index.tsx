@@ -8,7 +8,7 @@ import { commonStyles } from '../../../common';
 export default function SocialIcon({ color, onPress, iconType }: SocialIconProps) {
   return (
     <Pressable onPress={onPress}>
-      <Ionicons name={`logo-${iconType}`} size={32} color={color} style={commonStyles.icon} />
+      <Ionicons name={`logo-${iconType}`} size={26} color={color} style={commonStyles.icon} />
     </Pressable>
   )
 }

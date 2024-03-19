@@ -25,11 +25,12 @@ const styles = StyleSheet.create({
   },
   domains: {
     fontSize: 14,
-    color: '#888',
+    color: '#0070BB',
     marginRight: 7
   },
   description: {
-    fontSize: 16,
+    fontSize: 14,
+    fontWeight: '400',
     marginTop: 20
   },
 });

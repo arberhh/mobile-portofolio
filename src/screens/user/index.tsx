@@ -70,8 +70,14 @@ const User: FC<ScreenProps> = () => {
         <>
           <Image source={{ uri: user.profile_picture }} style={styles.profileImage} />
           {/* About Me Section */}
-          <View style={styles.header}>
-            <Text style={[styles.sectionHeader, { color: theme.color }]}><MaterialCommunityIcons name="palette" size={24} color={theme.color} /> Main Technologies</Text>
+          <View style={styles.section}>
+            <Text style={[commonStyles.title, { color: theme.color }]}><FontAwesome name='pencil-square-o' size={22} color={theme.text} style={styles.icon} />About Me</Text>
+            <Text style={[commonStyles.subtitle, { color: theme.color }]}>
+              {user.intro}
+            </Text>
+          </View>
+          <View style={styles.section}>
+            <Text style={[commonStyles.title, { color: theme.color }]}><MaterialCommunityIcons name="palette" size={22} color={theme.color} /> Main Technologies</Text>
             <View style={[commonStyles.rowOnly, commonStyles.aligLeft]}>
               {
                 user.main_techs.map((tech: string, index: number) => (
@@ -79,12 +85,6 @@ const User: FC<ScreenProps> = () => {
                 ))
               }
             </View>
-          </View>
-          <View style={styles.aboutMe}>
-            <Text style={[styles.sectionHeader, { color: theme.color }]}><FontAwesome name='pencil-square-o' size={32} color={theme.text} style={styles.icon} />About Me</Text>
-            <Text style={[styles.aboutMeText, { color: theme.color }]}>
-              {user.intro}
-            </Text>
           </View>
           {/* Contact Icons */}
           <View style={styles.contactIcons}>
