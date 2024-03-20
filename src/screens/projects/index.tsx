@@ -13,17 +13,6 @@ const Home: React.FC<ScreenProps> = ({ navigation }) => {
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
-    navigation.setOptions({
-      title: 'Projects',
-      headerLeft: () => (
-        <Pressable onPress={() => navigation.navigate('User')}>
-          <MaterialIcons name="account-circle" size={24} color={theme.color} />
-        </Pressable>
-      ),
-    });
-  }, [theme]);
-
-  useEffect(() => {
     Appearance.addChangeListener(({ colorScheme }) => {
       if (colorScheme !== theme.theme) {
         toggleTheme()

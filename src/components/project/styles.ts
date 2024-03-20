@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   },
   domains: {
     fontSize: 14,
-    color: '#0070BB',
+    color: '#6E6E6C',
     marginRight: 7
   },
   description: {

@@ -16,14 +16,14 @@ const Project: React.FC<ProjectProps> = ({ title, image, domains, description, o
       <Image source={{ uri: image }} style={styles.image} />
       <View style={[styles.body, { backgroundColor: theme.cardBackground }]}>
         <Text style={[styles.title, { color: theme.color }]}>{title}</Text>
-        <View style={commonStyles.row}>
+        <View style={[commonStyles.row, commonStyles.mt10]}>
           {
             domains.map((domain, index) => {
               return <Text style={[styles.domains]} key={index}><FontAwesome5 name={domainIconMapping[domain]} size={15} /> {domain}</Text>;
             })
           }
         </View>
-        <Text style={[styles.description, { color: theme.color }]}>{description}</Text>
+        <Text style={[styles.description, commonStyles.mt10, { color: theme.color }]}>{description}</Text>
       </View>
     </Pressable>
   );
