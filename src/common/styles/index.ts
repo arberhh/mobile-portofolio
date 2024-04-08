@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   center: { justifyContent: 'center', alignItems: 'center' },
   column: { flexDirection: 'column' },
+  errorText: { fontSize: 13, fontWeight: '700' },
   flex: { flex: 1 },
   flexGrow: { flexGrow: 1 },
   horizontalLine: { flex: 1, borderBottomWidth: 1, marginHorizontal: 10 },
