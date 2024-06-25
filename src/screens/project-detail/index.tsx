@@ -11,7 +11,7 @@ import {
   MaterialIcons,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
-import { FullScreenImage, List, Slideshow } from "@/components";
+import { FullScreenImage, List, Slideshow, ThemeText } from "@/components";
 import { getProject } from "@/services";
 import { useTheme } from "@/context";
 import { ScreenProps } from "@/types";
@@ -58,9 +58,7 @@ const ProjectDetailScreen: React.FC<ScreenProps> = ({ navigation, route }) => {
     >
       {error !== "" ? (
         <View style={[commonStyles.flex, commonStyles.center]}>
-          <Text style={[commonStyles.errorText, { color: theme.color }]}>
-            {error}
-          </Text>
+          <ThemeText style={commonStyles.errorText} text={error} />
         </View>
       ) : loading ? (
         <View style={[commonStyles.flex, commonStyles.center]}>
@@ -85,12 +83,11 @@ const ProjectDetailScreen: React.FC<ScreenProps> = ({ navigation, route }) => {
           {/* custom slideshow */}
           <Slideshow onImagePress={openModal} images={project.images} />
           <View style={styles.body}>
-            <Text style={[commonStyles.title, { color: theme.color }]}>
-              {project.title}
-            </Text>
-            <Text style={[commonStyles.subtitle, { color: theme.color }]}>
-              {project.long_description}
-            </Text>
+            <ThemeText style={commonStyles.title} text={project.title} />
+            <ThemeText
+              style={commonStyles.subtitle}
+              text={project.long_description}
+            />
             <List
               items={project.tools_technologies}
               color={theme.color}

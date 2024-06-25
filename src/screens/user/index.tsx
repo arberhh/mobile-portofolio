@@ -3,7 +3,7 @@ import { ActivityIndicator, Image, Linking, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
 
-import { SocialIcon, Tech } from "@/components";
+import { SocialIcon, Tech, ThemeText } from "@/components";
 import { useTheme } from "@/context";
 import { ScreenProps } from "@/types";
 import { commonStyles } from "@/common";
@@ -65,9 +65,7 @@ const User: FC<ScreenProps> = () => {
     >
       {error !== "" ? (
         <View style={[commonStyles.flex, commonStyles.center]}>
-          <Text style={[commonStyles.errorText, { color: theme.color }]}>
-            {error}
-          </Text>
+          <ThemeText text={error} style={commonStyles.errorText} />
         </View>
       ) : loading ? (
         <ActivityIndicator size={"large"} color={theme.color} />
@@ -79,28 +77,20 @@ const User: FC<ScreenProps> = () => {
           />
           {/* About Me Section */}
           <View style={styles.section}>
-            <Text style={[commonStyles.title, { color: theme.color }]}>
-              <FontAwesome
-                name="pencil-square-o"
-                size={22}
-                color={theme.text}
-                style={styles.icon}
-              />
-              About Me
-            </Text>
-            <Text style={[commonStyles.subtitle, { color: theme.color }]}>
-              {user.intro}
-            </Text>
+            <ThemeText style={commonStyles.subtitle} text={user.intro} />
           </View>
           <View style={styles.section}>
-            <Text style={[commonStyles.title, { color: theme.color }]}>
+            <View style={commonStyles.rowOnly}>
               <MaterialCommunityIcons
                 name="palette"
                 size={22}
                 color={theme.color}
-              />{" "}
-              Main Technologies
-            </Text>
+              />
+              <ThemeText
+                style={commonStyles.title}
+                text={"Main Technologies"}
+              />
+            </View>
             <View style={[commonStyles.rowOnly, commonStyles.aligLeft]}>
               {user.main_techs.map((tech: string, index: number) => (
                 <Tech theme={theme} key={index} title={tech} />

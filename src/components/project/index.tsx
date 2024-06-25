@@ -6,6 +6,7 @@ import { domainIconMapping } from "@/util";
 import { ProjectProps } from "@/types";
 import { commonStyles } from "@/common";
 import styles from "./styles";
+import ThemeText from "../theme-text";
 
 const Project: React.FC<ProjectProps> = ({
   title,
@@ -19,7 +20,7 @@ const Project: React.FC<ProjectProps> = ({
     <Pressable onPress={onPress} style={[styles.container]}>
       <Image source={{ uri: image }} style={styles.image} />
       <View style={[styles.body, { backgroundColor: theme.cardBackground }]}>
-        <Text style={[styles.title, { color: theme.color }]}>{title}</Text>
+        <ThemeText text={title} style={styles.title} />
         <View style={[commonStyles.row, commonStyles.mt10]}>
           {domains.map((domain, index) => {
             return (
@@ -30,15 +31,7 @@ const Project: React.FC<ProjectProps> = ({
             );
           })}
         </View>
-        <Text
-          style={[
-            styles.description,
-            commonStyles.mt10,
-            { color: theme.color },
-          ]}
-        >
-          {description}
-        </Text>
+        <ThemeText text={description} style={styles.description} />
       </View>
     </Pressable>
   );

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Appearance, FlatList, SafeAreaView, Text, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { Project } from "@/components";
+import { Project, ThemeText } from "@/components";
 import { getProjects } from "@/services";
 import { useTheme } from "@/context";
 import { ScreenProps } from "@/types";
@@ -53,9 +53,7 @@ const Home: React.FC<ScreenProps> = ({ navigation }) => {
       />
       {error !== "" ? (
         <View style={[commonStyles.flex, commonStyles.center]}>
-          <Text style={[commonStyles.errorText, { color: theme.color }]}>
-            {error}
-          </Text>
+          <ThemeText style={commonStyles.errorText} text={error} />
         </View>
       ) : (
         <FlatList
