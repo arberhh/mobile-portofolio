@@ -4,11 +4,11 @@ import { LinearGradient } from "expo-linear-gradient";
 import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { SocialIcon, Tech, ThemeText } from "@/components";
+import { getProfile } from "@/services/supabase-service";
 import { useTheme } from "@/context";
 import { ScreenProps } from "@/types";
 import { commonStyles } from "@/common";
 import styles from "./styles";
-import { getProfile } from "@/services/supabase-service";
 
 // Define gradient colors for light mode
 const lightGradientColors = ["#F7F7F8", "#808080", "#1C1C1C"];

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Appearance, FlatList, SafeAreaView, Text, View } from "react-native";
+import { Appearance, FlatList, SafeAreaView, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Project, ThemeText } from "@/components";
 import { getProjects } from "@/services";
@@ -58,7 +58,6 @@ const Home: React.FC<ScreenProps> = ({ navigation }) => {
       ) : (
         <FlatList
           data={projects}
-          // ItemSeparatorComponent={() => <Divider />}
           keyExtractor={(item) => item?.id.toString()}
           showsVerticalScrollIndicator={false}
           renderItem={({ item }) => {
