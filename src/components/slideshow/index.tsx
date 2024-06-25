@@ -1,9 +1,15 @@
-import React, { createRef, useState } from 'react';
-import { View, ScrollView, Image, Pressable, useWindowDimensions } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { useTheme } from '../../context';
-import { commonStyles } from '../../common';
-import styles from './styles';
+import React, { createRef, useState } from "react";
+import {
+  View,
+  ScrollView,
+  Image,
+  Pressable,
+  useWindowDimensions,
+} from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { useTheme } from "@/context";
+import { commonStyles } from "@/common";
+import styles from "./styles";
 
 interface SlideshowProps {
   images: string[];
@@ -22,7 +28,6 @@ const Slideshow: React.FC<SlideshowProps> = ({ images, onImagePress }) => {
     const index = currentIndex > 0 ? currentIndex - 1 : images.length - 1;
     setCurrentIndex(index);
     scrollViewRef.current?.scrollTo({ x: index * windowWidth, animated: true });
-
   };
 
   const handleNext = () => {
@@ -52,9 +57,17 @@ const Slideshow: React.FC<SlideshowProps> = ({ images, onImagePress }) => {
         scrollEventThrottle={200}
       >
         {images.map((image: string, index: number) => (
-          <Pressable key={index} style={[styles.slide, { width: windowWidth, height: slideHeight }]}>
-            {/* Replace 'image' with your image component */}
-            <Image resizeMode='contain' source={{ uri: image }} style={[commonStyles.fullPercentage]} borderRadius={8} />
+          <Pressable
+            key={index}
+            style={[styles.slide, { width: windowWidth, height: slideHeight }]}
+          >
+            {/* Replace "image" with your image component */}
+            <Image
+              resizeMode="contain"
+              source={{ uri: image }}
+              style={[commonStyles.fullPercentage]}
+              borderRadius={8}
+            />
           </Pressable>
         ))}
       </ScrollView>
@@ -66,14 +79,18 @@ const Slideshow: React.FC<SlideshowProps> = ({ images, onImagePress }) => {
       <View style={styles.navigation}>
         <View style={styles.dots}>
           {images.map((_, index: number) => (
-            <View key={index} style={[styles.dot, index === currentIndex && { backgroundColor: theme.color }]} />
+            <View
+              key={index}
+              style={[
+                styles.dot,
+                index === currentIndex && { backgroundColor: theme.color },
+              ]}
+            />
           ))}
         </View>
       </View>
     </View>
   );
 };
-
-
 
 export default Slideshow;

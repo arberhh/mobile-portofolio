@@ -1,9 +1,9 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   profileImage: {
     width: 160,
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   section: {
-    alignSelf: 'flex-start',
+    alignSelf: "flex-start",
     marginHorizontal: 20,
     marginVertical: 10,
   },
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     // Use theme text color
   },
   contactIcons: {
-    flexDirection: 'row',
+    flexDirection: "row",
     marginTop: 30
   },
   icon: {

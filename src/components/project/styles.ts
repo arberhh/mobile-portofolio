@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: 10,
@@ -11,26 +11,26 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10
   },
   image: {
-    width: '100%',
+    width: "100%",
     height: 200,
-    resizeMode: 'cover',
+    resizeMode: "cover",
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
   },
   title: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 4,
     marginVertical: 10
   },
   domains: {
     fontSize: 14,
-    color: '#6E6E6C',
+    color: "#6E6E6C",
     marginRight: 7
   },
   description: {
     fontSize: 14,
-    fontWeight: '400',
+    fontWeight: "400",
     marginTop: 20
   },
 });

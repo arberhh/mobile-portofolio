@@ -5,7 +5,4 @@ import FullScreenImage from "./full-screen";
 import List from "./list";
 import { SocialIcon, Tech } from "./account";
 
-export {
-  Divider, Project, Slideshow, FullScreenImage,
-  List, SocialIcon, Tech
-};
+export { Divider, Project, Slideshow, FullScreenImage, List, SocialIcon, Tech };
