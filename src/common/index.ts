@@ -1,3 +1,3 @@
-import commonStyles from './styles';
+import commonStyles from "./styles";
 
 export { commonStyles };
