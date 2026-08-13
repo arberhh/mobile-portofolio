@@ -10,11 +10,13 @@ import { ScreenProps } from "@/types";
 import { commonStyles } from "@/common";
 import styles from "./styles";
 
+type Gradientcolors = readonly [string, string, ...string[]];
+
 // Define gradient colors for light mode
-const lightGradientColors = ["#F7F7F8", "#808080", "#1C1C1C"];
+const lightGradientColors: Gradientcolors = ["#F7F7F8", "#808080", "#1C1C1C"];
 
 // Define gradient colors for dark mode
-const darkGradientColors = ["#1C1C1C", "#808080", "#F7F7F8"];
+const darkGradientColors: Gradientcolors = ["#1C1C1C", "#808080", "#F7F7F8"];
 
 const User: FC<ScreenProps> = () => {
   const { theme } = useTheme();
@@ -50,7 +52,7 @@ const User: FC<ScreenProps> = () => {
   };
 
   const gradientColors =
-    theme.theme === "dark" ? lightGradientColors : darkGradientColors;
+    theme.theme === "dark" ? darkGradientColors : lightGradientColors;
 
   return (
     <LinearGradient
