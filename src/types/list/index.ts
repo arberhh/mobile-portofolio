@@ -1,3 +1,5 @@
+import { JSX } from "react";
+
 interface ListProps {
   color: string;
   items: string[];

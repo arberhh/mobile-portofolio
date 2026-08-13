@@ -21,7 +21,7 @@ const getProjects = async () => {
   }
 };
 
-const getProject = async (id: string) => {
+const getProject = async (id: number) => {
   try {
     const { data, error } = await supabase
       .from("projects")
