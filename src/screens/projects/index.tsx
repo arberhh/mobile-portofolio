@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Appearance, FlatList, SafeAreaView, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Project, ThemeText } from "@/components";
-import { getProjects } from "@/services";
+import { useDomainIcons, useProjects } from "@/hooks";
 import { useTheme } from "@/context";
 import { ScreenProps } from "@/types";
 import { commonStyles } from "@/common";
 
 const Home: React.FC<ScreenProps> = ({ navigation }) => {
-  const [projects, setProjects] = useState<any[]>([]);
-  const [error, setError] = useState<string>("");
+  const { projects, error } = useProjects();
+  const domainIcons = useDomainIcons();
 
   const { theme, toggleTheme } = useTheme();
 
@@ -20,20 +20,6 @@ const Home: React.FC<ScreenProps> = ({ navigation }) => {
       }
     });
   }, [navigation]);
-
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const projects = (await getProjects()) || [];
-        setProjects(projects);
-      } catch (error: any) {
-        console.error({ error });
-        setError(error.message);
-      }
-    };
-
-    fetchProjects();
-  }, []);
 
   const onPressProject = (id: number) => {
     navigation.navigate("ProjectDetails", { id });
@@ -64,6 +50,7 @@ const Home: React.FC<ScreenProps> = ({ navigation }) => {
                 title={item.title}
                 image={item.banner_url}
                 domains={item.domains}
+                domainIcons={domainIcons}
                 description={item.short_description}
               />
             );

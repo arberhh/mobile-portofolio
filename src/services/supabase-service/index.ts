@@ -47,6 +47,27 @@ const getProject = async (id: number) => {
   }
 };
 
+const getDomains = async () => {
+  try {
+    const { data, error } = await supabase.from("domains").select("*");
+    if (error) {
+      console.error("Error fetching domains:", error);
+      throw new Error(
+        "There was an issue with fetching the domains, please try again later!"
+      );
+    }
+    if (data) {
+      return data;
+    }
+  } catch (error: any) {
+    console.error("Error fetching domains:", error);
+    throw new Error(
+      error.message ||
+        "There was an issue with fetching the domains, please try again later!"
+    );
+  }
+};
+
 const getProfile = async () => {
   try {
     let { data, error } = await supabase.from("profile").select("*").single();
@@ -68,4 +89,4 @@ const getProfile = async () => {
   }
 };
 
-export { getProjects, getProject, getProfile };
+export { getProjects, getProject, getProfile, getDomains };

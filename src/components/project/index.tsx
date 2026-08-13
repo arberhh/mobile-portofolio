@@ -2,7 +2,6 @@ import React from "react";
 import { View, Image, Text, Pressable } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { useTheme } from "@/context";
-import { domainIconMapping } from "@/util";
 import { ProjectProps } from "@/types";
 import { commonStyles } from "@/common";
 import styles from "./styles";
@@ -12,6 +11,7 @@ const Project: React.FC<ProjectProps> = ({
   title,
   image,
   domains,
+  domainIcons,
   description,
   onPress,
 }) => {
@@ -25,7 +25,7 @@ const Project: React.FC<ProjectProps> = ({
           {domains.map((domain, index) => {
             return (
               <Text style={[styles.domains]} key={index}>
-                <FontAwesome5 name={domainIconMapping[domain]} size={15} />{" "}
+                <FontAwesome5 name={domainIcons[domain]} size={15} />{" "}
                 {domain}
               </Text>
             );
