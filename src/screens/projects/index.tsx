@@ -47,10 +47,7 @@ const Home: React.FC<ScreenProps> = ({ navigation }) => {
         { backgroundColor: theme.screenBackground },
       ]}
     >
-      <StatusBar
-        backgroundColor={theme.screenBackground}
-        style={theme.theme === "dark" ? "light" : "dark"}
-      />
+      <StatusBar style={theme.theme === "dark" ? "light" : "dark"} />
       {error !== "" ? (
         <View style={[commonStyles.flex, commonStyles.center]}>
           <ThemeText style={commonStyles.errorText} text={error} />

@@ -1,16 +1,26 @@
 import * as React from "react";
 import { Pressable } from "react-native";
-import { NavigationProp, useNavigation } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { useNavigation } from "@react-navigation/native";
+import {
+  createNativeStackNavigator,
+  NativeStackNavigationProp,
+} from "@react-navigation/native-stack";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Home, ProjectDetail, User } from "@/screens";
 import { useTheme } from "@/context";
 
-const Stack = createNativeStackNavigator();
+type RootStackParamList = {
+  Home: undefined;
+  ProjectDetails: { id: number };
+  User: undefined;
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function Navigation() {
   const { theme, toggleTheme } = useTheme();
-  const { navigate } = useNavigation();
+  const { navigate } =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   return (
     <Stack.Navigator
       screenOptions={{
@@ -21,7 +31,7 @@ function Navigation() {
         headerTitleStyle: {
           fontWeight: "bold",
         },
-        headerBackTitleVisible: false,
+        headerBackButtonDisplayMode: "minimal",
         headerRight: () => (
           <Pressable onPress={toggleTheme}>
             <MaterialIcons name="dark-mode" size={24} color={theme.color} />
