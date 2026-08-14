@@ -10,7 +10,7 @@ import ThemeText from "../theme-text";
 const Project: React.FC<ProjectProps> = ({
   title,
   image,
-  domains,
+  domains = [],
   description,
   onPress,
 }) => {

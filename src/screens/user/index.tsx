@@ -94,7 +94,7 @@ const User: FC<ScreenProps> = () => {
               />
             </View>
             <View style={[commonStyles.rowOnly, commonStyles.aligLeft]}>
-              {user.main_techs.map((tech: string, index: number) => (
+              {(user.main_techs ?? []).map((tech: string, index: number) => (
                 <Tech theme={theme} key={index} title={tech} />
               ))}
             </View>

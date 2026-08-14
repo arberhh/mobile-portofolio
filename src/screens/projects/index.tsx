@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import { Appearance, FlatList, SafeAreaView, View } from "react-native";
+import { Appearance, FlatList, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { Project, ThemeText } from "@/components";
 import { useProjects } from "@/hooks";

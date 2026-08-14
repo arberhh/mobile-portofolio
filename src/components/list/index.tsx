@@ -3,7 +3,7 @@ import { Text, View } from "react-native";
 import { commonStyles } from "@/common";
 import { ListProps } from "@/types";
 
-export default function List({ items, icon, color, title }: ListProps) {
+export default function List({ items = [], icon, color, title }: ListProps) {
   return (
     <View>
       <View
