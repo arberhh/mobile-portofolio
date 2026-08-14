@@ -16,7 +16,7 @@ interface SlideshowProps {
   onImagePress: (url: string) => void;
 }
 
-const Slideshow: React.FC<SlideshowProps> = ({ images, onImagePress }) => {
+const Slideshow: React.FC<SlideshowProps> = ({ images = [], onImagePress }) => {
   const { theme } = useTheme();
   const { width, height } = useWindowDimensions();
   const [currentIndex, setCurrentIndex] = useState<number>(0);

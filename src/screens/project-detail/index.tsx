@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
-  SafeAreaView,
   ActivityIndicator,
   ScrollView,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import {
   Ionicons,
   MaterialIcons,
