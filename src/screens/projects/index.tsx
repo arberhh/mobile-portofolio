@@ -2,14 +2,13 @@ import React, { useEffect } from "react";
 import { Appearance, FlatList, SafeAreaView, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Project, ThemeText } from "@/components";
-import { useDomainIcons, useProjects } from "@/hooks";
+import { useProjects } from "@/hooks";
 import { useTheme } from "@/context";
 import { ScreenProps } from "@/types";
 import { commonStyles } from "@/common";
 
 const Home: React.FC<ScreenProps> = ({ navigation }) => {
   const { projects, error } = useProjects();
-  const domainIcons = useDomainIcons();
 
   const { theme, toggleTheme } = useTheme();
 
@@ -50,7 +49,6 @@ const Home: React.FC<ScreenProps> = ({ navigation }) => {
                 title={item.title}
                 image={item.banner_url}
                 domains={item.domains}
-                domainIcons={domainIcons}
                 description={item.short_description}
               />
             );

@@ -11,7 +11,6 @@ const Project: React.FC<ProjectProps> = ({
   title,
   image,
   domains,
-  domainIcons,
   description,
   onPress,
 }) => {
@@ -22,11 +21,11 @@ const Project: React.FC<ProjectProps> = ({
       <View style={[styles.body, { backgroundColor: theme.cardBackground }]}>
         <ThemeText text={title} style={styles.title} />
         <View style={[commonStyles.row, commonStyles.mt10]}>
-          {domains.map((domain, index) => {
+          {domains.map((domain) => {
             return (
-              <Text style={[styles.domains]} key={index}>
-                <FontAwesome5 name={domainIcons[domain]} size={15} />{" "}
-                {domain}
+              <Text style={[styles.domains]} key={domain.id}>
+                <FontAwesome5 name={domain.icon ?? undefined} size={15} />{" "}
+                {domain.title}
               </Text>
             );
           })}

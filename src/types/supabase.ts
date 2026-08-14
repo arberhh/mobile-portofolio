@@ -30,6 +30,36 @@ export type Database = {
         }
         Relationships: []
       }
+      project_domains: {
+        Row: {
+          domain_id: number
+          project_id: number
+        }
+        Insert: {
+          domain_id: number
+          project_id: number
+        }
+        Update: {
+          domain_id?: number
+          project_id?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "project_domains_domain_id_fkey"
+            columns: ["domain_id"]
+            isOneToOne: false
+            referencedRelation: "domains"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "project_domains_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       profile: {
         Row: {
           about_me: string | null
@@ -71,7 +101,6 @@ export type Database = {
           aproach: string | null
           banner_url: string | null
           created_at: string
-          domains: string[] | null
           github: string | null
           id: number
           images: string[] | null
@@ -87,7 +116,6 @@ export type Database = {
           aproach?: string | null
           banner_url?: string | null
           created_at?: string
-          domains?: string[] | null
           github?: string | null
           id?: number
           images?: string[] | null
@@ -103,7 +131,6 @@ export type Database = {
           aproach?: string | null
           banner_url?: string | null
           created_at?: string
-          domains?: string[] | null
           github?: string | null
           id?: number
           images?: string[] | null

@@ -1,3 +1,3 @@
-import { getProjects, getProject, getDomains } from "./supabase-service";
+import { getProjects, getProject } from "./supabase-service";
 
-export { getProjects, getProject, getDomains };
+export { getProjects, getProject };

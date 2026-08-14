@@ -1,8 +1,21 @@
 import { supabase } from "@/util";
 
+const DOMAINS_SELECT = "*, project_domains(domains(id, title, icon))";
+
+const withFlattenedDomains = <
+  T extends { project_domains: { domains: unknown }[] }
+>(
+  project: T
+) => {
+  const { project_domains, ...rest } = project;
+  return { ...rest, domains: project_domains.map((pd) => pd.domains) };
+};
+
 const getProjects = async () => {
   try {
-    const { data, error } = await supabase.from("projects").select("*");
+    const { data, error } = await supabase
+      .from("projects")
+      .select(DOMAINS_SELECT);
     if (error) {
       console.error("Error fetching projects:", error);
       throw new Error(
@@ -10,7 +23,7 @@ const getProjects = async () => {
       );
     }
     if (data) {
-      return data;
+      return data.map(withFlattenedDomains);
     }
   } catch (error: any) {
     console.error("Error fetching projects:", error);
@@ -25,7 +38,7 @@ const getProject = async (id: number) => {
   try {
     const { data, error } = await supabase
       .from("projects")
-      .select("*")
+      .select(DOMAINS_SELECT)
       .eq("id", id)
       .single();
 
@@ -36,34 +49,13 @@ const getProject = async (id: number) => {
         "There was an issue with fetching this project, please try again later!"
       );
     } else {
-      return data;
+      return withFlattenedDomains(data);
     }
   } catch (error: any) {
     // Handle error
     console.error("Error fetching project:", error);
     throw new Error(
       "There was an issue with fetching this project, please try again later!"
-    );
-  }
-};
-
-const getDomains = async () => {
-  try {
-    const { data, error } = await supabase.from("domains").select("*");
-    if (error) {
-      console.error("Error fetching domains:", error);
-      throw new Error(
-        "There was an issue with fetching the domains, please try again later!"
-      );
-    }
-    if (data) {
-      return data;
-    }
-  } catch (error: any) {
-    console.error("Error fetching domains:", error);
-    throw new Error(
-      error.message ||
-        "There was an issue with fetching the domains, please try again later!"
     );
   }
 };
@@ -89,4 +81,4 @@ const getProfile = async () => {
   }
 };
 
-export { getProjects, getProject, getProfile, getDomains };
+export { getProjects, getProject, getProfile };
