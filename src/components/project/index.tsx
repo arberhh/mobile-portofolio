@@ -10,7 +10,6 @@ const Project: React.FC<ProjectProps> = ({
   title,
   image,
   domains = [],
-  description,
   onPress,
 }) => {
   const { theme } = useTheme();
@@ -29,12 +28,6 @@ const Project: React.FC<ProjectProps> = ({
             </Text>
           ))}
         </View>
-        <ThemeText
-          text={description}
-          style={styles.description}
-          color={theme.textSecondary}
-          numberOfLines={2}
-        />
       </View>
     </Pressable>
   );

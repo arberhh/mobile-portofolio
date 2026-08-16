@@ -5,7 +5,6 @@ const styles = StyleSheet.create({
   bracket: {
     fontSize: 12,
     fontFamily: FONT_MEDIUM,
-    marginRight: 6,
   },
   title: {
     fontSize: 12,

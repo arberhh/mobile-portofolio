@@ -8,17 +8,10 @@ import styles from "./styles";
 export default function SectionHeading({ bracket, title }: SectionHeadingProps) {
   const { theme } = useTheme();
   return (
-    <View
-      style={[
-        commonStyles.rowOnly,
-        commonStyles.alignCenter,
-        commonStyles.mt20,
-        commonStyles.mb10,
-      ]}
-    >
-      <Text style={[styles.bracket, { color: theme.color }]}>{bracket}</Text>
-      <Text style={[styles.title, { color: theme.color }]}>
-        {title.toUpperCase()}
+    <View style={[commonStyles.mt20, commonStyles.mb10]}>
+      <Text style={{ color: theme.color }}>
+        <Text style={styles.bracket}>{bracket} </Text>
+        <Text style={styles.title}>{title.toUpperCase()}</Text>
       </Text>
     </View>
   );
