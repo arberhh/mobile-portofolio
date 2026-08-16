@@ -8,6 +8,7 @@ import {
 import { MaterialIcons } from "@expo/vector-icons";
 import { Home, ProjectDetail, User } from "@/screens";
 import { useTheme } from "@/context";
+import { FONT_MEDIUM } from "@/constants";
 
 type RootStackParamList = {
   Home: undefined;
@@ -29,7 +30,9 @@ function Navigation() {
         },
         headerTintColor: theme.color,
         headerTitleStyle: {
-          fontWeight: "bold",
+          fontFamily: FONT_MEDIUM,
+          fontSize: 17,
+          color: theme.accent,
         },
         headerBackButtonDisplayMode: "minimal",
         headerRight: () => (

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Appearance, FlatList, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
-import { Project, ThemeText } from "@/components";
+import { Divider, Project, ThemeText } from "@/components";
 import { useProjects } from "@/hooks";
 import { useTheme } from "@/context";
 import { ScreenProps } from "@/types";
@@ -43,6 +43,9 @@ const Home: React.FC<ScreenProps> = ({ navigation }) => {
           data={projects}
           keyExtractor={(item) => item?.id.toString()}
           showsVerticalScrollIndicator={false}
+          ItemSeparatorComponent={() => (
+            <Divider style={{ marginHorizontal: -20 }} />
+          )}
           renderItem={({ item }) => {
             return (
               <Project

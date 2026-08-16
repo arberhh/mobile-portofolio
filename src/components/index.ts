@@ -5,6 +5,7 @@ import FullScreenImage from "./full-screen";
 import List from "./list";
 import ThemeText from "./theme-text";
 import Slideshow from "./slideshow";
+import SectionHeading from "./section-heading";
 
 export {
   Divider,
@@ -12,6 +13,7 @@ export {
   Slideshow,
   FullScreenImage,
   List,
+  SectionHeading,
   SocialIcon,
   Tech,
   ThemeText,

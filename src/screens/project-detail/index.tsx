@@ -6,11 +6,6 @@ import {
   ScrollView,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import {
-  Ionicons,
-  MaterialIcons,
-  MaterialCommunityIcons,
-} from "@expo/vector-icons";
 import { FullScreenImage, List, Slideshow, ThemeText } from "@/components";
 import { getProject } from "@/services";
 import { useTheme } from "@/context";
@@ -83,38 +78,33 @@ const ProjectDetailScreen: React.FC<ScreenProps> = ({ navigation, route }) => {
           {/* custom slideshow */}
           <Slideshow onImagePress={openModal} images={project.images} />
           <View style={styles.body}>
-            <ThemeText style={commonStyles.title} text={project.title} />
+            <ThemeText
+              style={commonStyles.title}
+              text={project.title}
+              color={theme.accent}
+            />
             <ThemeText
               style={commonStyles.subtitle}
               text={project.long_description}
+              color={theme.textSecondary}
             />
             <List
               items={project.tools_technologies}
-              color={theme.color}
-              title=" Tools and Technologies"
-              icon={
-                <Ionicons name="settings-sharp" size={24} color={theme.color} />
-              }
+              color={theme.textSecondary}
+              title="Tools and Technologies"
+              bracket="[stack]"
             />
             <List
               items={project.non_technical_contributions}
-              color={theme.color}
-              title=" Non technical contributions"
-              icon={
-                <MaterialCommunityIcons
-                  name="brain"
-                  size={24}
-                  color={theme.color}
-                />
-              }
+              color={theme.textSecondary}
+              title="Non technical contributions"
+              bracket="[contributions/non-technical]"
             />
             <List
               items={project.techical_contributions}
-              color={theme.color}
-              title=" Technical contributions"
-              icon={
-                <MaterialIcons name="computer" size={24} color={theme.color} />
-              }
+              color={theme.textSecondary}
+              title="Technical contributions"
+              bracket="[contributions/technical]"
             />
           </View>
         </ScrollView>

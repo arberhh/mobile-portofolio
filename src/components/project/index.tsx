@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Image, Text, Pressable } from "react-native";
-import { FontAwesome5 } from "@expo/vector-icons";
 import { useTheme } from "@/context";
 import { ProjectProps } from "@/types";
 import { commonStyles } from "@/common";
@@ -21,16 +20,21 @@ const Project: React.FC<ProjectProps> = ({
       <View style={[styles.body, { backgroundColor: theme.cardBackground }]}>
         <ThemeText text={title} style={styles.title} />
         <View style={[commonStyles.row, commonStyles.mt10]}>
-          {domains.map((domain) => {
-            return (
-              <Text style={[styles.domains]} key={domain.id}>
-                <FontAwesome5 name={domain.icon ?? undefined} size={15} />{" "}
-                {domain.title}
-              </Text>
-            );
-          })}
+          {domains.map((domain) => (
+            <Text
+              style={[styles.domains, { color: theme.accent }]}
+              key={domain.id}
+            >
+              {`#${domain.title}`}
+            </Text>
+          ))}
         </View>
-        <ThemeText text={description} style={styles.description} />
+        <ThemeText
+          text={description}
+          style={styles.description}
+          color={theme.textSecondary}
+          numberOfLines={2}
+        />
       </View>
     </Pressable>
   );

@@ -1,2 +1,1 @@
-export const WHITE_COLOR = "#FFFFFF";
-export const BLACK_COLOR = "#000000";
+export { FONT_REGULAR, FONT_MEDIUM } from "./fonts";

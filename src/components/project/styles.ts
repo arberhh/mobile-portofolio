@@ -1,4 +1,6 @@
 import { StyleSheet } from "react-native";
+import { FONT_MEDIUM, FONT_REGULAR } from "@/constants";
+
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: 10,
@@ -19,18 +21,19 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontFamily: FONT_MEDIUM,
     marginBottom: 4,
     marginVertical: 10,
   },
   domains: {
-    fontSize: 14,
-    color: "#6E6E6C",
+    fontSize: 13,
+    fontFamily: FONT_MEDIUM,
     marginRight: 7,
   },
   description: {
-    fontSize: 14,
-    fontWeight: "400",
+    fontSize: 13,
+    fontFamily: FONT_REGULAR,
+    lineHeight: 20,
     marginTop: 10,
   },
 });

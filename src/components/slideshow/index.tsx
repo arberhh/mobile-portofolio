@@ -83,7 +83,10 @@ const Slideshow: React.FC<SlideshowProps> = ({ images = [], onImagePress }) => {
               key={index}
               style={[
                 styles.dot,
-                index === currentIndex && { backgroundColor: theme.color },
+                {
+                  backgroundColor:
+                    index === currentIndex ? theme.accent : theme.dotInactive,
+                },
               ]}
             />
           ))}
