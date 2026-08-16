@@ -8,7 +8,6 @@ interface ProjectProps {
   title: string;
   image: string;
   domains: Domain[];
-  description: string;
   onPress: () => void;
 }
 

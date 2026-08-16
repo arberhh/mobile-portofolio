@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { FONT_MEDIUM, FONT_REGULAR } from "@/constants";
+import { FONT_MEDIUM } from "@/constants";
 
 const styles = StyleSheet.create({
   container: {
@@ -29,12 +29,6 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontFamily: FONT_MEDIUM,
     marginRight: 7,
-  },
-  description: {
-    fontSize: 13,
-    fontFamily: FONT_REGULAR,
-    lineHeight: 20,
-    marginTop: 10,
   },
 });
 export default styles;

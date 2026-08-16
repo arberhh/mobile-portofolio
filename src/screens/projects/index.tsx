@@ -53,7 +53,6 @@ const Home: React.FC<ScreenProps> = ({ navigation }) => {
                 title={item.title}
                 image={item.banner_url}
                 domains={item.domains}
-                description={item.short_description}
               />
             );
           }}
