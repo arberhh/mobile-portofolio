@@ -1,7 +1,6 @@
 import React, { useReducer, useContext, createContext } from "react";
 import { Theme, lightTheme, darkTheme } from "@/themes";
 import { Props } from "@/types";
-import { useColorScheme } from "react-native";
 
 interface ThemeState {
   theme: Theme;
@@ -45,8 +44,7 @@ const useTheme = () => {
 
 
 const ThemeProvider = ({ children }: Props) => {
-  const colorScheme = useColorScheme();
-  const [state, dispatch] = useReducer(themeReducer, colorScheme === "dark" ? darkState : lightState);
+  const [state, dispatch] = useReducer(themeReducer, darkState);
 
   const toggleTheme = () => {
     dispatch({ type: "TOGGLE_THEME" });
