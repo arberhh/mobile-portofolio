@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { FONT_MEDIUM } from "@/constants";
 
 const styles = StyleSheet.create({
   keyTechnologies: {
@@ -9,16 +10,17 @@ const styles = StyleSheet.create({
   keyTechnologyContainer: {
     paddingHorizontal: 10,
     paddingVertical: 4,
-    marginRight: 5,// Assuming this is a color representing key technologies
-    borderRadius: 20,
+    marginRight: 5,
+    borderRadius: 4,
+    borderWidth: 1,
+    backgroundColor: "transparent",
     alignItems: "center",
     justifyContent: "center",
     alignSelf: "flex-start",
   },
   keyTechnology: {
-    color: "white",
     fontSize: 12,
-    fontWeight: "400"
+    fontFamily: FONT_MEDIUM,
   },
 });
 

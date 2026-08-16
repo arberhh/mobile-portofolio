@@ -1,22 +1,13 @@
 import React, { FC, useEffect, useState } from "react";
 import { ActivityIndicator, Image, Linking, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
 
-import { SocialIcon, Tech, ThemeText } from "@/components";
+import { SectionHeading, SocialIcon, Tech, ThemeText } from "@/components";
 import { getProfile } from "@/services/supabase-service";
 import { useTheme } from "@/context";
 import { ScreenProps } from "@/types";
 import { commonStyles } from "@/common";
 import styles from "./styles";
-
-type Gradientcolors = readonly [string, string, ...string[]];
-
-// Define gradient colors for light mode
-const lightGradientColors: Gradientcolors = ["#F7F7F8", "#808080", "#1C1C1C"];
-
-// Define gradient colors for dark mode
-const darkGradientColors: Gradientcolors = ["#1C1C1C", "#808080", "#F7F7F8"];
 
 const User: FC<ScreenProps> = () => {
   const { theme } = useTheme();
@@ -51,12 +42,9 @@ const User: FC<ScreenProps> = () => {
     Linking.openURL(`mailto:${user.email}`);
   };
 
-  const gradientColors =
-    theme.theme === "dark" ? darkGradientColors : lightGradientColors;
-
   return (
     <LinearGradient
-      colors={gradientColors}
+      colors={[theme.cardBackground, theme.screenBackground, theme.cardBackground]}
       start={[0, 0]}
       end={[0, 1]}
       style={[
@@ -79,20 +67,14 @@ const User: FC<ScreenProps> = () => {
           />
           {/* About Me Section */}
           <View style={styles.section}>
-            <ThemeText style={commonStyles.subtitle} text={user.intro} />
+            <ThemeText
+              style={commonStyles.subtitle}
+              text={user.intro}
+              color={theme.textSecondary}
+            />
           </View>
           <View style={styles.section}>
-            <View style={commonStyles.rowOnly}>
-              <MaterialCommunityIcons
-                name="palette"
-                size={22}
-                color={theme.color}
-              />
-              <ThemeText
-                style={commonStyles.title}
-                text={"Main Technologies"}
-              />
-            </View>
+            <SectionHeading bracket="[stack]" title="Main Technologies" />
             <View style={[commonStyles.rowOnly, commonStyles.aligLeft]}>
               {(user.main_techs ?? []).map((tech: string, index: number) => (
                 <Tech theme={theme} key={index} title={tech} />

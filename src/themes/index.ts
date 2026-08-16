@@ -2,29 +2,38 @@
 export interface Theme {
   theme: "light" | "dark";
   screenBackground: string;
-  color: string;
-  text: string;
-  cardBackground: string;
-  line: string;
-  // Add more theme properties as needed
+  color: string; // accent-dim: icons, back chevron, section headings
+  text: string; // text primary: H1-equivalent titles
+  textSecondary: string; // body / bio / description copy
+  accent: string; // accent lime: chips, tags, active dot
+  cardBackground: string; // card/row surface
+  line: string; // row separator
+  chipBorder: string; // pill/chip border
+  dotInactive: string; // inactive carousel dot
 }
 
 export const lightTheme: Theme = {
   theme: "light",
-  screenBackground: "#FAFAFA", // Increased contrast
-  color: "#333333",
-  text: "#282828",
-  cardBackground: "#F9F9F9", // Slightly softened white
-  line: "#ECECEC",
-  // Add more styles for light theme
+  screenBackground: "#F7F9F6",
+  color: "#3F8C1F",
+  text: "#12160F",
+  textSecondary: "#3A4038",
+  accent: "#3F8C1F",
+  cardBackground: "#FFFFFF",
+  line: "rgba(63,140,31,0.18)",
+  chipBorder: "rgba(63,140,31,0.4)",
+  dotInactive: "rgba(63,140,31,0.25)",
 };
 
 export const darkTheme: Theme = {
   theme: "dark",
-  screenBackground: "#070707", // Increased contrast
-  color: "#F9F9F9",
-  text: "#F9F9F9",
-  cardBackground: "#090909", // Slightly softened black
-  line: "#333333",
-  // Add more styles for dark theme
+  screenBackground: "#0B0D0C",
+  color: "#7FE07F",
+  text: "#F2FFEF",
+  textSecondary: "#DCEFD8",
+  accent: "#B6FF6B",
+  cardBackground: "#151815",
+  line: "rgba(182,255,107,0.14)",
+  chipBorder: "rgba(182,255,107,0.35)",
+  dotInactive: "rgba(182,255,107,0.25)",
 };
