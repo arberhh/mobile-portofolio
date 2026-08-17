@@ -1,6 +1,15 @@
 # mobile-portofolio
 📱 Expo Portfolio: Showcase of 6 React Native apps. Clean, modular code. Features UI designs, animations. Ready for collaboration. Connect with me!
 
+## 📱 Try it now
+
+Scan with [Expo Go](https://expo.dev/go) to open the latest release on your phone.
+Rebuilt automatically on every GitHub release — see `.github/workflows/eas-update-on-release.yml`.
+
+<!-- LATEST_BUILD:START -->
+_No build published yet — this section fills in after the first release._
+<!-- LATEST_BUILD:END -->
+
 ## 📁 Project Structure Overview
 
 This project structure organizes code files in a TypeScript-enabled Expo project. It separates components into reusable pieces, screens for different views, and navigation for seamless transitions. The context folder manages app-wide state, while themes ensure consistent styling. With clear organization and TypeScript's type safety, it promotes scalability and maintainability.

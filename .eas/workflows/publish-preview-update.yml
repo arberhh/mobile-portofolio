@@ -1,0 +1,11 @@
+name: Publish preview update
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  publish_preview_update:
+    name: Publish preview update
+    type: update
+    params:
+      branch: preview
