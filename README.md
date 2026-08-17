@@ -1,7 +1,7 @@
 # mobile-portofolio
 📱 Expo Portfolio: Showcase of 6 React Native apps. Clean, modular code. Features UI designs, animations. Ready for collaboration. Connect with me!
 
-## <img width="24" height="24" src="https://img.icons8.com/ios/50/expo.png" alt="expo" valign="middle"/> Try it now
+## <img width="30" height="30" src="https://img.icons8.com/color/48/expo.png" alt="expo"/>  Try it now
 
 Scan with [Expo Go](https://expo.dev/go) to open the latest build on your phone.
 Rebuilt automatically on every push to `main` — see `.github/workflows/eas-update-on-release.yml`.
