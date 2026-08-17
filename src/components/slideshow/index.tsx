@@ -56,7 +56,7 @@ const Slideshow: React.FC<SlideshowProps> = ({ images = [], onImagePress }) => {
         }}
         scrollEventThrottle={200}
       >
-        {images.map((image: string, index: number) => (
+        {images?.map((image: string, index: number) => (
           <Pressable
             key={index}
             style={[styles.slide, { width: windowWidth, height: slideHeight }]}
@@ -78,7 +78,7 @@ const Slideshow: React.FC<SlideshowProps> = ({ images = [], onImagePress }) => {
       </View>
       <View style={styles.navigation}>
         <View style={styles.dots}>
-          {images.map((_, index: number) => (
+          {images?.map((_, index: number) => (
             <View
               key={index}
               style={[
