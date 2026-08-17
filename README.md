@@ -7,7 +7,10 @@ Scan with [Expo Go](https://expo.dev/go) to open the latest release on your phon
 Rebuilt automatically on every GitHub release — see `.github/workflows/eas-update-on-release.yml`.
 
 <!-- LATEST_BUILD:START -->
-_No build published yet — this section fills in after the first release._
+[![Open in Expo Go](docs/latest-build-qr.png)](https://expo.dev/accounts/arberh/projects/ArberPortofolio/updates/b2b6b60b-c6e7-449c-ac01-6fef74f045af)
+
+**Commit:** `3379370` · Published 2026-08-17
+**Link:** https://expo.dev/accounts/arberh/projects/ArberPortofolio/updates/b2b6b60b-c6e7-449c-ac01-6fef74f045af
 <!-- LATEST_BUILD:END -->
 
 ## 📁 Project Structure Overview
