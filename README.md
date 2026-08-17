@@ -1,7 +1,7 @@
 # mobile-portofolio
 📱 Expo Portfolio: Showcase of 6 React Native apps. Clean, modular code. Features UI designs, animations. Ready for collaboration. Connect with me!
 
-## <img src="https://cdn.simpleicons.org/expo/000020" width="20" height="20" valign="middle" /> Try it now
+## <img width="24" height="24" src="https://img.icons8.com/ios/50/expo.png" alt="expo" valign="middle"/> Try it now
 
 Scan with [Expo Go](https://expo.dev/go) to open the latest build on your phone.
 Rebuilt automatically on every push to `main` — see `.github/workflows/eas-update-on-release.yml`.
@@ -17,3 +17,7 @@ This project keeps code files organized in a TypeScript Expo project. It splits 
 ## 💾 Supabase
 
 This app uses Supabase as its backend. It's not just a demo — it shows I can set up and use a real backend. I use Supabase to store and show my projects, domains, and profile info.
+
+---
+
+Expo icon by [Icons8](https://icons8.com).
