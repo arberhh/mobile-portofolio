@@ -4,10 +4,6 @@ on:
   push:
     branches: [main]
 
-# Needed so the job can push the README/QR change back to main.
-permissions:
-  contents: write
-
 jobs:
   publish-update:
     runs-on: ubuntu-latest
@@ -28,9 +24,6 @@ jobs:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
 
-      - name: Set build label
-        run: echo "BUILD_LABEL=$(git rev-parse --short HEAD)" >> "$GITHUB_ENV"
-
       - name: Publish preview update (via EAS Workflow)
         run: |
           eas workflow:run .eas/workflows/publish-preview-update.yml \
@@ -38,15 +31,3 @@ jobs:
             --wait \
             --json > /tmp/workflow-run-output.json
           cat /tmp/workflow-run-output.json
-
-      - name: Update README with the new build link
-        run: node .github/scripts/publish-update-readme.js /tmp/workflow-run-output.json
-
-      - name: Commit and push
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add README.md docs/latest-build-qr.png
-          git diff --cached --quiet && echo "No changes to commit" && exit 0
-          git commit -m "Update Expo Go build link for ${BUILD_LABEL}"
-          git push origin HEAD:main
