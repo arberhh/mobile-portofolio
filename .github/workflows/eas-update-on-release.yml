@@ -1,4 +1,4 @@
-name: EAS preview pipeline
+name: EAS update pipeline
 
 on:
   push:
@@ -24,9 +24,9 @@ jobs:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
 
-      - name: Publish preview update (via EAS Workflow)
+      - name: Publish update (via EAS Workflow)
         run: |
-          eas workflow:run .eas/workflows/publish-preview-update.yml \
+          eas workflow:run .eas/workflows/publish-update.yml \
             --non-interactive \
             --wait \
             --json > /tmp/workflow-run-output.json

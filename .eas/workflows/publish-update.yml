@@ -1,11 +1,11 @@
-name: Publish preview update
+name: Publish update
 
 on:
   workflow_dispatch: {}
 
 jobs:
-  publish_preview_update:
-    name: Publish preview update
+  publish_update:
+    name: Publish update
     type: update
     params:
-      branch: preview
+      branch: main
