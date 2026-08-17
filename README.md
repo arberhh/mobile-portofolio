@@ -1,5 +1,5 @@
 # mobile-portofolio
-📱 Expo Portfolio: Showcase of 6 React Native apps. Clean, modular code. Features UI designs, animations. Ready for collaboration. Connect with me!
+📱 Expo Portfolio: Showcase of 4 React Native apps. Clean, modular code. Features UI designs, animations. Ready for collaboration. Connect with me!
 
 ## <img width="30" height="30" src="https://img.icons8.com/color/48/expo.png" alt="expo"/>  Try it now
 
