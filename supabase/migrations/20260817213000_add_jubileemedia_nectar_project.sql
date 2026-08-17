@@ -6,6 +6,13 @@
 -- project yet, add them once available.
 -- github is left null - not an open-source project.
 
+-- The projects/domains id sequences were left behind the actual max id
+-- (rows were originally loaded via COPY, which doesn't advance sequences),
+-- so a plain insert without an explicit id fails with a duplicate key
+-- error. Resync both sequences to the real max id before inserting.
+select setval(pg_get_serial_sequence('public.projects', 'id'), (select max(id) from public.projects));
+select setval(pg_get_serial_sequence('public.domains', 'id'), (select max(id) from public.domains));
+
 -- "dating" doesn't exist yet as a domain, add it before linking.
 insert into public.domains (title, icon)
 values ('dating', 'heart')
