@@ -9,7 +9,6 @@ const path = require("path");
 const { execFileSync } = require("child_process");
 
 const EXPO_ACCOUNT = process.env.EXPO_ACCOUNT || "arberh";
-const BUILD_LABEL = process.env.BUILD_LABEL || "manual";
 
 const runJsonPath = process.argv[2];
 if (!runJsonPath) {
@@ -45,12 +44,8 @@ execFileSync(
   { stdio: "inherit" }
 );
 
-const publishedAt = new Date().toISOString().slice(0, 10);
 const section = `<!-- LATEST_BUILD:START -->
 [![Open in Expo Go](docs/latest-build-qr.png)](${updateUrl})
-
-**Commit:** \`${BUILD_LABEL}\` · Published ${publishedAt}
-**Link:** ${updateUrl}
 <!-- LATEST_BUILD:END -->`;
 
 const readmePath = path.join(__dirname, "..", "..", "README.md");

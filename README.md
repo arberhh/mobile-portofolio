@@ -1,22 +1,19 @@
 # mobile-portofolio
 📱 Expo Portfolio: Showcase of 6 React Native apps. Clean, modular code. Features UI designs, animations. Ready for collaboration. Connect with me!
 
-## 📱 Try it now
+## <img src="https://cdn.simpleicons.org/expo/000020" width="20" height="20" valign="middle" /> Try it now
 
-Scan with [Expo Go](https://expo.dev/go) to open the latest release on your phone.
-Rebuilt automatically on every GitHub release — see `.github/workflows/eas-update-on-release.yml`.
+Scan with [Expo Go](https://expo.dev/go) to open the latest build on your phone.
+Rebuilt automatically on every push to `main` — see `.github/workflows/eas-update-on-release.yml`.
 
 <!-- LATEST_BUILD:START -->
 [![Open in Expo Go](docs/latest-build-qr.png)](https://expo.dev/accounts/arberh/projects/ArberPortofolio/updates/b2b6b60b-c6e7-449c-ac01-6fef74f045af)
-
-**Commit:** `3379370` · Published 2026-08-17
-**Link:** https://expo.dev/accounts/arberh/projects/ArberPortofolio/updates/b2b6b60b-c6e7-449c-ac01-6fef74f045af
 <!-- LATEST_BUILD:END -->
 
 ## 📁 Project Structure Overview
 
-This project structure organizes code files in a TypeScript-enabled Expo project. It separates components into reusable pieces, screens for different views, and navigation for seamless transitions. The context folder manages app-wide state, while themes ensure consistent styling. With clear organization and TypeScript's type safety, it promotes scalability and maintainability.
+This project keeps code files organized in a TypeScript Expo project. It splits things into reusable pieces, screens for each view, and navigation to move between them. The context folder holds app-wide state, and themes keep the styling the same everywhere.
 
 ## 💾 Supabase
 
-Integrated with Supabase, a versatile backend platform, it not only serves as a display of my work but also demonstrates my proficiency in utilizing advanced backend solutions. With Supabase, I efficiently manage and present my projects, domains, and personal data, reflecting both my technical capabilities and strategic approach to project management. 
+This app uses Supabase as its backend. It's not just a demo — it shows I can set up and use a real backend. I use Supabase to store and show my projects, domains, and profile info.
