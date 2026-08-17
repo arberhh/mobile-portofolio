@@ -3,11 +3,10 @@
 
 ## <img width="30" height="30" src="https://img.icons8.com/color/48/expo.png" alt="expo"/>  Try it now
 
-Scan with [Expo Go](https://expo.dev/go) to open the latest build on your phone — this always
-points at the newest update on the `preview` channel, published automatically on every push to
-`main` (see `.github/workflows/eas-update-on-release.yml`). If the app's version in `app.json`
-ever changes, the `runtimeVersion` in this link needs to be updated to match.
+Scan with [Expo Go](https://expo.dev/go) to open the latest build on your phone.
 
+<!-- Always resolves to the newest update on the "preview" channel via qr.expo.dev - no
+     regeneration needed. If app.json's version changes, runtimeVersion below must match it. -->
 <img src="https://qr.expo.dev/eas-update?projectId=19f7580b-c0e5-44e3-a264-8bb2b365cae8&runtimeVersion=1.0.0&channel=preview" width="300" alt="Scan to open in Expo Go" />
 
 ## 📁 Project Structure Overview
