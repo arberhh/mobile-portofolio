@@ -7,7 +7,7 @@ Scan with [Expo Go](https://expo.dev/go) to open the latest build on your phone.
 Rebuilt automatically on every push to `main` — see `.github/workflows/eas-update-on-release.yml`.
 
 <!-- LATEST_BUILD:START -->
-[![Open in Expo Go](docs/latest-build-qr.png)](https://expo.dev/accounts/arberh/projects/ArberPortofolio/updates/7fc11fba-617d-4418-b0b3-0148a5992b5f)
+[![Open in Expo Go](docs/latest-build-qr.png)](https://expo.dev/accounts/arberh/projects/ArberPortofolio/updates/eb3c3c66-48b1-4b2a-b5aa-61576fb437ff)
 <!-- LATEST_BUILD:END -->
 
 ## 📁 Project Structure Overview
