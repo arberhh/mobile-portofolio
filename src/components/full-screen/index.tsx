@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Modal,
-  View,
-  Image,
-  Pressable,
-  useWindowDimensions,
-} from "react-native";
+import { Modal, View, Image, Pressable } from "react-native";
 import { FullScreenProps } from "@/types";
 import styles from "./styles";
 
@@ -15,7 +9,6 @@ const FullScreenImage = ({
   imageUri,
   color,
 }: FullScreenProps) => {
-  const { width, height } = useWindowDimensions();
   return (
     <Modal
       style={{ flex: 1 }}
