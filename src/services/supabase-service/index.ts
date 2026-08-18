@@ -15,7 +15,8 @@ const getProjects = async () => {
   try {
     const { data, error } = await supabase
       .from("projects")
-      .select(DOMAINS_SELECT);
+      .select(DOMAINS_SELECT)
+      .order("created_at", { ascending: false });
     if (error) {
       console.error("Error fetching projects:", error);
       throw new Error(
