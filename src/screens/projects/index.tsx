@@ -15,12 +15,13 @@ const Home: React.FC<ScreenProps> = ({ navigation }) => {
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
-    Appearance.addChangeListener(({ colorScheme }) => {
+    const subscription = Appearance.addChangeListener(({ colorScheme }) => {
       if (colorScheme !== theme.theme) {
         toggleTheme();
       }
     });
-  }, [navigation]);
+    return () => subscription.remove();
+  }, [theme.theme, toggleTheme]);
 
   const onPressProject = (id: number) => {
     navigation.navigate("ProjectDetails", { id });

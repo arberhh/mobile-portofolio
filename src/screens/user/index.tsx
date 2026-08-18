@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import { ActivityIndicator, Image, Linking, Text, View } from "react-native";
+import { ActivityIndicator, Image, Linking, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 import { SectionHeading, SocialIcon, Tech, ThemeText } from "@/components";
