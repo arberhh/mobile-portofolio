@@ -3,5 +3,10 @@
   "entry": ["App.tsx"],
   "project": ["src/**/*.{ts,tsx}"],
   "ignore": ["src/types/supabase.ts"],
-  "ignoreDependencies": ["@babel/core"]
+  "ignoreDependencies": [
+    "@babel/core",
+    "react-native-reanimated",
+    "react-native-reanimated-carousel",
+    "react-native-worklets"
+  ]
 }

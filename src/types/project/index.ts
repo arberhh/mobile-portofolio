@@ -12,4 +12,3 @@ interface ProjectProps {
 }
 
 export default ProjectProps;
-export { Domain };
