@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
     height: 200,
-    resizeMode: "cover",
+    resizeMode: "contain",
     width: "100%",
   },
   title: {

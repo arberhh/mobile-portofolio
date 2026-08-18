@@ -15,7 +15,10 @@ const Project: React.FC<ProjectProps> = ({
   const { theme } = useTheme();
   return (
     <Pressable onPress={onPress} style={styles.container}>
-      <Image source={{ uri: image }} style={styles.image} />
+      <Image
+        source={{ uri: image }}
+        style={[styles.image, { backgroundColor: theme.cardBackground }]}
+      />
       <View style={[styles.body, { backgroundColor: theme.cardBackground }]}>
         <ThemeText text={title} style={styles.title} />
         <View style={[commonStyles.row, commonStyles.mt10]}>
