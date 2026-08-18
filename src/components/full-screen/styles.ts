@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { MODAL_OVERLAY } from "@/constants";
 const styles = StyleSheet.create({
   fullScreenImage: {
     height: "100%",
@@ -10,7 +11,7 @@ const styles = StyleSheet.create({
   },
   modalContainer: {
     alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    backgroundColor: MODAL_OVERLAY,
     flex: 1,
     justifyContent: "center",
   },

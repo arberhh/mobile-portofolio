@@ -13,10 +13,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   profileImage: {
-    width: 160,
-    height: 160,
     borderRadius: 80, // Assuming the profile picture is circular
+    height: 160,
     marginBottom: 20,
+    width: 160,
   },
   section: {
     alignSelf: "flex-start",

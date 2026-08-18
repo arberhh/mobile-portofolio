@@ -1,6 +1,7 @@
 import React from "react";
 import { Modal, View, Image, Pressable } from "react-native";
 import { FullScreenProps } from "@/types";
+import { commonStyles } from "@/common";
 import styles from "./styles";
 
 const FullScreenImage = ({
@@ -11,7 +12,7 @@ const FullScreenImage = ({
 }: FullScreenProps) => {
   return (
     <Modal
-      style={{ flex: 1 }}
+      style={commonStyles.flex}
       visible={visible}
       transparent={true}
       onRequestClose={onClose}
@@ -20,7 +21,7 @@ const FullScreenImage = ({
         <View style={styles.modalContent}>
           <Image
             source={{ uri: imageUri }}
-            style={{ flex: 1 }}
+            style={commonStyles.flex}
             resizeMode="contain"
           />
         </View>

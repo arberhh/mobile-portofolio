@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { FONT_MEDIUM } from "@/constants";
+import { FONT_MEDIUM, TRANSPARENT } from "@/constants";
 
 const styles = StyleSheet.create({
   keyTechnologies: {
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   keyTechnologyContainer: {
     alignItems: "center",
     alignSelf: "flex-start",
-    backgroundColor: "transparent",
+    backgroundColor: TRANSPARENT,
     borderRadius: 4,
     borderWidth: 1,
     justifyContent: "center",
