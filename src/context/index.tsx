@@ -11,11 +11,6 @@ type Action = { type: "TOGGLE_THEME" };
 
 const ThemeContext = createContext<ThemeState | undefined>(undefined);
 
-const lightState: ThemeState = {
-  theme: lightTheme,
-  toggleTheme: () => { },
-};
-
 const darkState: ThemeState = {
   theme: darkTheme,
   toggleTheme: () => { },

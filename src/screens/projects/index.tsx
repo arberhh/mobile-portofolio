@@ -7,6 +7,7 @@ import { useProjects } from "@/hooks";
 import { useTheme } from "@/context";
 import { ScreenProps } from "@/types";
 import { commonStyles } from "@/common";
+import styles from "./styles";
 
 const Home: React.FC<ScreenProps> = ({ navigation }) => {
   const { projects, error } = useProjects();
@@ -14,12 +15,13 @@ const Home: React.FC<ScreenProps> = ({ navigation }) => {
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
-    Appearance.addChangeListener(({ colorScheme }) => {
+    const subscription = Appearance.addChangeListener(({ colorScheme }) => {
       if (colorScheme !== theme.theme) {
         toggleTheme();
       }
     });
-  }, [navigation]);
+    return () => subscription.remove();
+  }, [theme.theme, toggleTheme]);
 
   const onPressProject = (id: number) => {
     navigation.navigate("ProjectDetails", { id });
@@ -44,7 +46,7 @@ const Home: React.FC<ScreenProps> = ({ navigation }) => {
           keyExtractor={(item) => item?.id.toString()}
           showsVerticalScrollIndicator={false}
           ItemSeparatorComponent={() => (
-            <Divider style={{ marginHorizontal: -20 }} />
+            <Divider style={styles.itemSeparator} />
           )}
           renderItem={({ item }) => {
             return (

@@ -65,7 +65,7 @@ const Slideshow: React.FC<SlideshowProps> = ({ images = [], onImagePress }) => {
             <Image
               resizeMode="contain"
               source={{ uri: image }}
-              style={[commonStyles.fullPercentage]}
+              style={commonStyles.fullPercentage}
               borderRadius={8}
             />
           </Pressable>

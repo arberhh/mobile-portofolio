@@ -7,45 +7,45 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexGrow: 1,
   },
-  slide: {
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 8,
+  dot: {
+    borderRadius: 4,
+    height: 8,
+    marginHorizontal: 4,
+    width: 8,
+  },
+  dots: {
+    flexDirection: "row",
   },
   image: {
-    width: 200,
     height: "auto",
     resizeMode: "cover",
+    width: 200,
+  },
+  navigation: {
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "center",
+    paddingHorizontal: 20,
+    paddingTop: 10
   },
   navigationLeft: {
+    left: 20,
     position: "absolute",
     top: "50%",
-    left: 20,
     transform: [{ translateY: -12 }],
     zIndex: 1,
   },
   navigationRight: {
     position: "absolute",
-    top: "50%",
     right: 20,
+    top: "50%",
     transform: [{ translateY: -12 }],
     zIndex: 1,
   },
-  navigation: {
-    flexDirection: "row",
-    justifyContent: "center",
+  slide: {
     alignItems: "center",
-    paddingHorizontal: 20,
-    paddingTop: 10
-  },
-  dots: {
-    flexDirection: "row",
-  },
-  dot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    marginHorizontal: 4,
+    borderRadius: 8,
+    justifyContent: "center",
   },
 });
 export default styles;

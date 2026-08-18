@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { FONT_MEDIUM } from "@/constants";
+import { FONT_MEDIUM, TRANSPARENT } from "@/constants";
 
 const styles = StyleSheet.create({
   keyTechnologies: {
@@ -7,20 +7,20 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     marginBottom: 20,
   },
+  keyTechnology: {
+    fontFamily: FONT_MEDIUM,
+    fontSize: 12,
+  },
   keyTechnologyContainer: {
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    marginRight: 5,
+    alignItems: "center",
+    alignSelf: "flex-start",
+    backgroundColor: TRANSPARENT,
     borderRadius: 4,
     borderWidth: 1,
-    backgroundColor: "transparent",
-    alignItems: "center",
     justifyContent: "center",
-    alignSelf: "flex-start",
-  },
-  keyTechnology: {
-    fontSize: 12,
-    fontFamily: FONT_MEDIUM,
+    marginRight: 5,
+    paddingHorizontal: 10,
+    paddingVertical: 4,
   },
 });
 

@@ -7,7 +7,9 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "ts:check": "tsc"
+    "ts:check": "tsc",
+    "lint": "eslint . --max-warnings=0",
+    "deadcode": "knip"
   },
   "dependencies": {
     "@expo-google-fonts/ibm-plex-mono": "^0.4.1",
@@ -34,8 +36,13 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
+    "@types/node": "^26.2.0",
     "@types/react": "~19.1.10",
     "babel-preset-expo": "~54.0.10",
+    "eslint": "^9.39.5",
+    "eslint-config-expo": "^57.0.1",
+    "eslint-plugin-react-native": "^5.0.0",
+    "knip": "^6.32.2",
     "typescript": "~5.9.2"
   },
   "private": true
