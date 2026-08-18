@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import { Appearance, FlatList, View } from "react-native";
+import React from "react";
+import { FlatList, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { Divider, Project, ThemeText } from "@/components";
-import { useProjects } from "@/hooks";
+import { useProjects, useSystemThemeSync } from "@/hooks";
 import { useTheme } from "@/context";
 import { ScreenProps } from "@/types";
 import { commonStyles } from "@/common";
@@ -12,16 +12,9 @@ import styles from "./styles";
 const Home: React.FC<ScreenProps> = ({ navigation }) => {
   const { projects, error } = useProjects();
 
-  const { theme, toggleTheme } = useTheme();
+  const { theme } = useTheme();
 
-  useEffect(() => {
-    const subscription = Appearance.addChangeListener(({ colorScheme }) => {
-      if (colorScheme !== theme.theme) {
-        toggleTheme();
-      }
-    });
-    return () => subscription.remove();
-  }, [theme.theme, toggleTheme]);
+  useSystemThemeSync();
 
   const onPressProject = (id: number) => {
     navigation.navigate("ProjectDetails", { id });

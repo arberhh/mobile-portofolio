@@ -1,9 +1,9 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC } from "react";
 import { ActivityIndicator, Image, Linking, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 import { SectionHeading, SocialIcon, Tech, ThemeText } from "@/components";
-import { getProfile } from "@/services/supabase-service";
+import { useProfile } from "@/hooks";
 import { useTheme } from "@/context";
 import { ScreenProps } from "@/types";
 import { commonStyles } from "@/common";
@@ -11,24 +11,7 @@ import styles from "./styles";
 
 const User: FC<ScreenProps> = () => {
   const { theme } = useTheme();
-  const [user, setUser] = useState<any>({});
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string>("");
-
-  useEffect(() => {
-    async function fetchUserData() {
-      try {
-        const profile = await getProfile();
-        setUser(profile);
-      } catch (error: any) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchUserData();
-  }, []);
+  const { user, loading, error } = useProfile();
 
   const handleLinkedInPress = () => {
     Linking.openURL(user.linkedin);
