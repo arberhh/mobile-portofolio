@@ -1,9 +1,16 @@
 import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
+  contactIcons: {
+    flexDirection: "row",
+    marginTop: 30
+  },
   container: {
-    flex: 1,
     alignItems: "center",
+    flex: 1,
     justifyContent: "center",
+  },
+  icon: {
+    marginHorizontal: 10,
   },
   profileImage: {
     width: 160,
@@ -19,13 +26,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     // Use theme text color
-  },
-  contactIcons: {
-    flexDirection: "row",
-    marginTop: 30
-  },
-  icon: {
-    marginHorizontal: 10,
   },
 });
 export default styles;

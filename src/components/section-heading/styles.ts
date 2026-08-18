@@ -3,12 +3,12 @@ import { FONT_MEDIUM } from "@/constants";
 
 const styles = StyleSheet.create({
   bracket: {
-    fontSize: 12,
     fontFamily: FONT_MEDIUM,
+    fontSize: 12,
   },
   title: {
-    fontSize: 12,
     fontFamily: FONT_MEDIUM,
+    fontSize: 12,
     letterSpacing: 0.5,
   },
 });

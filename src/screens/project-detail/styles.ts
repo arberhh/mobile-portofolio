@@ -5,9 +5,9 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   container: {
+    alignItems: "center",
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
   },
 });
 export default styles;

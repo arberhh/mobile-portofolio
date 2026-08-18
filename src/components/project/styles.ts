@@ -2,33 +2,33 @@ import { StyleSheet } from "react-native";
 import { FONT_MEDIUM } from "@/constants";
 
 const styles = StyleSheet.create({
-  container: {
-    marginHorizontal: 10,
-    marginVertical: 10,
-  },
   body: {
     borderBottomLeftRadius: 8,
     borderBottomRightRadius: 8,
     paddingBottom: 20,
     paddingHorizontal: 10,
   },
-  image: {
-    width: "100%",
-    height: 200,
-    resizeMode: "cover",
-    borderTopLeftRadius: 8,
-    borderTopRightRadius: 8,
-  },
-  title: {
-    fontSize: 18,
-    fontFamily: FONT_MEDIUM,
-    marginBottom: 4,
+  container: {
+    marginHorizontal: 10,
     marginVertical: 10,
   },
   domains: {
-    fontSize: 13,
     fontFamily: FONT_MEDIUM,
+    fontSize: 13,
     marginRight: 7,
+  },
+  image: {
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
+    height: 200,
+    resizeMode: "cover",
+    width: "100%",
+  },
+  title: {
+    fontFamily: FONT_MEDIUM,
+    fontSize: 18,
+    marginBottom: 4,
+    marginVertical: 10,
   },
 });
 export default styles;
