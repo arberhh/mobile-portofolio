@@ -1,14 +1,19 @@
-import React, { createRef, useState } from "react";
-import {
-  View,
-  ScrollView,
-  Image,
-  Pressable,
-  useWindowDimensions,
-} from "react-native";
+import React, { useCallback, useRef } from "react";
+import { Image, Pressable, useWindowDimensions, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { Carousel, Pagination } from "react-native-reanimated-carousel";
+import type {
+  CarouselRef,
+  CarouselRenderItemInfo,
+} from "react-native-reanimated-carousel";
+import Animated, {
+  Extrapolation,
+  interpolate,
+  SharedValue,
+  useAnimatedStyle,
+  useSharedValue,
+} from "react-native-reanimated";
 import { useTheme } from "@/context";
-import { commonStyles } from "@/common";
 import styles from "./styles";
 
 interface SlideshowProps {
@@ -16,82 +21,121 @@ interface SlideshowProps {
   onImagePress: (url: string) => void;
 }
 
+interface SlideItemProps {
+  uri: string;
+  width: number;
+  height: number;
+  relativeProgress: SharedValue<number>;
+  onPress: () => void;
+}
+
+const SlideItem: React.FC<SlideItemProps> = ({
+  uri,
+  width,
+  height,
+  relativeProgress,
+  onPress,
+}) => {
+  const { theme } = useTheme();
+  const animatedStyle = useAnimatedStyle(() => ({
+    opacity: interpolate(
+      relativeProgress.value,
+      [-1, 0, 1],
+      [0.6, 1, 0.6],
+      Extrapolation.CLAMP,
+    ),
+  }));
+  const frameStyle = [styles.frame, { backgroundColor: theme.cardBackground }];
+
+  return (
+    <Animated.View style={[{ width, height }, animatedStyle]}>
+      <Pressable style={frameStyle} onPress={onPress}>
+        <Image resizeMode="contain" source={{ uri }} style={styles.image} />
+      </Pressable>
+    </Animated.View>
+  );
+};
+
 const Slideshow: React.FC<SlideshowProps> = ({ images = [], onImagePress }) => {
   const { theme } = useTheme();
   const { width, height } = useWindowDimensions();
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const windowWidth: number = width;
-  const slideHeight: number = height / 3.2;
-  const scrollViewRef = createRef<ScrollView>();
+  const slideHeight: number = height / 2.4;
+  const progress = useSharedValue(0);
+  const carouselRef = useRef<CarouselRef>(null);
 
-  const handlePrevious = () => {
-    const index = currentIndex > 0 ? currentIndex - 1 : images.length - 1;
-    setCurrentIndex(index);
-    scrollViewRef.current?.scrollTo({ x: index * windowWidth, animated: true });
+  const handlePrevious = () => carouselRef.current?.prev();
+  const handleNext = () => carouselRef.current?.next();
+
+  const onPressPagination = (index: number) => {
+    carouselRef.current?.scrollTo({
+      index,
+      animated: true,
+    });
   };
 
-  const handleNext = () => {
-    const index = currentIndex < images.length - 1 ? currentIndex + 1 : 0;
-    setCurrentIndex(index);
-    scrollViewRef.current?.scrollTo({ x: index * windowWidth, animated: true });
+  const dotStyle = {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: theme.dotInactive,
   };
+  const activeDotStyle = {
+    width: 20,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: theme.accent,
+  };
+
+  const renderItem = useCallback(
+    ({ item, relativeProgress }: CarouselRenderItemInfo<string>) => (
+      <SlideItem
+        uri={item}
+        width={width}
+        height={slideHeight}
+        relativeProgress={relativeProgress}
+        onPress={() => onImagePress(item)}
+      />
+    ),
+    [width, slideHeight, onImagePress],
+  );
+
+  if (images.length === 0) return null;
 
   return (
-    <View style={{ width: windowWidth, height: slideHeight }}>
-      <View style={styles.navigationLeft}>
-        <Pressable onPress={handlePrevious}>
-          <Ionicons name="chevron-back" size={24} color={theme.color} />
-        </Pressable>
-      </View>
-      <ScrollView
-        ref={scrollViewRef}
-        horizontal
-        pagingEnabled
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.contentContainerStyle}
-        onScroll={(event) => {
-          const offset: number = event.nativeEvent.contentOffset.x;
-          const index: number = Math.round(offset / windowWidth);
-          setCurrentIndex(index);
-        }}
-        scrollEventThrottle={200}
-      >
-        {images?.map((image: string, index: number) => (
-          <Pressable
-            key={index}
-            style={[styles.slide, { width: windowWidth, height: slideHeight }]}
-          >
-            {/* Replace "image" with your image component */}
-            <Image
-              resizeMode="contain"
-              source={{ uri: image }}
-              style={commonStyles.fullPercentage}
-              borderRadius={8}
+    <View style={{ width, height: slideHeight }}>
+      <Carousel
+        ref={carouselRef}
+        data={images}
+        style={{ width, height: slideHeight }}
+        loop={images.length > 1}
+        progress={progress}
+        layout={{ type: "parallax", offset: 0, scale: 1, adjacentScale: 0.92 }}
+        renderItem={renderItem}
+      />
+      {images.length > 1 && (
+        <>
+          <View style={styles.navigationLeft}>
+            <Pressable onPress={handlePrevious} hitSlop={12}>
+              <Ionicons name="chevron-back" size={24} color={theme.color} />
+            </Pressable>
+          </View>
+          <View style={styles.navigationRight}>
+            <Pressable onPress={handleNext} hitSlop={12}>
+              <Ionicons name="chevron-forward" size={24} color={theme.color} />
+            </Pressable>
+          </View>
+          <View style={styles.navigation}>
+            <Pagination
+              count={images.length}
+              progress={progress}
+              containerStyle={styles.dots}
+              dotStyle={dotStyle}
+              activeDotStyle={activeDotStyle}
+              onPress={onPressPagination}
             />
-          </Pressable>
-        ))}
-      </ScrollView>
-      <View style={styles.navigationRight}>
-        <Pressable onPress={handleNext}>
-          <Ionicons name="chevron-forward" size={24} color={theme.color} />
-        </Pressable>
-      </View>
-      <View style={styles.navigation}>
-        <View style={styles.dots}>
-          {images?.map((_, index: number) => (
-            <View
-              key={index}
-              style={[
-                styles.dot,
-                {
-                  backgroundColor:
-                    index === currentIndex ? theme.accent : theme.dotInactive,
-                },
-              ]}
-            />
-          ))}
-        </View>
-      </View>
+          </View>
+        </>
+      )}
     </View>
   );
 };

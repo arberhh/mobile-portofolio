@@ -1,25 +1,20 @@
 import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  contentContainerStyle: {
-    alignItems: "center",
-    flexGrow: 1,
-  },
-  dot: {
-    borderRadius: 4,
-    height: 8,
-    marginHorizontal: 4,
-    width: 8,
-  },
   dots: {
-    flexDirection: "row",
+    gap: 6,
+  },
+  frame: {
+    alignItems: "center",
+    borderRadius: 8,
+    flex: 1,
+    justifyContent: "center",
+    marginHorizontal: 10,
+    padding: 8,
   },
   image: {
-    height: "auto",
-    resizeMode: "cover",
-    width: 200,
+    borderRadius: 8,
+    height: "100%",
+    width: "100%",
   },
   navigation: {
     alignItems: "center",
@@ -41,11 +36,6 @@ const styles = StyleSheet.create({
     top: "50%",
     transform: [{ translateY: -12 }],
     zIndex: 1,
-  },
-  slide: {
-    alignItems: "center",
-    borderRadius: 8,
-    justifyContent: "center",
   },
 });
 export default styles;
