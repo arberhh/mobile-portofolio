@@ -5,6 +5,8 @@
 
 Scan with [Expo Go](https://expo.dev/go) to open the latest build on your phone.
 
+Want to run it yourself? See [docs/SETUP.md](docs/SETUP.md) for local setup and running instructions.
+
 <!-- Always resolves to the newest update on the "main" channel via qr.expo.dev - no
      regeneration needed. If app.json's version changes, runtimeVersion below must match it. -->
 <img src="https://qr.expo.dev/eas-update?projectId=19f7580b-c0e5-44e3-a264-8bb2b365cae8&runtimeVersion=1.0.0&channel=main" width="300" alt="Scan to open in Expo Go" />
