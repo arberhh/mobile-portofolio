@@ -52,21 +52,17 @@ starts with one of the six types above (branch: `feature` for feat) and
 matches the format. If it doesn't, fix the type or reword before
 proceeding — don't commit or open the PR with a non-conforming message.
 
-## Linear sync
+## Ticket ID
 
-Linear syncs PR activity with GitHub automatically once a PR is linked to
-an issue. When working a Linear issue (e.g. `ARB-5`):
+When working off a tracked issue (e.g. `ARB-5`), always include the
+ticket ID — don't rely on any one field alone:
 
-- If the issue has a Linear-suggested branch name (`get_issue` returns
-  `gitBranchName`, e.g. `arberihh/arb-6-test-linear-connection`), use that
-  name as-is — it takes precedence over the `<type>/<short-slug>` branch
-  convention above, since Linear uses it to auto-link the PR. Otherwise,
-  fall back to `<type>/<short-slug>` and ensure the issue ID (e.g. `ARB-5`)
-  appears in the PR title or description instead (a `Closes ARB-5.` line
-  in the PR body or commit message satisfies this).
-- Commit messages and PR titles still follow the `<type>: <summary>`
-  format regardless of the branch name used, and should include the
-  issue ID, e.g. `chore: ARB-6 document Linear PR-sync guidance` — don't
-  rely on the branch name alone to carry it.
-
+- If a suggested branch name is provided (e.g.
+  `arberihh/arb-6-test`), use it as-is — it takes
+  precedence over the `<type>/<short-slug>` branch convention above.
+  Otherwise, fall back to `<type>/<short-slug>`.
+- Put the ticket ID in the commit message and PR title too, e.g.
+  `chore: ARB-6 document PR-sync guidance` — the `<type>: <summary>`
+  format still applies, with the ID inserted after the type.
+- Add a `Closes ARB-5.` line in the PR body/commit body as well.
 
