@@ -42,7 +42,6 @@ const ProjectDetailScreen: React.FC<ScreenProps> = ({ navigation, route }) => {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={[
             commonStyles.flexGrow,
-            commonStyles.mt10,
             commonStyles.verticalPadding,
           ]}
         >

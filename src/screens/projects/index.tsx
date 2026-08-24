@@ -22,19 +22,18 @@ const Home: React.FC<ScreenProps> = ({ navigation }) => {
 
   return (
     <SafeAreaView
-      style={[
-        commonStyles.flex,
-        commonStyles.horizontalPadding,
-        { backgroundColor: theme.screenBackground },
-      ]}
+      style={[commonStyles.flex, { backgroundColor: theme.screenBackground }]}
     >
       <StatusBar style={theme.theme === "dark" ? "light" : "dark"} />
       {error !== "" ? (
-        <View style={[commonStyles.flex, commonStyles.center]}>
+        <View
+          style={[commonStyles.flex, commonStyles.center, commonStyles.horizontalPadding]}
+        >
           <ThemeText style={commonStyles.errorText} text={error} />
         </View>
       ) : (
         <FlatList
+          style={commonStyles.horizontalPadding}
           data={projects}
           keyExtractor={(item) => item?.id.toString()}
           showsVerticalScrollIndicator={false}
