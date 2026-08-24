@@ -1,15 +1,16 @@
 import React, { FC } from "react";
 import { ActivityIndicator, Image, Linking, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 
-import { SectionHeading, SocialIcon, Tech, ThemeText } from "@/components";
+import { Header, SectionHeading, SocialIcon, Tech, ThemeText } from "@/components";
 import { useProfile } from "@/hooks";
 import { useTheme } from "@/context";
 import { ScreenProps } from "@/types";
 import { commonStyles } from "@/common";
 import styles from "./styles";
 
-const User: FC<ScreenProps> = () => {
+const User: FC<ScreenProps> = ({ navigation }) => {
   const { theme } = useTheme();
   const { user, loading, error } = useProfile();
 
@@ -26,17 +27,25 @@ const User: FC<ScreenProps> = () => {
   };
 
   return (
-    <LinearGradient
-      colors={[theme.cardBackground, theme.screenBackground, theme.cardBackground]}
-      start={[0, 0]}
-      end={[0, 1]}
-      style={[
-        loading && commonStyles.alignCenter,
-        styles.container,
-        { backgroundColor: theme.screenBackground },
-      ]}
+    <SafeAreaView
+      style={[commonStyles.flex, { backgroundColor: theme.screenBackground }]}
     >
-      {error !== "" ? (
+      <Header
+        title="Arber"
+        leftIcon="back"
+        onLeftPress={() => navigation.goBack()}
+      />
+      <LinearGradient
+        colors={[theme.cardBackground, theme.screenBackground, theme.cardBackground]}
+        start={[0, 0]}
+        end={[0, 1]}
+        style={[
+          loading && commonStyles.alignCenter,
+          styles.container,
+          { backgroundColor: theme.screenBackground },
+        ]}
+      >
+        {error !== "" ? (
         <View style={[commonStyles.flex, commonStyles.center]}>
           <ThemeText text={error} style={commonStyles.errorText} />
         </View>
@@ -84,7 +93,8 @@ const User: FC<ScreenProps> = () => {
           </View>
         </>
       )}
-    </LinearGradient>
+      </LinearGradient>
+    </SafeAreaView>
   );
 };
 
