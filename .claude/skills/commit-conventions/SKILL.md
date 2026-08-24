@@ -51,3 +51,18 @@ Before running `git commit`, before creating a branch, and before
 starts with one of the six types above (branch: `feature` for feat) and
 matches the format. If it doesn't, fix the type or reword before
 proceeding — don't commit or open the PR with a non-conforming message.
+
+## Ticket ID
+
+When working off a tracked issue (e.g. `ARB-5`), always include the
+ticket ID — don't rely on any one field alone:
+
+- If a suggested branch name is provided (e.g.
+  `arberihh/arb-6-test`), use it as-is — it takes
+  precedence over the `<type>/<short-slug>` branch convention above.
+  Otherwise, fall back to `<type>/<short-slug>`.
+- Put the ticket ID in the commit message and PR title too, e.g.
+  `chore: ARB-6 document PR-sync guidance` — the `<type>: <summary>`
+  format still applies, with the ID inserted after the type.
+- Add a `Closes ARB-5.` line in the PR body/commit body as well.
+
