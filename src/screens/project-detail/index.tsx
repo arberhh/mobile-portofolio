@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, ActivityIndicator, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { FullScreenImage, List, Slideshow, ThemeText } from "@/components";
+import { FullScreenImage, Header, List, Slideshow, ThemeText } from "@/components";
 import { useProject } from "@/hooks";
 import { useTheme } from "@/context";
 import { ScreenProps } from "@/types";
@@ -28,6 +28,11 @@ const ProjectDetailScreen: React.FC<ScreenProps> = ({ navigation, route }) => {
     <SafeAreaView
       style={[commonStyles.flex, { backgroundColor: theme.screenBackground }]}
     >
+      <Header
+        title="ProjectDetails"
+        leftIcon="back"
+        onLeftPress={() => navigation.goBack()}
+      />
       {error !== "" ? (
         <View style={[commonStyles.flex, commonStyles.center]}>
           <ThemeText style={commonStyles.errorText} text={error} />

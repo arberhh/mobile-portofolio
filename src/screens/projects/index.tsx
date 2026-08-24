@@ -2,7 +2,7 @@ import React from "react";
 import { FlatList, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
-import { Divider, Project, ThemeText } from "@/components";
+import { Divider, Header, Project, ThemeText } from "@/components";
 import { useProjects, useSystemThemeSync } from "@/hooks";
 import { useTheme } from "@/context";
 import { ScreenProps } from "@/types";
@@ -25,6 +25,11 @@ const Home: React.FC<ScreenProps> = ({ navigation }) => {
       style={[commonStyles.flex, { backgroundColor: theme.screenBackground }]}
     >
       <StatusBar style={theme.theme === "dark" ? "light" : "dark"} />
+      <Header
+        title="Home"
+        leftIcon="account"
+        onLeftPress={() => navigation.navigate("User")}
+      />
       {error !== "" ? (
         <View
           style={[commonStyles.flex, commonStyles.center, commonStyles.horizontalPadding]}
