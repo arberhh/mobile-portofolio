@@ -9,16 +9,16 @@ import { ScreenProps } from "@/types";
 import { commonStyles } from "@/common";
 import styles from "./styles";
 
-const Home: React.FC<ScreenProps> = ({ navigation }) => {
+function Home({ navigation }: ScreenProps) {
   const { projects, error } = useProjects();
 
   const { theme } = useTheme();
 
   useSystemThemeSync();
 
-  const onPressProject = (id: number) => {
+  function onPressProject(id: number) {
     navigation.navigate("ProjectDetails", { id });
-  };
+  }
 
   return (
     <SafeAreaView
@@ -59,6 +59,6 @@ const Home: React.FC<ScreenProps> = ({ navigation }) => {
       )}
     </SafeAreaView>
   );
-};
+}
 
 export default Home;
