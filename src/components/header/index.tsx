@@ -11,7 +11,7 @@ interface HeaderProps {
   onLeftPress: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ title, leftIcon, onLeftPress }) => {
+function Header({ title, leftIcon, onLeftPress }: HeaderProps) {
   const { theme, toggleTheme } = useTheme();
 
   return (
@@ -34,6 +34,6 @@ const Header: React.FC<HeaderProps> = ({ title, leftIcon, onLeftPress }) => {
       </Pressable>
     </View>
   );
-};
+}
 
 export default Header;
