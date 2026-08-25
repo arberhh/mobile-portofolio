@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, ActivityIndicator, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { FullScreenImage, Header, List, Slideshow, ThemeText } from "@/components";
+import { FullScreenSlideshow, Header, List, Slideshow, ThemeText } from "@/components";
 import { useProject } from "@/hooks";
 import { useTheme } from "@/context";
 import { ScreenProps } from "@/types";
@@ -13,10 +13,10 @@ function ProjectDetailScreen({ navigation, route }: ScreenProps) {
   const { id } = route.params;
   const { project, loading, error } = useProject(id);
   const [modalVisible, setModalVisible] = useState(false);
-  const [activeImage, setActiveImage] = useState<string>("");
+  const [activeIndex, setActiveIndex] = useState(0);
 
   function openModal(img: string) {
-    setActiveImage(img);
+    setActiveIndex(project.images.indexOf(img));
     setModalVisible(true);
   }
 
@@ -50,11 +50,11 @@ function ProjectDetailScreen({ navigation, route }: ScreenProps) {
             commonStyles.verticalPadding,
           ]}
         >
-          <FullScreenImage
-            color={theme.color}
+          <FullScreenSlideshow
             visible={modalVisible}
             onClose={closeModal}
-            imageUri={activeImage}
+            images={project.images}
+            initialIndex={activeIndex}
           />
           {/* custom slideshow */}
           <Slideshow onImagePress={openModal} images={project.images} />

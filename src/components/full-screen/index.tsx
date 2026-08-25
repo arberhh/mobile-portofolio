@@ -1,33 +1,47 @@
 import React from "react";
-import { Modal, View, Image, Pressable } from "react-native";
-import { FullScreenProps } from "@/types";
-import { commonStyles } from "@/common";
+import { Modal, Pressable, useWindowDimensions, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Ionicons } from "@expo/vector-icons";
+import { useTheme } from "@/context";
+import { FullScreenSlideshowProps } from "@/types";
+import { SlideshowCarousel } from "../slideshow";
 import styles from "./styles";
 
-function FullScreenImage({
+function FullScreenSlideshow({
   visible,
   onClose,
-  imageUri,
-  color,
-}: FullScreenProps) {
+  images,
+  initialIndex = 0,
+}: FullScreenSlideshowProps) {
+  const { theme } = useTheme();
+  const { width, height } = useWindowDimensions();
+
   return (
     <Modal
-      style={commonStyles.flex}
       visible={visible}
-      transparent={true}
+      transparent
+      animationType="fade"
       onRequestClose={onClose}
     >
-      <Pressable onPress={onClose} style={styles.modalContainer}>
-        <View style={styles.modalContent}>
-          <Image
-            source={{ uri: imageUri }}
-            style={commonStyles.flex}
-            resizeMode="contain"
+      <SafeAreaView
+        style={[styles.modalContainer, { backgroundColor: theme.screenBackground }]}
+      >
+        <View style={styles.content}>
+          <Pressable style={styles.closeButton} onPress={onClose} hitSlop={12}>
+            <Ionicons name="close" size={28} color={theme.color} />
+          </Pressable>
+          <SlideshowCarousel
+            key={initialIndex}
+            images={images}
+            width={width * 0.9}
+            height={height * 0.6}
+            initialIndex={initialIndex}
+            onImagePress={onClose}
           />
         </View>
-      </Pressable>
+      </SafeAreaView>
     </Modal>
   );
 }
 
-export default FullScreenImage;
+export default FullScreenSlideshow;

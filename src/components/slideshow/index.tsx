@@ -56,11 +56,23 @@ function SlideItem({
   );
 }
 
-function Slideshow({ images = [], onImagePress }: SlideshowProps) {
+interface SlideshowCarouselProps {
+  images: string[];
+  width: number;
+  height: number;
+  onImagePress: (url: string) => void;
+  initialIndex?: number;
+}
+
+function SlideshowCarousel({
+  images,
+  width,
+  height,
+  onImagePress,
+  initialIndex = 0,
+}: SlideshowCarouselProps) {
   const { theme } = useTheme();
-  const { width, height } = useWindowDimensions();
-  const slideHeight: number = height / 2.4;
-  const progress = useSharedValue(0);
+  const progress = useSharedValue(initialIndex);
   const carouselRef = useRef<CarouselRef>(null);
 
   function handlePrevious() {
@@ -96,53 +108,73 @@ function Slideshow({ images = [], onImagePress }: SlideshowProps) {
       <SlideItem
         uri={item}
         width={width}
-        height={slideHeight}
+        height={height}
         relativeProgress={relativeProgress}
         onPress={() => onImagePress(item)}
       />
     ),
-    [width, slideHeight, onImagePress],
+    [width, height, onImagePress],
   );
 
   if (images.length === 0) return null;
 
   return (
-    <View style={{ width, height: slideHeight }}>
-      <Carousel
-        ref={carouselRef}
-        data={images}
-        style={{ width, height: slideHeight }}
-        loop={images.length > 1}
-        progress={progress}
-        layout={{ type: "parallax", offset: 0, scale: 1, adjacentScale: 0.92 }}
-        renderItem={renderItem}
-      />
+    <View style={{ width }}>
+      <View style={{ width, height }}>
+        <Carousel
+          ref={carouselRef}
+          data={images}
+          style={{ width, height }}
+          loop={images.length > 1}
+          defaultIndex={initialIndex}
+          progress={progress}
+          layout={{ type: "parallax", offset: 0, scale: 1, adjacentScale: 0.92 }}
+          renderItem={renderItem}
+        />
+        {images.length > 1 && (
+          <>
+            <View style={styles.navigationLeft}>
+              <Pressable onPress={handlePrevious} hitSlop={12}>
+                <Ionicons name="chevron-back" size={24} color={theme.color} />
+              </Pressable>
+            </View>
+            <View style={styles.navigationRight}>
+              <Pressable onPress={handleNext} hitSlop={12}>
+                <Ionicons name="chevron-forward" size={24} color={theme.color} />
+              </Pressable>
+            </View>
+          </>
+        )}
+      </View>
       {images.length > 1 && (
-        <>
-          <View style={styles.navigationLeft}>
-            <Pressable onPress={handlePrevious} hitSlop={12}>
-              <Ionicons name="chevron-back" size={24} color={theme.color} />
-            </Pressable>
-          </View>
-          <View style={styles.navigationRight}>
-            <Pressable onPress={handleNext} hitSlop={12}>
-              <Ionicons name="chevron-forward" size={24} color={theme.color} />
-            </Pressable>
-          </View>
-          <View style={styles.navigation}>
-            <Pagination
-              count={images.length}
-              progress={progress}
-              containerStyle={styles.dots}
-              dotStyle={dotStyle}
-              activeDotStyle={activeDotStyle}
-              onPress={onPressPagination}
-            />
-          </View>
-        </>
+        <View style={styles.navigation}>
+          <Pagination
+            count={images.length}
+            progress={progress}
+            containerStyle={styles.dots}
+            dotStyle={dotStyle}
+            activeDotStyle={activeDotStyle}
+            onPress={onPressPagination}
+          />
+        </View>
       )}
     </View>
   );
 }
 
+function Slideshow({ images = [], onImagePress }: SlideshowProps) {
+  const { width, height } = useWindowDimensions();
+  const slideHeight: number = height / 2.4;
+
+  return (
+    <SlideshowCarousel
+      images={images}
+      width={width}
+      height={slideHeight}
+      onImagePress={onImagePress}
+    />
+  );
+}
+
 export default Slideshow;
+export { SlideshowCarousel };

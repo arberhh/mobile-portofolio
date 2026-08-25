@@ -1,25 +1,19 @@
 import { StyleSheet } from "react-native";
-import { MODAL_OVERLAY } from "@/constants";
 const styles = StyleSheet.create({
-  fullScreenImage: {
-    height: "100%",
-    resizeMode: "contain",
-    width: "100%",
+  closeButton: {
+    padding: 16,
+    position: "absolute",
+    right: 0,
+    top: 0,
+    zIndex: 1,
   },
-  modalBackground: {
-    flex: 1,
-  },
-  modalContainer: {
+  content: {
     alignItems: "center",
-    backgroundColor: MODAL_OVERLAY,
     flex: 1,
     justifyContent: "center",
   },
-  modalContent: {
-    aspectRatio: 1,
-    borderRadius: 10,
-    overflow: "hidden",
-    width: "80%",
+  modalContainer: {
+    flex: 1,
   },
 });
 export default styles;
