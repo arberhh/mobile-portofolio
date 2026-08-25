@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { getProject } from "@/services";
 
-const useProject = (id: number) => {
+function useProject(id: number) {
   const [project, setProject] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
 
   useEffect(() => {
-    const fetchProject = async () => {
+    async function fetchProject() {
       try {
         const project = await getProject(id);
         setProject(project);
@@ -17,12 +17,12 @@ const useProject = (id: number) => {
       } finally {
         setLoading(false);
       }
-    };
+    }
 
     fetchProject();
   }, [id]);
 
   return { project, loading, error };
-};
+}
 
 export default useProject;

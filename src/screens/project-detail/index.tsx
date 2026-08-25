@@ -8,21 +8,21 @@ import { ScreenProps } from "@/types";
 import { commonStyles } from "@/common";
 import styles from "./styles";
 
-const ProjectDetailScreen: React.FC<ScreenProps> = ({ navigation, route }) => {
+function ProjectDetailScreen({ navigation, route }: ScreenProps) {
   const { theme } = useTheme();
   const { id } = route.params;
   const { project, loading, error } = useProject(id);
   const [modalVisible, setModalVisible] = useState(false);
   const [activeImage, setActiveImage] = useState<string>("");
 
-  const openModal = (img: string) => {
+  function openModal(img: string) {
     setActiveImage(img);
     setModalVisible(true);
-  };
+  }
 
-  const closeModal = () => {
+  function closeModal() {
     setModalVisible(false);
-  };
+  }
 
   return (
     <SafeAreaView
@@ -92,6 +92,6 @@ const ProjectDetailScreen: React.FC<ScreenProps> = ({ navigation, route }) => {
       )}
     </SafeAreaView>
   );
-};
+}
 
 export default ProjectDetailScreen;

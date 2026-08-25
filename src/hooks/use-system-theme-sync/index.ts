@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Appearance } from "react-native";
 import { useTheme } from "@/context";
 
-const useSystemThemeSync = () => {
+function useSystemThemeSync() {
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
@@ -13,6 +13,6 @@ const useSystemThemeSync = () => {
     });
     return () => subscription.remove();
   }, [theme.theme, toggleTheme]);
-};
+}
 
 export default useSystemThemeSync;

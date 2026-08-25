@@ -29,13 +29,13 @@ interface SlideItemProps {
   onPress: () => void;
 }
 
-const SlideItem: React.FC<SlideItemProps> = ({
+function SlideItem({
   uri,
   width,
   height,
   relativeProgress,
   onPress,
-}) => {
+}: SlideItemProps) {
   const { theme } = useTheme();
   const animatedStyle = useAnimatedStyle(() => ({
     opacity: interpolate(
@@ -54,24 +54,29 @@ const SlideItem: React.FC<SlideItemProps> = ({
       </Pressable>
     </Animated.View>
   );
-};
+}
 
-const Slideshow: React.FC<SlideshowProps> = ({ images = [], onImagePress }) => {
+function Slideshow({ images = [], onImagePress }: SlideshowProps) {
   const { theme } = useTheme();
   const { width, height } = useWindowDimensions();
   const slideHeight: number = height / 2.4;
   const progress = useSharedValue(0);
   const carouselRef = useRef<CarouselRef>(null);
 
-  const handlePrevious = () => carouselRef.current?.prev();
-  const handleNext = () => carouselRef.current?.next();
+  function handlePrevious() {
+    carouselRef.current?.prev();
+  }
 
-  const onPressPagination = (index: number) => {
+  function handleNext() {
+    carouselRef.current?.next();
+  }
+
+  function onPressPagination(index: number) {
     carouselRef.current?.scrollTo({
       index,
       animated: true,
     });
-  };
+  }
 
   const dotStyle = {
     width: 8,
@@ -138,6 +143,6 @@ const Slideshow: React.FC<SlideshowProps> = ({ images = [], onImagePress }) => {
       )}
     </View>
   );
-};
+}
 
 export default Slideshow;

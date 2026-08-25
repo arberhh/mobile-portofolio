@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { getProfile } from "@/services";
 
-const useProfile = () => {
+function useProfile() {
   const [user, setUser] = useState<any>({});
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
 
   useEffect(() => {
-    const fetchUserData = async () => {
+    async function fetchUserData() {
       try {
         const profile = await getProfile();
         setUser(profile);
@@ -16,12 +16,12 @@ const useProfile = () => {
       } finally {
         setLoading(false);
       }
-    };
+    }
 
     fetchUserData();
   }, []);
 
   return { user, loading, error };
-};
+}
 
 export default useProfile;

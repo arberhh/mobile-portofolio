@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { getProjects } from "@/services";
 
-const useProjects = () => {
+function useProjects() {
   const [projects, setProjects] = useState<any[]>([]);
   const [error, setError] = useState<string>("");
 
   useEffect(() => {
-    const fetchProjects = async () => {
+    async function fetchProjects() {
       try {
         const projects = (await getProjects()) || [];
         setProjects(projects);
@@ -14,12 +14,12 @@ const useProjects = () => {
         console.error({ error });
         setError(error.message);
       }
-    };
+    }
 
     fetchProjects();
   }, []);
 
   return { projects, error };
-};
+}
 
 export default useProjects;

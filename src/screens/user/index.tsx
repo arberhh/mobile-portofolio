@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import { ActivityIndicator, Image, Linking, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
@@ -10,21 +10,21 @@ import { ScreenProps } from "@/types";
 import { commonStyles } from "@/common";
 import styles from "./styles";
 
-const User: FC<ScreenProps> = ({ navigation }) => {
+function User({ navigation }: ScreenProps) {
   const { theme } = useTheme();
   const { user, loading, error } = useProfile();
 
-  const handleLinkedInPress = () => {
+  function handleLinkedInPress() {
     Linking.openURL(user.linkedin);
-  };
+  }
 
-  const handleGitHubPress = () => {
+  function handleGitHubPress() {
     Linking.openURL(user.github);
-  };
+  }
 
-  const handleGooglePress = () => {
+  function handleGooglePress() {
     Linking.openURL(`mailto:${user.email}`);
-  };
+  }
 
   return (
     <SafeAreaView
@@ -96,6 +96,6 @@ const User: FC<ScreenProps> = ({ navigation }) => {
       </LinearGradient>
     </SafeAreaView>
   );
-};
+}
 
 export default User;

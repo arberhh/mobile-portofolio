@@ -6,12 +6,12 @@ import { commonStyles } from "@/common";
 import styles from "./styles";
 import ThemeText from "../theme-text";
 
-const Project: React.FC<ProjectProps> = ({
+function Project({
   title,
   image,
   domains = [],
   onPress,
-}) => {
+}: ProjectProps) {
   const { theme } = useTheme();
   return (
     <Pressable onPress={onPress} style={styles.container}>
@@ -34,6 +34,6 @@ const Project: React.FC<ProjectProps> = ({
       </View>
     </Pressable>
   );
-};
+}
 
 export default Project;

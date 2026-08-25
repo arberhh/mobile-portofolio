@@ -4,12 +4,12 @@ import { FullScreenProps } from "@/types";
 import { commonStyles } from "@/common";
 import styles from "./styles";
 
-const FullScreenImage = ({
+function FullScreenImage({
   visible,
   onClose,
   imageUri,
   color,
-}: FullScreenProps) => {
+}: FullScreenProps) {
   return (
     <Modal
       style={commonStyles.flex}
@@ -28,6 +28,6 @@ const FullScreenImage = ({
       </Pressable>
     </Modal>
   );
-};
+}
 
 export default FullScreenImage;

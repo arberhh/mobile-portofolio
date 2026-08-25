@@ -7,7 +7,7 @@ interface DividerProps {
   style?: StyleProp<ViewStyle>;
 }
 
-const Divider = ({ style }: DividerProps) => {
+function Divider({ style }: DividerProps) {
   const { theme } = useTheme();
   return (
     <View
@@ -18,6 +18,6 @@ const Divider = ({ style }: DividerProps) => {
       ]}
     />
   );
-};
+}
 
 export default Divider;
