@@ -2,16 +2,14 @@ import { supabase } from "@/util";
 
 const DOMAINS_SELECT = "*, project_domains(domains(id, title, icon))";
 
-const withFlattenedDomains = <
+function withFlattenedDomains<
   T extends { project_domains: { domains: unknown }[] }
->(
-  project: T
-) => {
+>(project: T) {
   const { project_domains, ...rest } = project;
   return { ...rest, domains: project_domains.map((pd) => pd.domains) };
-};
+}
 
-const getProjects = async () => {
+async function getProjects() {
   try {
     const { data, error } = await supabase
       .from("projects")
@@ -33,9 +31,9 @@ const getProjects = async () => {
         "There was an issue with fetching the projects, please try again later!"
     );
   }
-};
+}
 
-const getProject = async (id: number) => {
+async function getProject(id: number) {
   try {
     const { data, error } = await supabase
       .from("projects")
@@ -59,9 +57,9 @@ const getProject = async (id: number) => {
       "There was an issue with fetching this project, please try again later!"
     );
   }
-};
+}
 
-const getProfile = async () => {
+async function getProfile() {
   try {
     let { data, error } = await supabase.from("profile").select("*").single();
 
@@ -80,6 +78,6 @@ const getProfile = async () => {
       "There was an issue with fetching the developer profile, please try again later!"
     );
   }
-};
+}
 
 export { getProjects, getProject, getProfile };
