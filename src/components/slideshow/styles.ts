@@ -18,13 +18,10 @@ const styles = StyleSheet.create({
   },
   navigation: {
     alignItems: "center",
-    bottom: 12,
     flexDirection: "row",
     justifyContent: "center",
-    left: 0,
     paddingHorizontal: 20,
-    position: "absolute",
-    right: 0,
+    paddingTop: 10,
   },
   navigationLeft: {
     left: 20,

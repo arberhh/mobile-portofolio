@@ -1,8 +1,8 @@
-interface FullScreenProps {
+interface FullScreenSlideshowProps {
   visible: boolean;
   onClose: () => void;
-  imageUri: string;
-  color: string
+  images: string[];
+  initialIndex?: number;
 }
 
-export default FullScreenProps;
+export default FullScreenSlideshowProps;

@@ -2,7 +2,7 @@ import { SocialIcon, Tech } from "./account";
 import Divider from "./divider";
 import Header from "./header";
 import Project from "./project";
-import FullScreenImage from "./full-screen";
+import FullScreenSlideshow from "./full-screen";
 import List from "./list";
 import ThemeText from "./theme-text";
 import Slideshow from "./slideshow";
@@ -13,7 +13,7 @@ export {
   Header,
   Project,
   Slideshow,
-  FullScreenImage,
+  FullScreenSlideshow,
   List,
   SectionHeading,
   SocialIcon,

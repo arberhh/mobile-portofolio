@@ -119,40 +119,44 @@ function SlideshowCarousel({
   if (images.length === 0) return null;
 
   return (
-    <View style={{ width, height }}>
-      <Carousel
-        ref={carouselRef}
-        data={images}
-        style={{ width, height }}
-        loop={images.length > 1}
-        defaultIndex={initialIndex}
-        progress={progress}
-        layout={{ type: "parallax", offset: 0, scale: 1, adjacentScale: 0.92 }}
-        renderItem={renderItem}
-      />
+    <View style={{ width }}>
+      <View style={{ width, height }}>
+        <Carousel
+          ref={carouselRef}
+          data={images}
+          style={{ width, height }}
+          loop={images.length > 1}
+          defaultIndex={initialIndex}
+          progress={progress}
+          layout={{ type: "parallax", offset: 0, scale: 1, adjacentScale: 0.92 }}
+          renderItem={renderItem}
+        />
+        {images.length > 1 && (
+          <>
+            <View style={styles.navigationLeft}>
+              <Pressable onPress={handlePrevious} hitSlop={12}>
+                <Ionicons name="chevron-back" size={24} color={theme.color} />
+              </Pressable>
+            </View>
+            <View style={styles.navigationRight}>
+              <Pressable onPress={handleNext} hitSlop={12}>
+                <Ionicons name="chevron-forward" size={24} color={theme.color} />
+              </Pressable>
+            </View>
+          </>
+        )}
+      </View>
       {images.length > 1 && (
-        <>
-          <View style={styles.navigationLeft}>
-            <Pressable onPress={handlePrevious} hitSlop={12}>
-              <Ionicons name="chevron-back" size={24} color={theme.color} />
-            </Pressable>
-          </View>
-          <View style={styles.navigationRight}>
-            <Pressable onPress={handleNext} hitSlop={12}>
-              <Ionicons name="chevron-forward" size={24} color={theme.color} />
-            </Pressable>
-          </View>
-          <View style={styles.navigation}>
-            <Pagination
-              count={images.length}
-              progress={progress}
-              containerStyle={styles.dots}
-              dotStyle={dotStyle}
-              activeDotStyle={activeDotStyle}
-              onPress={onPressPagination}
-            />
-          </View>
-        </>
+        <View style={styles.navigation}>
+          <Pagination
+            count={images.length}
+            progress={progress}
+            containerStyle={styles.dots}
+            dotStyle={dotStyle}
+            activeDotStyle={activeDotStyle}
+            onPress={onPressPagination}
+          />
+        </View>
       )}
     </View>
   );
