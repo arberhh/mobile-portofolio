@@ -3,13 +3,9 @@
 
 ## <img width="30" height="30" src="https://img.icons8.com/color/48/expo.png" alt="expo"/>  Try it now
 
-Scan with [Expo Go](https://expo.dev/go) to open the latest build on your phone.
+Since May 2026, Expo Go only opens EAS Update links for the project owner or their org members, so scanning a QR code no longer works for outside visitors.
 
 Want to run it yourself? See [docs/SETUP.md](docs/SETUP.md) for local setup and running instructions.
-
-<!-- Always resolves to the newest update on the "main" channel via qr.expo.dev - no
-     regeneration needed. If app.json's version changes, runtimeVersion below must match it. -->
-<img src="https://qr.expo.dev/eas-update?projectId=19f7580b-c0e5-44e3-a264-8bb2b365cae8&runtimeVersion=1.0.0&channel=main" width="300" alt="Scan to open in Expo Go" />
 
 ## 📁 Project Structure Overview
 
