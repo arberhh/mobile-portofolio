@@ -17,7 +17,7 @@ const darkState: ThemeState = {
 };
 
 
-const themeReducer = (state: ThemeState, action: Action): ThemeState => {
+function themeReducer(state: ThemeState, action: Action): ThemeState {
   switch (action.type) {
     case "TOGGLE_THEME":
       return {
@@ -27,29 +27,29 @@ const themeReducer = (state: ThemeState, action: Action): ThemeState => {
     default:
       return state;
   }
-};
+}
 
-const useTheme = () => {
+function useTheme() {
   const context = useContext(ThemeContext);
   if (!context) {
     throw new Error("useTheme must be used within a ThemeProvider");
   }
   return context;
-};
+}
 
 
-const ThemeProvider = ({ children }: Props) => {
+function ThemeProvider({ children }: Props) {
   const [state, dispatch] = useReducer(themeReducer, darkState);
 
-  const toggleTheme = () => {
+  function toggleTheme() {
     dispatch({ type: "TOGGLE_THEME" });
-  };
+  }
   return (
     <ThemeContext.Provider value={{ theme: state.theme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
-};
+}
 
 
 
