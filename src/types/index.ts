@@ -43,17 +43,7 @@ interface Project {
   domains: Domain[];
 }
 
-interface Profile {
-  id: number;
-  name: string | null;
-  about_me: string | null;
-  intro: string | null;
-  email: string | null;
-  github: string | null;
-  linkedin: string | null;
-  profile_picture: string | null;
-  main_techs: string[] | null;
-}
+type Profile = Database["public"]["Tables"]["profile"]["Row"];
 
 interface FullScreenSlideshowProps {
   visible: boolean;

@@ -13,13 +13,7 @@ import styles from "./styles";
 
 function User({ navigation }: ScreenProps) {
   const { theme } = useTheme();
-  // types/supabase.ts is stale (missing intro/main_techs) until the schema
-  // regen lands separately, so getProfile()'s inferred shape doesn't
-  // structurally overlap with Profile yet.
-  const fetchProfile = useCallback(
-    async () => (await getProfile()) as unknown as Profile,
-    []
-  );
+  const fetchProfile = useCallback(async () => (await getProfile()) as Profile, []);
   const { data: user, loading, error } = useAsync<Profile | null>(
     fetchProfile,
     null
