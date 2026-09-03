@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { FlatList, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { Divider, Header, Project, ThemeText } from "@/components";
-import { useProjects, useSystemThemeSync } from "@/hooks";
+import { useAsync, useSystemThemeSync } from "@/hooks";
+import { getProjects } from "@/services";
 import { useTheme } from "@/context";
-import { ScreenProps } from "@/types";
+import { ScreenProps, Project as ProjectData } from "@/types";
 import { commonStyles } from "@/common";
 import styles from "./styles";
 
 function Home({ navigation }: ScreenProps) {
-  const { projects, error } = useProjects();
+  const fetchProjects = useCallback(
+    async () => ((await getProjects()) || []) as ProjectData[],
+    []
+  );
+  const { data: projects, error } = useAsync<ProjectData[]>(fetchProjects, []);
 
   const { theme } = useTheme();
 
