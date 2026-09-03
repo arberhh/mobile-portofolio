@@ -2,7 +2,7 @@ import React from "react";
 import { Text, View } from "react-native";
 import { useTheme } from "@/context";
 import { commonStyles } from "@/common";
-import SectionHeadingProps from "@/types/section-heading";
+import { SectionHeadingProps } from "@/types";
 import styles from "./styles";
 
 export default function SectionHeading({ bracket, title }: SectionHeadingProps) {
