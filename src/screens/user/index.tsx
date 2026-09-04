@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import { ActivityIndicator, Image, Linking, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
@@ -13,9 +13,8 @@ import styles from "./styles";
 
 function User({ navigation }: ScreenProps) {
   const { theme } = useTheme();
-  const fetchProfile = useCallback(async () => (await getProfile()) as Profile, []);
   const { data: user, loading, error } = useAsync<Profile | null>(
-    fetchProfile,
+    getProfile,
     null
   );
 

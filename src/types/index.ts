@@ -81,6 +81,7 @@ export {
   ScreenProps,
   ListProps,
   ProjectProps,
+  Domain,
   Project,
   Profile,
   FullScreenSlideshowProps,

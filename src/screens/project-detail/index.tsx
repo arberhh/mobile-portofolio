@@ -12,10 +12,7 @@ import styles from "./styles";
 function ProjectDetailScreen({ navigation, route }: ScreenProps) {
   const { theme } = useTheme();
   const { id } = route.params;
-  const fetchProject = useCallback(
-    async () => (await getProject(id)) as Project,
-    [id]
-  );
+  const fetchProject = useCallback(() => getProject(id), [id]);
   const { data: project, loading, error } = useAsync<Project | null>(
     fetchProject,
     null
