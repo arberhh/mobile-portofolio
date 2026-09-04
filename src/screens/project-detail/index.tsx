@@ -1,21 +1,27 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { View, ActivityIndicator, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { FullScreenSlideshow, Header, List, Slideshow, ThemeText } from "@/components";
-import { useProject } from "@/hooks";
+import { useAsync } from "@/hooks";
+import { getProject } from "@/services";
 import { useTheme } from "@/context";
-import { ScreenProps } from "@/types";
+import { ScreenProps, Project } from "@/types";
 import { commonStyles } from "@/common";
 import styles from "./styles";
 
 function ProjectDetailScreen({ navigation, route }: ScreenProps) {
   const { theme } = useTheme();
   const { id } = route.params;
-  const { project, loading, error } = useProject(id);
+  const fetchProject = useCallback(() => getProject(id), [id]);
+  const { data: project, loading, error } = useAsync<Project | null>(
+    fetchProject,
+    null
+  );
   const [modalVisible, setModalVisible] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
   function openModal(img: string) {
+    if (!project) return;
     setActiveIndex(project.images.indexOf(img));
     setModalVisible(true);
   }
@@ -37,7 +43,7 @@ function ProjectDetailScreen({ navigation, route }: ScreenProps) {
         <View style={[commonStyles.flex, commonStyles.center]}>
           <ThemeText style={commonStyles.errorText} text={error} />
         </View>
-      ) : loading ? (
+      ) : loading || !project ? (
         <View style={[commonStyles.flex, commonStyles.center]}>
           <ActivityIndicator size={"large"} color={theme.color} />
         </View>
