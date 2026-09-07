@@ -4,26 +4,30 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 
 import { Header, SectionHeading, SocialIcon, Tech, ThemeText } from "@/components";
-import { useProfile } from "@/hooks";
+import { useAsync } from "@/hooks";
+import { getProfile } from "@/services";
 import { useTheme } from "@/context";
-import { ScreenProps } from "@/types";
+import { ScreenProps, Profile } from "@/types";
 import { commonStyles } from "@/common";
 import styles from "./styles";
 
 function User({ navigation }: ScreenProps) {
   const { theme } = useTheme();
-  const { user, loading, error } = useProfile();
+  const { data: user, loading, error } = useAsync<Profile | null>(
+    getProfile,
+    null
+  );
 
   function handleLinkedInPress() {
-    Linking.openURL(user.linkedin);
+    if (user?.linkedin) Linking.openURL(user.linkedin);
   }
 
   function handleGitHubPress() {
-    Linking.openURL(user.github);
+    if (user?.github) Linking.openURL(user.github);
   }
 
   function handleGooglePress() {
-    Linking.openURL(`mailto:${user.email}`);
+    if (user?.email) Linking.openURL(`mailto:${user.email}`);
   }
 
   return (
@@ -49,19 +53,19 @@ function User({ navigation }: ScreenProps) {
         <View style={[commonStyles.flex, commonStyles.center]}>
           <ThemeText text={error} style={commonStyles.errorText} />
         </View>
-      ) : loading ? (
+      ) : loading || !user ? (
         <ActivityIndicator size={"large"} color={theme.color} />
       ) : (
         <>
           <Image
-            source={{ uri: user.profile_picture }}
+            source={{ uri: user.profile_picture ?? undefined }}
             style={styles.profileImage}
           />
           {/* About Me Section */}
           <View style={styles.section}>
             <ThemeText
               style={commonStyles.subtitle}
-              text={user.intro}
+              text={user.intro ?? ""}
               color={theme.textSecondary}
             />
           </View>
