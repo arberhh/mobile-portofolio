@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__claude_ai_Linear__list_issues",
+      "Bash(npx supabase *)",
+      "Bash(echo \"exit:$?\")",
+      "mcp__linear-server__save_issue",
+      "Bash(node -e \"const pkg = require\\('./node_modules/@react-navigation/native/package.json'\\); console.log\\(pkg.version\\)\")",
+      "Bash(lsof -i:8081 -sTCP:LISTEN)",
+      "mcp__linear-server__list_issues",
+      "mcp__linear-server__get_issue",
+      "Bash(python3 -c \"import json,sys; v=json.load\\(sys.stdin\\); print\\('\\\\n'.join\\(v[-10:]\\)\\)\")",
+      "mcp__linear-server__list_issue_labels",
+      "Bash(npx expo-doctor *)",
+      "Bash(npx knip *)",
+      "Bash(echo \"exit code: $?\")",
+      "Bash(echo \"started pid $!\")"
+    ]
+  }
+}
