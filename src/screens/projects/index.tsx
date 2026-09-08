@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { FlatList, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
+import { useNavigation } from "@react-navigation/native";
 import { Divider, Header, Project, ThemeText } from "@/components";
 import { useAsync, useSystemThemeSync } from "@/hooks";
 import { getProjects } from "@/services";
@@ -10,6 +11,31 @@ import { ScreenProps, Project as ProjectData } from "@/types";
 import { commonStyles } from "@/common";
 import styles from "./styles";
 
+function keyExtractor(item: ProjectData) {
+  return item?.id.toString();
+}
+
+function renderItemSeparator() {
+  return <Divider style={styles.itemSeparator} />;
+}
+
+function ProjectListItem({ item }: { item: ProjectData }) {
+  const navigation = useNavigation<any>();
+
+  return (
+    <Project
+      onPress={() => navigation.navigate("ProjectDetails", { id: item.id })}
+      title={item.title}
+      image={item.banner_url}
+      domains={item.domains}
+    />
+  );
+}
+
+function renderProjectItem({ item }: { item: ProjectData }) {
+  return <ProjectListItem item={item} />;
+}
+
 function Home({ navigation }: ScreenProps) {
   const { data: projects, error } = useAsync<ProjectData[]>(getProjects, []);
 
@@ -17,20 +43,16 @@ function Home({ navigation }: ScreenProps) {
 
   useSystemThemeSync();
 
-  function onPressProject(id: number) {
-    navigation.navigate("ProjectDetails", { id });
-  }
+  const onLeftPress = useCallback(() => {
+    navigation.navigate("User");
+  }, [navigation]);
 
   return (
     <SafeAreaView
       style={[commonStyles.flex, { backgroundColor: theme.screenBackground }]}
     >
       <StatusBar style={theme.theme === "dark" ? "light" : "dark"} />
-      <Header
-        title="Home"
-        leftIcon="account"
-        onLeftPress={() => navigation.navigate("User")}
-      />
+      <Header title="Home" leftIcon="account" onLeftPress={onLeftPress} />
       {error !== "" ? (
         <View
           style={[commonStyles.flex, commonStyles.center, commonStyles.horizontalPadding]}
@@ -41,21 +63,10 @@ function Home({ navigation }: ScreenProps) {
         <FlatList
           style={commonStyles.horizontalPadding}
           data={projects}
-          keyExtractor={(item) => item?.id.toString()}
+          keyExtractor={keyExtractor}
           showsVerticalScrollIndicator={false}
-          ItemSeparatorComponent={() => (
-            <Divider style={styles.itemSeparator} />
-          )}
-          renderItem={({ item }) => {
-            return (
-              <Project
-                onPress={() => onPressProject(item.id)}
-                title={item.title}
-                image={item.banner_url}
-                domains={item.domains}
-              />
-            );
-          }}
+          ItemSeparatorComponent={renderItemSeparator}
+          renderItem={renderProjectItem}
         />
       )}
     </SafeAreaView>
