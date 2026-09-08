@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal, Pressable, useWindowDimensions, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@/context";
 import { FullScreenSlideshowProps } from "@/types";
@@ -15,6 +15,7 @@ function FullScreenSlideshow({
 }: FullScreenSlideshowProps) {
   const { theme } = useTheme();
   const { width, height } = useWindowDimensions();
+  const insets = useSafeAreaInsets();
 
   return (
     <Modal
@@ -26,10 +27,14 @@ function FullScreenSlideshow({
       <SafeAreaView
         style={[styles.modalContainer, { backgroundColor: theme.screenBackground }]}
       >
+        <Pressable
+          style={[styles.closeButton, { top: insets.top }]}
+          onPress={onClose}
+          hitSlop={12}
+        >
+          <Ionicons name="close" size={28} color={theme.color} />
+        </Pressable>
         <View style={styles.content}>
-          <Pressable style={styles.closeButton} onPress={onClose} hitSlop={12}>
-            <Ionicons name="close" size={28} color={theme.color} />
-          </Pressable>
           <SlideshowCarousel
             key={initialIndex}
             images={images}
