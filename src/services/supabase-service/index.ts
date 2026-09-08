@@ -5,6 +5,20 @@ const DOMAINS_SELECT = "*, project_domains(domains(id, title, icon))";
 
 type ProjectRow = Database["public"]["Tables"]["projects"]["Row"];
 
+async function runQuery<T>(
+  query: PromiseLike<{ data: T; error: unknown }>,
+  fallbackMessage: string
+): Promise<T> {
+  try {
+    const { data, error } = await query;
+    if (error) throw error;
+    return data;
+  } catch (error) {
+    console.error(fallbackMessage, error);
+    throw new Error(fallbackMessage);
+  }
+}
+
 function withFlattenedDomains<
   T extends { project_domains: { domains: Domain }[] }
 >(project: T) {
@@ -27,77 +41,36 @@ function toProject(row: ProjectRow & { domains: Domain[] }): Project {
 }
 
 async function getProjects(): Promise<Project[]> {
-  try {
-    const { data, error } = await supabase
+  const rows = await runQuery(
+    supabase
       .from("projects")
       .select(DOMAINS_SELECT)
-      .order("created_at", { ascending: false });
-    if (error) {
-      console.error("Error fetching projects:", error);
-      throw new Error(
-        "There was an issue with fetching the projects, please try again later!"
-      );
-    }
-    return (data ?? []).map(withFlattenedDomains).map(toProject);
-  } catch (error: any) {
-    console.error("Error fetching projects:", error);
-    throw new Error(
-      error.message ||
-        "There was an issue with fetching the projects, please try again later!"
-    );
-  }
+      .order("created_at", { ascending: false }),
+    "There was an issue with fetching the projects, please try again later!"
+  );
+  return (rows ?? []).map(withFlattenedDomains).map(toProject);
 }
 
 async function getProject(id: number): Promise<Project> {
-  try {
-    const { data, error } = await supabase
-      .from("projects")
-      .select(DOMAINS_SELECT)
-      .eq("id", id)
-      .single();
-
-    if (error) {
-      // Handle error
-      console.error("Error fetching project:", error);
-      throw new Error(
-        "There was an issue with fetching this project, please try again later!"
-      );
-    }
-    return toProject(withFlattenedDomains(data));
-  } catch (error: any) {
-    // Handle error
-    console.error("Error fetching project:", error);
-    throw new Error(
-      "There was an issue with fetching this project, please try again later!"
-    );
-  }
+  const fallbackMessage =
+    "There was an issue with fetching this project, please try again later!";
+  const row = await runQuery(
+    supabase.from("projects").select(DOMAINS_SELECT).eq("id", id).single(),
+    fallbackMessage
+  );
+  if (!row) throw new Error(fallbackMessage);
+  return toProject(withFlattenedDomains(row));
 }
 
 async function getProfile(): Promise<Profile> {
-  try {
-    const { data, error } = await supabase
-      .from("profile")
-      .select("*")
-      .single();
-
-    if (error) {
-      console.error("Error fetching developer profile:", error);
-      throw new Error(
-        "There was an issue with fetching the developer profile, please try again later!"
-      );
-    }
-    if (!data) {
-      throw new Error(
-        "There was an issue with fetching the developer profile, please try again later!"
-      );
-    }
-    return data;
-  } catch (error) {
-    console.error("Error fetching developer profile:", error);
-    throw new Error(
-      "There was an issue with fetching the developer profile, please try again later!"
-    );
-  }
+  const fallbackMessage =
+    "There was an issue with fetching the developer profile, please try again later!";
+  const profile = await runQuery(
+    supabase.from("profile").select("*").single(),
+    fallbackMessage
+  );
+  if (!profile) throw new Error(fallbackMessage);
+  return profile;
 }
 
 export { getProjects, getProject, getProfile };
