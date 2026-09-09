@@ -37,7 +37,16 @@ function SlideItem({ uri, width, height, relativeProgress, onPress }: SlideItemP
   return (
     <Animated.View style={[{ width, height }, animatedStyle]}>
       <Pressable style={frameStyle} onPress={onPress}>
-        <Image contentFit="contain" source={{ uri }} style={styles.image} />
+        <Image
+          contentFit="contain"
+          source={{ uri }}
+          style={styles.image}
+          // On web, native browser drag-to-select-image intercepts the mouse
+          // gesture before the carousel's pan gesture can recognize a swipe,
+          // so a click-and-drag never changes the slide. Disabling it lets
+          // mouse drag work the same as touch swipe. No-op on native.
+          draggable={false}
+        />
       </Pressable>
     </Animated.View>
   );
