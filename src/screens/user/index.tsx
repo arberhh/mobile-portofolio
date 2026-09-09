@@ -65,7 +65,7 @@ function User({ navigation }: ScreenProps) {
               </View>
               <View style={styles.section}>
                 <SectionHeading bracket="[stack]" title="Main Technologies" />
-                <View style={[commonStyles.rowOnly, commonStyles.aligLeft]}>
+                <View style={[commonStyles.row, commonStyles.aligLeft]}>
                   {(user.main_techs ?? []).map((tech: string, index: number) => (
                     <Tech theme={theme} key={index} title={tech} />
                   ))}
