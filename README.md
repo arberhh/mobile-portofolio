@@ -1,7 +1,8 @@
 # mobile-portofolio
+
 📱 Expo Portfolio: Showcase of 4 React Native apps. Clean, modular code. Features UI designs, animations. Ready for collaboration. Connect with me!
 
-## <img width="30" height="30" src="https://img.icons8.com/color/48/expo.png" alt="expo"/>  Try it now
+## <img width="30" height="30" src="https://img.icons8.com/color/48/expo.png" alt="expo"/> Try it now
 
 Since May 2026, Expo Go only opens EAS Update links for the project owner or their org members, so scanning a QR code no longer works for outside visitors.
 

@@ -13,9 +13,8 @@ const ThemeContext = createContext<ThemeState | undefined>(undefined);
 
 const darkState: ThemeState = {
   theme: darkTheme,
-  toggleTheme: () => { },
+  toggleTheme: () => {},
 };
-
 
 function themeReducer(state: ThemeState, action: Action): ThemeState {
   switch (action.type) {
@@ -37,7 +36,6 @@ function useTheme() {
   return context;
 }
 
-
 function ThemeProvider({ children }: Props) {
   const [state, dispatch] = useReducer(themeReducer, darkState);
 
@@ -51,6 +49,4 @@ function ThemeProvider({ children }: Props) {
   );
 }
 
-
-
-export { ThemeProvider, useTheme, themeReducer, darkState }
+export { ThemeProvider, useTheme, themeReducer, darkState };

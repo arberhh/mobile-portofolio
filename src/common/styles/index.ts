@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   text400: { fontFamily: FONT_REGULAR, fontSize: 16 },
   title: { fontFamily: FONT_MEDIUM, fontSize: 24, marginBottom: 10 },
   verticalMargin: { marginVertical: 20 },
-  verticalPadding: { paddingVertical: 20 }
+  verticalPadding: { paddingVertical: 20 },
 });
 
 export default styles;

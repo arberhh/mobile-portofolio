@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   contactIcons: {
     flexDirection: "row",
-    marginTop: 30
+    marginTop: 30,
   },
   container: {
     alignItems: "center",

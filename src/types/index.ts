@@ -19,10 +19,7 @@ interface ListProps {
   title: string;
 }
 
-type Domain = Pick<
-  Database["public"]["Tables"]["domains"]["Row"],
-  "id" | "title" | "icon"
->;
+type Domain = Pick<Database["public"]["Tables"]["domains"]["Row"], "id" | "title" | "icon">;
 
 interface ProjectProps {
   title: string;

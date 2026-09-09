@@ -13,7 +13,7 @@
         "buildType": "apk"
       }
     },
-    "production":{"channel": "production", "ios":{"image": "default"}}
+    "production": { "channel": "production", "ios": { "image": "default" } }
   },
   "submit": {
     "production": {}
