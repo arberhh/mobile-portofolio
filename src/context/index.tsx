@@ -53,4 +53,4 @@ function ThemeProvider({ children }: Props) {
 
 
 
-export { ThemeProvider, useTheme }
+export { ThemeProvider, useTheme, themeReducer, darkState }
