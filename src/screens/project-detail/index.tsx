@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { View, ActivityIndicator, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { FullScreenSlideshow, Header, List, Slideshow, ThemeText } from "@/components";
+import { FullScreenSlideshow, Header, List, Slideshow, ThemeText, WebAppShell } from "@/components";
 import { useAsync } from "@/hooks";
 import { getProject } from "@/services";
 import { useTheme } from "@/context";
@@ -89,7 +89,11 @@ function ProjectDetailContent({ id, onBack }: ProjectDetailContentProps) {
 }
 
 function ProjectDetailScreen({ navigation, route }: ScreenProps) {
-  return <ProjectDetailContent id={route.params.id} onBack={() => navigation.goBack()} />;
+  return (
+    <WebAppShell>
+      <ProjectDetailContent id={route.params.id} onBack={() => navigation.goBack()} />
+    </WebAppShell>
+  );
 }
 
 export default ProjectDetailScreen;
