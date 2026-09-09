@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Image, Text, Pressable } from "react-native";
+import { View, Text, Pressable } from "react-native";
+import { Image } from "expo-image";
 import { useTheme } from "@/context";
 import { ProjectProps } from "@/types";
 import { commonStyles } from "@/common";
