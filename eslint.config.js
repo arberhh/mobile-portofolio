@@ -1,13 +1,24 @@
-const expoConfig = require("eslint-config-expo/flat");
+const tsParser = require("@typescript-eslint/parser");
+const expo = require("eslint-plugin-expo");
 const reactNative = require("eslint-plugin-react-native");
 
 module.exports = [
-  ...expoConfig,
   {
+    files: ["**/*.{js,jsx,ts,tsx}"],
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        ecmaFeatures: { jsx: true },
+      },
+    },
     plugins: {
+      expo,
       "react-native": reactNative,
     },
     rules: {
+      "expo/use-dom-exports": "error",
+      "expo/no-env-var-destructuring": "error",
+      "expo/no-dynamic-env-var": "error",
       "react-native/no-color-literals": "error",
       "react-native/no-inline-styles": "error",
       "react-native/no-raw-text": "error",

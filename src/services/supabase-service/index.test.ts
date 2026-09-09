@@ -13,8 +13,8 @@ function mockQueryBuilder(result: { data: unknown; error: unknown }) {
   builder.order = jest.fn(() => builder);
   builder.eq = jest.fn(() => builder);
   builder.single = jest.fn(() => builder);
-  builder.then = (resolve: any, reject?: any) =>
-    Promise.resolve(result).then(resolve, reject);
+  // oxlint-disable-next-line unicorn/no-thenable -- mimics Supabase's real thenable query builder
+  builder.then = (resolve: any, reject?: any) => Promise.resolve(result).then(resolve, reject);
   return builder;
 }
 
@@ -64,7 +64,7 @@ afterEach(() => {
 describe("getProjects", () => {
   it("flattens project_domains into domains and maps nullable columns to fallbacks", async () => {
     (supabase.from as jest.Mock).mockReturnValue(
-      mockQueryBuilder({ data: [projectRow, sparseProjectRow], error: null })
+      mockQueryBuilder({ data: [projectRow, sparseProjectRow], error: null }),
     );
 
     const result = await getProjects();
@@ -96,20 +96,18 @@ describe("getProjects", () => {
   });
 
   it("returns an empty list when there is no data and no error", async () => {
-    (supabase.from as jest.Mock).mockReturnValue(
-      mockQueryBuilder({ data: null, error: null })
-    );
+    (supabase.from as jest.Mock).mockReturnValue(mockQueryBuilder({ data: null, error: null }));
 
     await expect(getProjects()).resolves.toEqual([]);
   });
 
   it("logs and throws a friendly message when the query errors", async () => {
     (supabase.from as jest.Mock).mockReturnValue(
-      mockQueryBuilder({ data: null, error: { message: "boom" } })
+      mockQueryBuilder({ data: null, error: { message: "boom" } }),
     );
 
     await expect(getProjects()).rejects.toThrow(
-      "There was an issue with fetching the projects, please try again later!"
+      "There was an issue with fetching the projects, please try again later!",
     );
     expect(console.error).toHaveBeenCalled();
   });
@@ -118,7 +116,7 @@ describe("getProjects", () => {
 describe("getProject", () => {
   it("flattens domains and maps nullable columns for a single project", async () => {
     (supabase.from as jest.Mock).mockReturnValue(
-      mockQueryBuilder({ data: projectRow, error: null })
+      mockQueryBuilder({ data: projectRow, error: null }),
     );
 
     const result = await getProject(1);
@@ -138,22 +136,20 @@ describe("getProject", () => {
 
   it("logs and throws a friendly message when the query errors", async () => {
     (supabase.from as jest.Mock).mockReturnValue(
-      mockQueryBuilder({ data: null, error: { message: "boom" } })
+      mockQueryBuilder({ data: null, error: { message: "boom" } }),
     );
 
     await expect(getProject(1)).rejects.toThrow(
-      "There was an issue with fetching this project, please try again later!"
+      "There was an issue with fetching this project, please try again later!",
     );
     expect(console.error).toHaveBeenCalled();
   });
 
   it("throws a friendly message when there is no data and no error", async () => {
-    (supabase.from as jest.Mock).mockReturnValue(
-      mockQueryBuilder({ data: null, error: null })
-    );
+    (supabase.from as jest.Mock).mockReturnValue(mockQueryBuilder({ data: null, error: null }));
 
     await expect(getProject(1)).rejects.toThrow(
-      "There was an issue with fetching this project, please try again later!"
+      "There was an issue with fetching this project, please try again later!",
     );
   });
 });
@@ -174,7 +170,7 @@ describe("getProfile", () => {
 
   it("returns the profile row as-is", async () => {
     (supabase.from as jest.Mock).mockReturnValue(
-      mockQueryBuilder({ data: profileRow, error: null })
+      mockQueryBuilder({ data: profileRow, error: null }),
     );
 
     await expect(getProfile()).resolves.toEqual(profileRow);
@@ -182,22 +178,20 @@ describe("getProfile", () => {
 
   it("logs and throws a friendly message when the query errors", async () => {
     (supabase.from as jest.Mock).mockReturnValue(
-      mockQueryBuilder({ data: null, error: { message: "boom" } })
+      mockQueryBuilder({ data: null, error: { message: "boom" } }),
     );
 
     await expect(getProfile()).rejects.toThrow(
-      "There was an issue with fetching the developer profile, please try again later!"
+      "There was an issue with fetching the developer profile, please try again later!",
     );
     expect(console.error).toHaveBeenCalled();
   });
 
   it("throws a friendly message when there is no data and no error", async () => {
-    (supabase.from as jest.Mock).mockReturnValue(
-      mockQueryBuilder({ data: null, error: null })
-    );
+    (supabase.from as jest.Mock).mockReturnValue(mockQueryBuilder({ data: null, error: null }));
 
     await expect(getProfile()).rejects.toThrow(
-      "There was an issue with fetching the developer profile, please try again later!"
+      "There was an issue with fetching the developer profile, please try again later!",
     );
   });
 });
