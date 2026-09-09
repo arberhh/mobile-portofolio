@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { Image, Pressable, useWindowDimensions, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Carousel, Pagination } from "react-native-reanimated-carousel";
@@ -149,16 +149,21 @@ function SlideshowCarousel({
 }
 
 function Slideshow({ images = [], onImagePress }: SlideshowProps) {
-  const { width, height } = useWindowDimensions();
+  const { height } = useWindowDimensions();
+  const [width, setWidth] = useState<number | null>(null);
   const slideHeight: number = height / 2.4;
 
   return (
-    <SlideshowCarousel
-      images={images}
-      width={width}
-      height={slideHeight}
-      onImagePress={onImagePress}
-    />
+    <View onLayout={(e) => setWidth(e.nativeEvent.layout.width)}>
+      {width !== null && (
+        <SlideshowCarousel
+          images={images}
+          width={width}
+          height={slideHeight}
+          onImagePress={onImagePress}
+        />
+      )}
+    </View>
   );
 }
 
