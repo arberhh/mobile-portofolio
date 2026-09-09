@@ -1,0 +1,11 @@
+name: Publish update
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  publish_update:
+    name: Publish update
+    type: update
+    params:
+      branch: main
