@@ -13,6 +13,7 @@ function Project({ title, image, domains = [], onPress }: ProjectProps) {
     <Pressable onPress={onPress} style={styles.container}>
       <Image
         source={{ uri: image }}
+        contentFit="contain"
         style={[styles.image, { backgroundColor: theme.cardBackground }]}
       />
       <View style={[styles.body, { backgroundColor: theme.cardBackground }]}>
