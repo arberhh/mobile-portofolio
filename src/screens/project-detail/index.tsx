@@ -9,9 +9,13 @@ import { ScreenProps, Project } from "@/types";
 import { commonStyles } from "@/common";
 import styles from "./styles";
 
-function ProjectDetailScreen({ navigation, route }: ScreenProps) {
+interface ProjectDetailContentProps {
+  id: number;
+  onBack: () => void;
+}
+
+function ProjectDetailContent({ id, onBack }: ProjectDetailContentProps) {
   const { theme } = useTheme();
-  const { id } = route.params;
   const fetchProject = useCallback(() => getProject(id), [id]);
   const { data: project, loading, error } = useAsync<Project | null>(fetchProject, null);
   const [modalVisible, setModalVisible] = useState(false);
@@ -29,7 +33,7 @@ function ProjectDetailScreen({ navigation, route }: ScreenProps) {
 
   return (
     <SafeAreaView style={[commonStyles.flex, { backgroundColor: theme.screenBackground }]}>
-      <Header title="ProjectDetails" leftIcon="back" onLeftPress={() => navigation.goBack()} />
+      <Header title="ProjectDetails" leftIcon="back" onLeftPress={onBack} />
       {error !== "" ? (
         <View style={[commonStyles.flex, commonStyles.center]}>
           <ThemeText style={commonStyles.errorText} text={error} />
@@ -84,4 +88,9 @@ function ProjectDetailScreen({ navigation, route }: ScreenProps) {
   );
 }
 
+function ProjectDetailScreen({ navigation, route }: ScreenProps) {
+  return <ProjectDetailContent id={route.params.id} onBack={() => navigation.goBack()} />;
+}
+
 export default ProjectDetailScreen;
+export { ProjectDetailContent };
