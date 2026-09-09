@@ -13,7 +13,8 @@
     "format": "oxfmt .",
     "format:check": "oxfmt --check .",
     "deadcode": "knip",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "git config core.hooksPath .githooks"
   },
   "dependencies": {
     "@expo-google-fonts/ibm-plex-mono": "^0.4.1",
