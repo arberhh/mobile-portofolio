@@ -14,7 +14,9 @@
     "format:check": "oxfmt --check .",
     "deadcode": "knip",
     "test": "jest",
-    "prepare": "git config core.hooksPath .githooks"
+    "prepare": "git config core.hooksPath .githooks",
+    "predeploy": "expo export --platform web",
+    "deploy": "gh-pages --nojekyll -d dist"
   },
   "dependencies": {
     "@expo-google-fonts/ibm-plex-mono": "^0.4.1",
@@ -56,6 +58,7 @@
     "eslint": "^9.39.5",
     "eslint-plugin-expo": "^1.1.0",
     "eslint-plugin-react-native": "^5.0.0",
+    "gh-pages": "^6.3.0",
     "jest": "~29.7.0",
     "jest-expo": "~57.0.5",
     "knip": "^6.32.2",
