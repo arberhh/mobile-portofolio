@@ -7,6 +7,7 @@ import List from "./list";
 import ThemeText from "./theme-text";
 import Slideshow from "./slideshow";
 import SectionHeading from "./section-heading";
+import WebAppShell from "./web-app-shell";
 
 export {
   Divider,
@@ -19,4 +20,5 @@ export {
   SocialIcon,
   Tech,
   ThemeText,
+  WebAppShell,
 };

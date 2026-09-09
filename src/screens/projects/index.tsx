@@ -3,7 +3,7 @@ import { FlatList, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { useNavigation } from "@react-navigation/native";
-import { Divider, Header, Project, ThemeText } from "@/components";
+import { Divider, Header, Project, ThemeText, WebAppShell } from "@/components";
 import { useAsync, useSystemThemeSync } from "@/hooks";
 import { getProjects } from "@/services";
 import { useTheme } from "@/context";
@@ -48,24 +48,26 @@ function Home({ navigation }: ScreenProps) {
   }, [navigation]);
 
   return (
-    <SafeAreaView style={[commonStyles.flex, { backgroundColor: theme.screenBackground }]}>
-      <StatusBar style={theme.theme === "dark" ? "light" : "dark"} />
-      <Header title="Home" leftIcon="account" onLeftPress={onLeftPress} />
-      {error !== "" ? (
-        <View style={[commonStyles.flex, commonStyles.center, commonStyles.horizontalPadding]}>
-          <ThemeText style={commonStyles.errorText} text={error} />
-        </View>
-      ) : (
-        <FlatList
-          style={commonStyles.horizontalPadding}
-          data={projects}
-          keyExtractor={keyExtractor}
-          showsVerticalScrollIndicator={false}
-          ItemSeparatorComponent={renderItemSeparator}
-          renderItem={renderProjectItem}
-        />
-      )}
-    </SafeAreaView>
+    <WebAppShell active="Home">
+      <SafeAreaView style={[commonStyles.flex, { backgroundColor: theme.screenBackground }]}>
+        <StatusBar style={theme.theme === "dark" ? "light" : "dark"} />
+        <Header title="Home" leftIcon="account" onLeftPress={onLeftPress} />
+        {error !== "" ? (
+          <View style={[commonStyles.flex, commonStyles.center, commonStyles.horizontalPadding]}>
+            <ThemeText style={commonStyles.errorText} text={error} />
+          </View>
+        ) : (
+          <FlatList
+            style={commonStyles.horizontalPadding}
+            data={projects}
+            keyExtractor={keyExtractor}
+            showsVerticalScrollIndicator={false}
+            ItemSeparatorComponent={renderItemSeparator}
+            renderItem={renderProjectItem}
+          />
+        )}
+      </SafeAreaView>
+    </WebAppShell>
   );
 }
 
