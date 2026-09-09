@@ -1,9 +1,10 @@
 import React from "react";
-import { ActivityIndicator, Image, Linking, View } from "react-native";
+import { ActivityIndicator, Linking, View } from "react-native";
+import { Image } from "expo-image";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 
-import { Header, SectionHeading, SocialIcon, Tech, ThemeText } from "@/components";
+import { Header, SectionHeading, SocialIcon, Tech, ThemeText, WebAppShell } from "@/components";
 import { useAsync } from "@/hooks";
 import { getProfile } from "@/services";
 import { useTheme } from "@/context";
@@ -14,6 +15,7 @@ import styles from "./styles";
 function User({ navigation }: ScreenProps) {
   const { theme } = useTheme();
   const { data: user, loading, error } = useAsync<Profile | null>(getProfile, null);
+  const showingContent = error === "" && !loading && !!user;
 
   function handleLinkedInPress() {
     if (user?.linkedin) Linking.openURL(user.linkedin);
@@ -28,56 +30,58 @@ function User({ navigation }: ScreenProps) {
   }
 
   return (
-    <SafeAreaView style={[commonStyles.flex, { backgroundColor: theme.screenBackground }]}>
-      <Header title="Arber" leftIcon="back" onLeftPress={() => navigation.goBack()} />
-      <LinearGradient
-        colors={[theme.cardBackground, theme.screenBackground, theme.cardBackground]}
-        start={[0, 0]}
-        end={[0, 1]}
-        style={[
-          loading && commonStyles.alignCenter,
-          styles.container,
-          { backgroundColor: theme.screenBackground },
-        ]}
-      >
-        {error !== "" ? (
-          <View style={[commonStyles.flex, commonStyles.center]}>
-            <ThemeText text={error} style={commonStyles.errorText} />
-          </View>
-        ) : loading || !user ? (
-          <ActivityIndicator size={"large"} color={theme.color} />
-        ) : (
-          <>
-            <Image
-              source={{ uri: user.profile_picture ?? undefined }}
-              style={styles.profileImage}
-            />
-            {/* About Me Section */}
-            <View style={styles.section}>
-              <ThemeText
-                style={commonStyles.subtitle}
-                text={user.intro ?? ""}
-                color={theme.textSecondary}
+    <WebAppShell active="User">
+      <SafeAreaView style={[commonStyles.flex, { backgroundColor: theme.screenBackground }]}>
+        <Header title="Arber" leftIcon="back" onLeftPress={() => navigation.goBack()} />
+        <LinearGradient
+          colors={[theme.cardBackground, theme.screenBackground, theme.cardBackground]}
+          start={[0, 0]}
+          end={[0, 1]}
+          style={[
+            styles.container,
+            showingContent && styles.loadedContainer,
+            { backgroundColor: theme.screenBackground },
+          ]}
+        >
+          {error !== "" ? (
+            <View style={[commonStyles.flex, commonStyles.center]}>
+              <ThemeText text={error} style={commonStyles.errorText} />
+            </View>
+          ) : loading || !user ? (
+            <ActivityIndicator size={"large"} color={theme.color} />
+          ) : (
+            <>
+              <Image
+                source={{ uri: user.profile_picture ?? undefined }}
+                style={styles.profileImage}
               />
-            </View>
-            <View style={styles.section}>
-              <SectionHeading bracket="[stack]" title="Main Technologies" />
-              <View style={[commonStyles.rowOnly, commonStyles.aligLeft]}>
-                {(user.main_techs ?? []).map((tech: string, index: number) => (
-                  <Tech theme={theme} key={index} title={tech} />
-                ))}
+              {/* About Me Section */}
+              <View style={styles.section}>
+                <ThemeText
+                  style={commonStyles.subtitle}
+                  text={user.intro ?? ""}
+                  color={theme.textSecondary}
+                />
               </View>
-            </View>
-            {/* Contact Icons */}
-            <View style={styles.contactIcons}>
-              <SocialIcon onPress={handleLinkedInPress} iconType="linkedin" color={theme.color} />
-              <SocialIcon onPress={handleGitHubPress} iconType="github" color={theme.color} />
-              <SocialIcon onPress={handleGooglePress} iconType="google" color={theme.color} />
-            </View>
-          </>
-        )}
-      </LinearGradient>
-    </SafeAreaView>
+              <View style={styles.section}>
+                <SectionHeading bracket="[stack]" title="Main Technologies" />
+                <View style={[commonStyles.row, commonStyles.aligLeft]}>
+                  {(user.main_techs ?? []).map((tech: string, index: number) => (
+                    <Tech theme={theme} key={index} title={tech} />
+                  ))}
+                </View>
+              </View>
+              {/* Contact Icons */}
+              <View style={styles.contactIcons}>
+                <SocialIcon onPress={handleLinkedInPress} iconType="linkedin" color={theme.color} />
+                <SocialIcon onPress={handleGitHubPress} iconType="github" color={theme.color} />
+                <SocialIcon onPress={handleGooglePress} iconType="google" color={theme.color} />
+              </View>
+            </>
+          )}
+        </LinearGradient>
+      </SafeAreaView>
+    </WebAppShell>
   );
 }
 

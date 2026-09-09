@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Image, Text, Pressable } from "react-native";
+import { View, Text, Pressable } from "react-native";
+import { Image } from "expo-image";
 import { useTheme } from "@/context";
 import { ProjectProps } from "@/types";
 import { commonStyles } from "@/common";
@@ -12,6 +13,7 @@ function Project({ title, image, domains = [], onPress }: ProjectProps) {
     <Pressable onPress={onPress} style={styles.container}>
       <Image
         source={{ uri: image }}
+        contentFit="contain"
         style={[styles.image, { backgroundColor: theme.cardBackground }]}
       />
       <View style={[styles.body, { backgroundColor: theme.cardBackground }]}>

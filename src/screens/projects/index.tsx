@@ -1,14 +1,14 @@
-import React, { useCallback } from "react";
-import { FlatList, View } from "react-native";
+import React, { useCallback, useState } from "react";
+import { FlatList, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
-import { useNavigation } from "@react-navigation/native";
-import { Divider, Header, Project, ThemeText } from "@/components";
-import { useAsync, useSystemThemeSync } from "@/hooks";
+import { Divider, Header, Project, ThemeText, WebAppShell } from "@/components";
+import { useAsync, useIsWideWeb, useSystemThemeSync } from "@/hooks";
 import { getProjects } from "@/services";
 import { useTheme } from "@/context";
 import { ScreenProps, Project as ProjectData } from "@/types";
 import { commonStyles } from "@/common";
+import { ProjectDetailContent } from "../project-detail";
 import styles from "./styles";
 
 function keyExtractor(item: ProjectData) {
@@ -19,12 +19,15 @@ function renderItemSeparator() {
   return <Divider style={styles.itemSeparator} />;
 }
 
-function ProjectListItem({ item }: { item: ProjectData }) {
-  const navigation = useNavigation<any>();
+interface ProjectListItemProps {
+  item: ProjectData;
+  onPress: (id: number) => void;
+}
 
+function ProjectListItem({ item, onPress }: ProjectListItemProps) {
   return (
     <Project
-      onPress={() => navigation.navigate("ProjectDetails", { id: item.id })}
+      onPress={() => onPress(item.id)}
       title={item.title}
       image={item.banner_url}
       domains={item.domains}
@@ -32,14 +35,12 @@ function ProjectListItem({ item }: { item: ProjectData }) {
   );
 }
 
-function renderProjectItem({ item }: { item: ProjectData }) {
-  return <ProjectListItem item={item} />;
-}
-
 function Home({ navigation }: ScreenProps) {
   const { data: projects, error } = useAsync<ProjectData[]>(getProjects, []);
 
   const { theme } = useTheme();
+  const isWideWeb = useIsWideWeb();
+  const [selectedProjectId, setSelectedProjectId] = useState<number | null>(null);
 
   useSystemThemeSync();
 
@@ -47,25 +48,48 @@ function Home({ navigation }: ScreenProps) {
     navigation.navigate("User");
   }, [navigation]);
 
+  const onPressProject = useCallback(
+    (id: number) => {
+      if (isWideWeb) {
+        setSelectedProjectId(id);
+      } else {
+        navigation.navigate("ProjectDetails", { id });
+      }
+    },
+    [isWideWeb, navigation],
+  );
+
+  const renderProjectItem = useCallback(
+    ({ item }: { item: ProjectData }) => <ProjectListItem item={item} onPress={onPressProject} />,
+    [onPressProject],
+  );
+
   return (
-    <SafeAreaView style={[commonStyles.flex, { backgroundColor: theme.screenBackground }]}>
-      <StatusBar style={theme.theme === "dark" ? "light" : "dark"} />
-      <Header title="Home" leftIcon="account" onLeftPress={onLeftPress} />
-      {error !== "" ? (
-        <View style={[commonStyles.flex, commonStyles.center, commonStyles.horizontalPadding]}>
-          <ThemeText style={commonStyles.errorText} text={error} />
+    <WebAppShell active="Home">
+      <SafeAreaView style={[commonStyles.flex, { backgroundColor: theme.screenBackground }]}>
+        <StatusBar style={theme.theme === "dark" ? "light" : "dark"} />
+        <Header title="Home" leftIcon="account" onLeftPress={onLeftPress} />
+        {error !== "" ? (
+          <View style={[commonStyles.flex, commonStyles.center, commonStyles.horizontalPadding]}>
+            <ThemeText style={commonStyles.errorText} text={error} />
+          </View>
+        ) : (
+          <FlatList
+            style={commonStyles.horizontalPadding}
+            data={projects}
+            keyExtractor={keyExtractor}
+            showsVerticalScrollIndicator={false}
+            ItemSeparatorComponent={renderItemSeparator}
+            renderItem={renderProjectItem}
+          />
+        )}
+      </SafeAreaView>
+      {selectedProjectId !== null && (
+        <View style={StyleSheet.absoluteFill}>
+          <ProjectDetailContent id={selectedProjectId} onBack={() => setSelectedProjectId(null)} />
         </View>
-      ) : (
-        <FlatList
-          style={commonStyles.horizontalPadding}
-          data={projects}
-          keyExtractor={keyExtractor}
-          showsVerticalScrollIndicator={false}
-          ItemSeparatorComponent={renderItemSeparator}
-          renderItem={renderProjectItem}
-        />
       )}
-    </SafeAreaView>
+    </WebAppShell>
   );
 }
 

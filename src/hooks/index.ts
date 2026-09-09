@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { Platform, useWindowDimensions } from "react-native";
+import { WEB_WIDE_BREAKPOINT } from "@/constants";
 import useSystemThemeSync from "./use-system-theme-sync";
 
 function useAsync<T>(fetcher: () => Promise<T>, initialValue: T) {
@@ -24,4 +26,9 @@ function useAsync<T>(fetcher: () => Promise<T>, initialValue: T) {
   return { data, loading, error };
 }
 
-export { useAsync, useSystemThemeSync };
+function useIsWideWeb() {
+  const { width } = useWindowDimensions();
+  return Platform.OS === "web" && width >= WEB_WIDE_BREAKPOINT;
+}
+
+export { useAsync, useSystemThemeSync, useIsWideWeb };

@@ -18,7 +18,9 @@
       "package": "com.arberh.ArberPortofolio"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro",
+      "output": "single"
     },
     "extra": {
       "eas": {
@@ -41,7 +43,8 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      "expo-image"
     ]
   }
 }

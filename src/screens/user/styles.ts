@@ -12,6 +12,10 @@ const styles = StyleSheet.create({
   icon: {
     marginHorizontal: 10,
   },
+  loadedContainer: {
+    justifyContent: "flex-start",
+    paddingTop: 32,
+  },
   profileImage: {
     borderRadius: 80, // Assuming the profile picture is circular
     height: 160,

@@ -1,7 +1,15 @@
+import { Image } from "expo-image";
 import { supabase } from "@/util";
 import { Database, Domain, Profile, Project } from "@/types";
 
 const DOMAINS_SELECT = "*, project_domains(domains(id, title, icon))";
+
+function prefetchImages(urls: string[]) {
+  const validUrls = urls.filter((url) => url !== "");
+  if (validUrls.length > 0) {
+    Image.prefetch(validUrls).catch(() => {});
+  }
+}
 
 type ProjectRow = Database["public"]["Tables"]["projects"]["Row"];
 
@@ -43,7 +51,9 @@ async function getProjects(): Promise<Project[]> {
     supabase.from("projects").select(DOMAINS_SELECT).order("created_at", { ascending: false }),
     "There was an issue with fetching the projects, please try again later!",
   );
-  return (rows ?? []).map(withFlattenedDomains).map(toProject);
+  const projects = (rows ?? []).map(withFlattenedDomains).map(toProject);
+  prefetchImages(projects.map((project) => project.banner_url));
+  return projects;
 }
 
 async function getProject(id: number): Promise<Project> {
@@ -53,7 +63,9 @@ async function getProject(id: number): Promise<Project> {
     fallbackMessage,
   );
   if (!row) throw new Error(fallbackMessage);
-  return toProject(withFlattenedDomains(row));
+  const project = toProject(withFlattenedDomains(row));
+  prefetchImages([project.banner_url, ...project.images]);
+  return project;
 }
 
 async function getProfile(): Promise<Profile> {
