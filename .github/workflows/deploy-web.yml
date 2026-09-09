@@ -32,4 +32,4 @@ jobs:
         env:
           EXPO_PUBLIC_SUPABASE_URL: ${{ secrets.EXPO_PUBLIC_SUPABASE_URL }}
           EXPO_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.EXPO_PUBLIC_SUPABASE_ANON_KEY }}
-        run: npm run deploy -- -u "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
+        run: npm run deploy -- -u "\"github-actions[bot]\" <github-actions[bot]@users.noreply.github.com>"
