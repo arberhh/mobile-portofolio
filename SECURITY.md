@@ -2,20 +2,12 @@
 
 ## Supported Versions
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+This is a single-instance portfolio app, not a versioned library — only the code on `main` is supported.
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+## Scope
+
+The client ships a public Supabase URL and an anon key (`EXPO_PUBLIC_SUPABASE_URL`, `EXPO_PUBLIC_SUPABASE_ANON_KEY`). These are meant to be public: access is restricted server-side by Postgres row-level security policies that grant read-only access to the `projects`, `domains`, and `profile` tables. There is no authentication or write path exposed to the client.
 
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
-
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+If you find a vulnerability (e.g. an RLS policy that over-exposes data, or a way to write to the database from the client), please open a private report via [GitHub Security Advisories](https://github.com/arberhh/mobile-portofolio/security/advisories/new) rather than a public issue. Include steps to reproduce. This is a personal project maintained in spare time, so response times aren't guaranteed, but reports will be looked at as soon as possible.

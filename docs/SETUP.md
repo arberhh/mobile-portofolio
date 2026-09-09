@@ -42,7 +42,10 @@ npm run web      # launch in a browser
 Run the same checks CI runs before opening a PR:
 
 ```bash
-npm run ts:check  # TypeScript
-npm run lint      # ESLint
-npm run deadcode  # knip — unused exports/deps
+npm run ts:check                # TypeScript
+npm run lint                    # ESLint
+npm run format:check            # oxfmt — formatting
+npm run test                    # Jest
+npm run deadcode                # knip — unused exports/deps
+npx expo export --platform web  # web build
 ```
