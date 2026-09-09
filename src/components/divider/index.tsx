@@ -9,15 +9,7 @@ interface DividerProps {
 
 function Divider({ style }: DividerProps) {
   const { theme } = useTheme();
-  return (
-    <View
-      style={[
-        commonStyles.horizontalLine,
-        { borderBottomColor: theme.line },
-        style,
-      ]}
-    />
-  );
+  return <View style={[commonStyles.horizontalLine, { borderBottomColor: theme.line }, style]} />;
 }
 
 export default Divider;

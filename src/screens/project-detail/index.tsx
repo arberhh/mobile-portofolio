@@ -13,10 +13,7 @@ function ProjectDetailScreen({ navigation, route }: ScreenProps) {
   const { theme } = useTheme();
   const { id } = route.params;
   const fetchProject = useCallback(() => getProject(id), [id]);
-  const { data: project, loading, error } = useAsync<Project | null>(
-    fetchProject,
-    null
-  );
+  const { data: project, loading, error } = useAsync<Project | null>(fetchProject, null);
   const [modalVisible, setModalVisible] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -31,14 +28,8 @@ function ProjectDetailScreen({ navigation, route }: ScreenProps) {
   }
 
   return (
-    <SafeAreaView
-      style={[commonStyles.flex, { backgroundColor: theme.screenBackground }]}
-    >
-      <Header
-        title="ProjectDetails"
-        leftIcon="back"
-        onLeftPress={() => navigation.goBack()}
-      />
+    <SafeAreaView style={[commonStyles.flex, { backgroundColor: theme.screenBackground }]}>
+      <Header title="ProjectDetails" leftIcon="back" onLeftPress={() => navigation.goBack()} />
       {error !== "" ? (
         <View style={[commonStyles.flex, commonStyles.center]}>
           <ThemeText style={commonStyles.errorText} text={error} />
@@ -51,10 +42,7 @@ function ProjectDetailScreen({ navigation, route }: ScreenProps) {
         <ScrollView
           nestedScrollEnabled
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={[
-            commonStyles.flexGrow,
-            commonStyles.verticalPadding,
-          ]}
+          contentContainerStyle={[commonStyles.flexGrow, commonStyles.verticalPadding]}
         >
           <FullScreenSlideshow
             visible={modalVisible}
@@ -65,11 +53,7 @@ function ProjectDetailScreen({ navigation, route }: ScreenProps) {
           {/* custom slideshow */}
           <Slideshow onImagePress={openModal} images={project.images} />
           <View style={styles.body}>
-            <ThemeText
-              style={commonStyles.title}
-              text={project.title}
-              color={theme.accent}
-            />
+            <ThemeText style={commonStyles.title} text={project.title} color={theme.accent} />
             <ThemeText
               style={commonStyles.subtitle}
               text={project.long_description}

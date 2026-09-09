@@ -50,7 +50,7 @@ describe("useAsync", () => {
 
     const { result, rerender } = renderHook(
       ({ fn }: { fn: () => Promise<string> }) => useAsync(fn, "initial"),
-      { initialProps: { fn: fetcher } }
+      { initialProps: { fn: fetcher } },
     );
 
     await waitFor(() => expect(result.current.data).toBe("first"));

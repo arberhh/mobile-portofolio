@@ -2,10 +2,7 @@ import React, { useCallback, useRef } from "react";
 import { Image, Pressable, useWindowDimensions, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Carousel, Pagination } from "react-native-reanimated-carousel";
-import type {
-  CarouselRef,
-  CarouselRenderItemInfo,
-} from "react-native-reanimated-carousel";
+import type { CarouselRef, CarouselRenderItemInfo } from "react-native-reanimated-carousel";
 import Animated, {
   Extrapolation,
   interpolate,
@@ -29,21 +26,10 @@ interface SlideItemProps {
   onPress: () => void;
 }
 
-function SlideItem({
-  uri,
-  width,
-  height,
-  relativeProgress,
-  onPress,
-}: SlideItemProps) {
+function SlideItem({ uri, width, height, relativeProgress, onPress }: SlideItemProps) {
   const { theme } = useTheme();
   const animatedStyle = useAnimatedStyle(() => ({
-    opacity: interpolate(
-      relativeProgress.value,
-      [-1, 0, 1],
-      [0.6, 1, 0.6],
-      Extrapolation.CLAMP,
-    ),
+    opacity: interpolate(relativeProgress.value, [-1, 0, 1], [0.6, 1, 0.6], Extrapolation.CLAMP),
   }));
   const frameStyle = [styles.frame, { backgroundColor: theme.cardBackground }];
 

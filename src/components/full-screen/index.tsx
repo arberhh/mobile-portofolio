@@ -18,20 +18,9 @@ function FullScreenSlideshow({
   const insets = useSafeAreaInsets();
 
   return (
-    <Modal
-      visible={visible}
-      transparent
-      animationType="fade"
-      onRequestClose={onClose}
-    >
-      <SafeAreaView
-        style={[styles.modalContainer, { backgroundColor: theme.screenBackground }]}
-      >
-        <Pressable
-          style={[styles.closeButton, { top: insets.top }]}
-          onPress={onClose}
-          hitSlop={12}
-        >
+    <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
+      <SafeAreaView style={[styles.modalContainer, { backgroundColor: theme.screenBackground }]}>
+        <Pressable style={[styles.closeButton, { top: insets.top }]} onPress={onClose} hitSlop={12}>
           <Ionicons name="close" size={28} color={theme.color} />
         </Pressable>
         <View style={styles.content}>

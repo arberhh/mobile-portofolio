@@ -23,12 +23,7 @@ function Header({ title, leftIcon, onLeftPress }: HeaderProps) {
           <MaterialIcons name="account-circle" size={24} color={theme.color} />
         )}
       </Pressable>
-      <ThemeText
-        style={styles.title}
-        text={title}
-        color={theme.accent}
-        numberOfLines={1}
-      />
+      <ThemeText style={styles.title} text={title} color={theme.accent} numberOfLines={1} />
       <Pressable style={styles.iconButton} onPress={toggleTheme} hitSlop={12}>
         <MaterialIcons name="dark-mode" size={24} color={theme.color} />
       </Pressable>

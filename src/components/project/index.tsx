@@ -6,12 +6,7 @@ import { commonStyles } from "@/common";
 import styles from "./styles";
 import ThemeText from "../theme-text";
 
-function Project({
-  title,
-  image,
-  domains = [],
-  onPress,
-}: ProjectProps) {
+function Project({ title, image, domains = [], onPress }: ProjectProps) {
   const { theme } = useTheme();
   return (
     <Pressable onPress={onPress} style={styles.container}>
@@ -23,10 +18,7 @@ function Project({
         <ThemeText text={title} style={styles.title} />
         <View style={[commonStyles.row, commonStyles.mt10]}>
           {domains.map((domain) => (
-            <Text
-              style={[styles.domains, { color: theme.accent }]}
-              key={domain.id}
-            >
+            <Text style={[styles.domains, { color: theme.accent }]} key={domain.id}>
               {`#${domain.title}`}
             </Text>
           ))}

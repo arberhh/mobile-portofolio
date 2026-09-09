@@ -48,15 +48,11 @@ function Home({ navigation }: ScreenProps) {
   }, [navigation]);
 
   return (
-    <SafeAreaView
-      style={[commonStyles.flex, { backgroundColor: theme.screenBackground }]}
-    >
+    <SafeAreaView style={[commonStyles.flex, { backgroundColor: theme.screenBackground }]}>
       <StatusBar style={theme.theme === "dark" ? "light" : "dark"} />
       <Header title="Home" leftIcon="account" onLeftPress={onLeftPress} />
       {error !== "" ? (
-        <View
-          style={[commonStyles.flex, commonStyles.center, commonStyles.horizontalPadding]}
-        >
+        <View style={[commonStyles.flex, commonStyles.center, commonStyles.horizontalPadding]}>
           <ThemeText style={commonStyles.errorText} text={error} />
         </View>
       ) : (

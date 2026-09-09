@@ -7,7 +7,7 @@ type ProjectRow = Database["public"]["Tables"]["projects"]["Row"];
 
 async function runQuery<T>(
   query: PromiseLike<{ data: T; error: unknown }>,
-  fallbackMessage: string
+  fallbackMessage: string,
 ): Promise<T> {
   try {
     const { data, error } = await query;
@@ -19,9 +19,7 @@ async function runQuery<T>(
   }
 }
 
-function withFlattenedDomains<
-  T extends { project_domains: { domains: Domain }[] }
->(project: T) {
+function withFlattenedDomains<T extends { project_domains: { domains: Domain }[] }>(project: T) {
   const { project_domains, ...rest } = project;
   return { ...rest, domains: project_domains.map((pd) => pd.domains) };
 }
@@ -42,21 +40,17 @@ function toProject(row: ProjectRow & { domains: Domain[] }): Project {
 
 async function getProjects(): Promise<Project[]> {
   const rows = await runQuery(
-    supabase
-      .from("projects")
-      .select(DOMAINS_SELECT)
-      .order("created_at", { ascending: false }),
-    "There was an issue with fetching the projects, please try again later!"
+    supabase.from("projects").select(DOMAINS_SELECT).order("created_at", { ascending: false }),
+    "There was an issue with fetching the projects, please try again later!",
   );
   return (rows ?? []).map(withFlattenedDomains).map(toProject);
 }
 
 async function getProject(id: number): Promise<Project> {
-  const fallbackMessage =
-    "There was an issue with fetching this project, please try again later!";
+  const fallbackMessage = "There was an issue with fetching this project, please try again later!";
   const row = await runQuery(
     supabase.from("projects").select(DOMAINS_SELECT).eq("id", id).single(),
-    fallbackMessage
+    fallbackMessage,
   );
   if (!row) throw new Error(fallbackMessage);
   return toProject(withFlattenedDomains(row));
@@ -65,10 +59,7 @@ async function getProject(id: number): Promise<Project> {
 async function getProfile(): Promise<Profile> {
   const fallbackMessage =
     "There was an issue with fetching the developer profile, please try again later!";
-  const profile = await runQuery(
-    supabase.from("profile").select("*").single(),
-    fallbackMessage
-  );
+  const profile = await runQuery(supabase.from("profile").select("*").single(), fallbackMessage);
   if (!profile) throw new Error(fallbackMessage);
   return profile;
 }
