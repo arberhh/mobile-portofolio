@@ -1,5 +1,6 @@
 import React from "react";
-import { ActivityIndicator, Image, Linking, View } from "react-native";
+import { ActivityIndicator, Linking, View } from "react-native";
+import { Image } from "expo-image";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -14,6 +15,7 @@ import styles from "./styles";
 function User({ navigation }: ScreenProps) {
   const { theme } = useTheme();
   const { data: user, loading, error } = useAsync<Profile | null>(getProfile, null);
+  const showingContent = error === "" && !loading && !!user;
 
   function handleLinkedInPress() {
     if (user?.linkedin) Linking.openURL(user.linkedin);
@@ -36,8 +38,8 @@ function User({ navigation }: ScreenProps) {
           start={[0, 0]}
           end={[0, 1]}
           style={[
-            loading && commonStyles.alignCenter,
             styles.container,
+            showingContent && styles.loadedContainer,
             { backgroundColor: theme.screenBackground },
           ]}
         >
