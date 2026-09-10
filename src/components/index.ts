@@ -1,5 +1,6 @@
 import { SocialIcon, Tech } from "./account";
 import Divider from "./divider";
+import ExternalLink from "./external-link";
 import Header from "./header";
 import Project from "./project";
 import FullScreenSlideshow from "./full-screen";
@@ -11,6 +12,7 @@ import WebAppShell from "./web-app-shell";
 
 export {
   Divider,
+  ExternalLink,
   Header,
   Project,
   Slideshow,

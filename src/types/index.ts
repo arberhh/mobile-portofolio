@@ -51,7 +51,7 @@ interface FullScreenSlideshowProps {
 
 interface SocialIconProps {
   color: string;
-  onPress: () => void;
+  url: string;
   iconType: "linkedin" | "github" | "google";
 }
 

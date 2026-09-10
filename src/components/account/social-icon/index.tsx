@@ -1,13 +1,13 @@
 import React from "react";
-import { Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import ExternalLink from "../../external-link";
 import { SocialIconProps } from "@/types";
 import { commonStyles } from "@/common";
 
-export default function SocialIcon({ color, onPress, iconType }: SocialIconProps) {
+export default function SocialIcon({ color, url, iconType }: SocialIconProps) {
   return (
-    <Pressable onPress={onPress}>
+    <ExternalLink url={url}>
       <Ionicons name={`logo-${iconType}`} size={26} color={color} style={commonStyles.icon} />
-    </Pressable>
+    </ExternalLink>
   );
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { ActivityIndicator, Linking, View } from "react-native";
+import { ActivityIndicator, View } from "react-native";
 import { Image } from "expo-image";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
@@ -16,18 +16,6 @@ function User({ navigation }: ScreenProps) {
   const { theme } = useTheme();
   const { data: user, loading, error } = useAsync<Profile | null>(getProfile, null);
   const showingContent = error === "" && !loading && !!user;
-
-  function handleLinkedInPress() {
-    if (user?.linkedin) Linking.openURL(user.linkedin);
-  }
-
-  function handleGitHubPress() {
-    if (user?.github) Linking.openURL(user.github);
-  }
-
-  function handleGooglePress() {
-    if (user?.email) Linking.openURL(`mailto:${user.email}`);
-  }
 
   return (
     <WebAppShell active="User">
@@ -73,9 +61,15 @@ function User({ navigation }: ScreenProps) {
               </View>
               {/* Contact Icons */}
               <View style={styles.contactIcons}>
-                <SocialIcon onPress={handleLinkedInPress} iconType="linkedin" color={theme.color} />
-                <SocialIcon onPress={handleGitHubPress} iconType="github" color={theme.color} />
-                <SocialIcon onPress={handleGooglePress} iconType="google" color={theme.color} />
+                {user.linkedin && (
+                  <SocialIcon url={user.linkedin} iconType="linkedin" color={theme.color} />
+                )}
+                {user.github && (
+                  <SocialIcon url={user.github} iconType="github" color={theme.color} />
+                )}
+                {user.email && (
+                  <SocialIcon url={`mailto:${user.email}`} iconType="google" color={theme.color} />
+                )}
               </View>
             </>
           )}
