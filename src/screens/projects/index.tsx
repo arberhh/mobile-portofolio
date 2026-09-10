@@ -1,9 +1,9 @@
 import React, { useCallback, useState } from "react";
-import { FlatList, Linking, Pressable, StyleSheet, View } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { Ionicons } from "@expo/vector-icons";
-import { Divider, Header, Project, ThemeText, WebAppShell } from "@/components";
+import { Divider, ExternalLink, Header, Project, ThemeText, WebAppShell } from "@/components";
 import { useAsync, useIsWideWeb, useSystemThemeSync } from "@/hooks";
 import { getProjects } from "@/services";
 import { useTheme } from "@/context";
@@ -24,19 +24,15 @@ function renderItemSeparator() {
 function RepoLink() {
   const { theme } = useTheme();
 
-  function handlePress() {
-    Linking.openURL(REPO_URL);
-  }
-
   return (
-    <Pressable style={styles.repoLink} onPress={handlePress} accessibilityRole="link">
+    <ExternalLink url={REPO_URL} style={styles.repoLink} accessibilityRole="link">
       <Ionicons name="logo-github" size={16} color={theme.textSecondary} style={styles.repoIcon} />
       <ThemeText
         text="View source on GitHub"
         color={theme.textSecondary}
         style={commonStyles.subtitle}
       />
-    </Pressable>
+    </ExternalLink>
   );
 }
 
