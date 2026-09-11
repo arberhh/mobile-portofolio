@@ -77,8 +77,9 @@ Read every file in `DESIGN_HANDOFF_DIR` (currently just `README.md`; also
   Project Details).
 - The fidelity note — this is a **re-skin, not a re-architecture**: keep
   existing structure, copy, section order, and interaction mechanics
-  (back button, dark/light toggle, settings FAB, carousel) exactly as they
-  are; only change visual language (colors, type, spacing, decoration).
+  (back button, dark/light toggle, slideshow carousel, the wide-web
+  sidebar nav in `WebAppShell`) exactly as they are; only change visual
+  language (colors, type, spacing, decoration).
 - Exact tokens (dark and light variants) and typography rules given in the
   "Restyle spec" section.
 
@@ -97,7 +98,7 @@ Read every file in `DESIGN_HANDOFF_DIR` (currently just `README.md`; also
 npm run ts:check
 ```
 
-## 6. Verify in the simulator
+## 6. Verify
 
 Load the `run-expo` skill and follow it to launch the app and confirm:
 
@@ -105,7 +106,12 @@ Load the `run-expo` skill and follow it to launch the app and confirm:
 2. Each in-scope screen renders correctly in **both** dark and light mode
    (toggle and screenshot both) — compare against the token spec, not just
    "does it look plausible."
-3. Existing interactions (nav, FAB, carousel, toggle) still work.
+3. Existing interactions (nav, carousel, theme toggle) still work.
+4. Check web too, not just the simulator — this app targets iOS, Android,
+   and web from one codebase, and web has its own layout at the
+   `WEB_WIDE_BREAKPOINT` (900px, `src/constants/web.ts`): screenshot both a
+   narrow width (same layout as native) and a wide width (`WebAppShell`'s
+   persistent sidebar) per screen.
 
 Fix and re-verify before proceeding if anything's off.
 
@@ -126,28 +132,29 @@ Recompute the hash list from step 1's command and write it into
 Commit the code changes together with this state file update (never
 `git add -A` — stage the specific files you touched plus the state file):
 
+Follow [[commit-conventions]] for the commit message (type prefix, format,
+attribution rules — all of it, don't restate it here).
+
 ```bash
 git commit -m "$(cat <<'EOF'
-<what changed, e.g. Restyle Profile/Home/Project Details to Technical Terminal direction>
-
-Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+<type>: <what changed, e.g. restyle Profile/Home/Project Details to Technical Terminal direction>
 EOF
 )"
 ```
 
 ## 8. Open the PR
 
+PR title and body follow [[commit-conventions]] too:
+
 ```bash
 git push -u origin design-handoff/<short-description>
-gh pr create --title "<short summary>" --body "$(cat <<'EOF'
+gh pr create --title "<type>: <short summary>" --body "$(cat <<'EOF'
 ## Summary
 - <what changed, referencing the design-handoff README section(s) implemented>
 
 ## Test plan
 - [x] npm run ts:check
-- [x] Verified in iOS Simulator, dark and light mode
-
-🤖 Generated with [Claude Code](https://claude.com/claude-code)
+- [x] Verified dark and light mode, native and web (narrow + wide-web layouts)
 EOF
 )"
 ```

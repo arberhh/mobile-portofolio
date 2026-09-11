@@ -43,6 +43,11 @@ Examples:
   `refactor/move-screen-effects-to-hooks`. Commit messages and PR titles
   still use `feat:`, not `feature:`.
 - PR titles use the same `<type>: <summary>` format as commit messages.
+- No AI attribution: never add a `Co-Authored-By` trailer or a "Generated
+  with Claude Code" line to a commit message or PR body in this repo.
+  Commits and PRs read as solely authored by the user. This applies to
+  every skill or workflow that writes a commit or PR here, not just this
+  one — don't restate it elsewhere, just follow it.
 
 ## When to apply
 
