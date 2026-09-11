@@ -59,7 +59,7 @@ with new_project as (
     array[
       'Scoped and planned the features and tooling the rebuild needed before any code was written.',
       'Worked through detailed back-and-forth with the agent on what to build, then broke it down into Linear epics, tickets, and subtickets.',
-      'Planned the app''s visual redesign.'
+      'Planned the app''s "Technical Terminal" redesign — dark, monospace, lime accent.'
     ],
     array[
       'Picked the project back up after a roughly two-year gap and used Claude Code, directed through custom checked-in skills, to rebuild it end to end.',
