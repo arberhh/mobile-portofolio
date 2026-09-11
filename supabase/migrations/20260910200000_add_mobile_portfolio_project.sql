@@ -38,7 +38,7 @@ with new_project as (
   values (
     'Mobile Portfolio',
     'Picked this portfolio app back up after a roughly two-year gap and rebuilt it end to end using Claude Code as an AI pair programmer, including a full redesign, first-class web support, and a real engineering workflow around it.',
-    'This portfolio app itself. I picked the project back up in August 2026 after a roughly two-year gap and used Claude Code, Anthropic''s agentic coding tool, to rebuild it end to end: a new dark, monospace "Technical Terminal" design, first-class web support, and a proper engineering workflow around it, not just the code. Working sessions ran as a loop of planning in Linear through its MCP server, directing Claude Code through the implementation, and reviewing the resulting pull requests.',
+    'This portfolio app itself, dormant for roughly two years before I picked it back up in August 2026. Rather than writing every line by hand, I ran Claude Code as an AI pair programmer: scoped and planned the work in Linear through its MCP server, directed the agent through implementation session by session, and reviewed every pull request it opened before merging. Along the way I also built out the tooling that made that loop reliable, rather than treating it as a one-off - custom Claude Code skills, CI/CD, and an automated GitHub reviewer - so the process, not just this one redesign, is the reusable part.',
     true,
     'https://github.com/arberhh/mobile-portofolio',
     'https://yqxldkqfpjnkmjcjuvgb.supabase.co/storage/v1/object/public/portofolio/mobile-portfolio/banner.png',
@@ -59,7 +59,7 @@ with new_project as (
     array[
       'Scoped and planned the features and tooling the rebuild needed before any code was written.',
       'Worked through detailed back-and-forth with the agent on what to build, then broke it down into Linear epics, tickets, and subtickets.',
-      'Planned the app''s visual redesign.'
+      'Planned the app''s "Technical Terminal" redesign — dark, monospace, lime accent.'
     ],
     array[
       'Picked the project back up after a roughly two-year gap and used Claude Code, directed through custom checked-in skills, to rebuild it end to end.',
