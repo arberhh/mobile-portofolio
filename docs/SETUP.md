@@ -44,8 +44,9 @@ Run the same checks CI runs before opening a PR:
 ```bash
 npm run ts:check                # TypeScript
 npm run lint                    # ESLint
-npm run format:check            # oxfmt — formatting
 npm run test                    # Jest
 npm run deadcode                # knip — unused exports/deps
 npx expo export --platform web  # web build
 ```
+
+Formatting isn't one of them — a pre-commit hook already runs `oxfmt` on staged files and re-stages them, so it's handled automatically on every commit. Run `npm run format` yourself only if you want to see the fix before committing.

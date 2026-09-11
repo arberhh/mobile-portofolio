@@ -24,14 +24,28 @@ cp .env.example .env
 ```bash
 npx expo start --ios      # opens iOS Simulator (Xcode installed, confirmed working)
 npx expo start --android
-npx expo start --web      # see gotcha below
+npx expo start --web --port 8090   # react-dom/react-native-web are already installed, no extra setup
 ```
 
-Default Metro port is 8081. To stop: `lsof -ti:8081 -sTCP:LISTEN | xargs -r kill`.
+Default Metro port is 8081; the examples here use 8090 for `--web` to
+avoid clashing with a native Metro instance running at the same time.
+To stop either: `lsof -ti:<port> -sTCP:LISTEN | xargs -r kill`.
+
+**Backgrounding `expo start`:** it's a long-running process, not a
+one-shot command. Launch it as its own backgrounded tool call (pass
+`run_in_background: true` on the bare `npx expo start ...` command
+itself) rather than wrapping it in `nohup ... &` inside a shell script —
+a wrapped background job gets torn down when the wrapping script's own
+call finishes, so the server dies with it. If a port is already in use,
+that's usually a previous run of this same server still alive in the
+background, not a failure — check `curl -s -o /dev/null -w '%{http_code}'
+http://localhost:<port>` before relaunching.
 
 ## Verify it's running
 
-Don't just launch it — confirm data actually loaded:
+Don't just launch it — confirm data actually loaded.
+
+**Native (iOS Simulator):**
 
 1. Wait for Metro to finish bundling (watch the log for `Bundling
    complete`, not a fixed sleep).
@@ -46,11 +60,21 @@ Don't just launch it — confirm data actually loaded:
    finished and neither string appears, that's a decent proxy the
    fetch succeeded.
 
+**Web:** once `curl` against the dev server port returns `200`, drive it
+with Playwright (`npx playwright install chromium` once per machine) —
+`chromium.launch()`, `newPage({ viewport: { width, height } })`,
+`page.goto('http://localhost:<port>', { waitUntil: 'networkidle' })`,
+then `page.screenshot()` and actually look at the result. Use a narrow
+viewport (~420px) to check the native-equivalent layout and a wide one
+(≥900px, `WEB_WIDE_BREAKPOINT`) to check `WebAppShell`'s sidebar layout —
+they render meaningfully differently. `npx playwright` installs into an
+npx cache directory rather than this project's `node_modules`; if a
+plain `node script.js` can't `require('playwright')`, point `NODE_PATH`
+at that cache dir (find it via `find ~/.npm/_npx -maxdepth 3 -iname
+playwright -type d`).
+
 ## Gotchas
 
-- **Web platform isn't installed.** `expo start --web` fails with
-  `CommandError: ... don't have the required dependencies installed`
-  until you run `npx expo install react-dom react-native-web`.
 - **RLS fails silently.** The `profile`/`projects`/`domains` tables
   have Row Level Security enabled. A missing `SELECT` policy for
   `anon` doesn't error — PostgREST just returns 0 rows, which shows

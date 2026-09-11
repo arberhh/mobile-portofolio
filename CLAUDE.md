@@ -16,9 +16,9 @@ npx expo export --platform web  # web build sanity check
 
 Single test file: `npx jest src/hooks/index.test.ts` (or any path). No `test:watch` script is defined; use `npx jest --watch` if needed.
 
-These are exactly the checks CI (`.github/workflows/ci.yml`) runs on every PR/push to `main`. **Do not run any of these commands (or `expo start`/`npm run ios`/`npm run android`/`npm run web`) after finishing a task — CI runs them.** Only run a check yourself if you need its output to keep working (e.g. `ts:check` after a risky refactor); otherwise leave verification to CI.
+These, except `format`/`format:check`, are exactly the checks CI (`.github/workflows/ci.yml`) runs on every PR/push to `main`. **Do not run any of these commands (or `expo start`/`npm run ios`/`npm run android`/`npm run web`) after finishing a task — CI runs them.** Only run a check yourself if you need its output to keep working (e.g. `ts:check` after a risky refactor); otherwise leave verification to CI.
 
-A pre-commit hook (`.githooks/pre-commit`, installed via `npm run prepare`) runs `oxfmt` on staged files and re-stages them automatically.
+Formatting isn't a CI check — a pre-commit hook (`.githooks/pre-commit`, installed via `npm run prepare`) runs `oxfmt` on staged files and re-stages them automatically, so it's already correct by the time a commit exists.
 
 ## Architecture
 
@@ -36,7 +36,7 @@ Expo (SDK 57) + React Native 0.86 + React 19, TypeScript, targeting iOS/Android/
 
 ## CI/CD
 
-- `ci.yml` — `npm ci`, `npm audit --audit-level=high`, `ts:check`, `lint`, `format:check`, `test`, web export build check, `deadcode` (knip).
+- `ci.yml` — `npm ci`, `npm audit --audit-level=high`, `ts:check`, `lint`, `test`, web export build check, `deadcode` (knip). Formatting is enforced by the pre-commit hook, not CI.
 - `eas-update-on-release.yml` — on push to `main`, publishes an OTA update to production via `.eas/workflows/publish-update.yml`.
 - `claude.yml` / `claude-code-review.yml` — Claude Code GitHub Actions for PR review/assistance.
 - Builds/submits (not OTA) are configured in `eas.json` (`development`/`preview`/`production` profiles), run manually via `eas build`/`eas submit`.
