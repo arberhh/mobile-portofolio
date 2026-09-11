@@ -57,10 +57,9 @@ with new_project as (
       'GitHub Pages, via a scripted gh-pages deploy, for the live web build.'
     ],
     array[
-      'Set the product and design direction and reviewed it against a written design-handoff spec instead of a live Figma file.',
-      'Planned and tracked all work as Linear tickets, letting planning discussions become tickets directly through the Linear MCP server rather than a separate project-management step.',
-      'Reviewed every pull request the agent opened before merging, including catching and correcting a few cases where it misapplied instructions.',
-      'Iterated on the AI workflow itself — commit/PR conventions, skills, and CI gates — so the agent''s output matched the standards of a real engineering process.'
+      'Scoped and planned the features and tooling the rebuild needed before any code was written.',
+      'Worked through detailed back-and-forth with the agent on what to build, then broke it down into Linear epics, tickets, and subtickets.',
+      'Planned the app''s visual redesign.'
     ],
     array[
       'Picked the project back up after a roughly two-year gap and used Claude Code, directed through custom checked-in skills, to rebuild it end to end.',
