@@ -77,7 +77,7 @@ Schema and policies live as SQL migrations in `supabase/migrations/`, applied vi
 
 ## CI/CD
 
-- **`ci.yml`** — on every PR/push to `main`: `npm ci`, `npm audit`, `ts:check`, `lint`, `format:check`, `test`, a web export (`expo export --platform web`) as a build sanity check, and `deadcode` (knip).
+- **`ci.yml`** — on every PR/push to `main`: `npm ci`, `npm audit`, `ts:check`, `lint`, `test`, a web export (`expo export --platform web`) as a build sanity check, and `deadcode` (knip). Formatting isn't a CI check — the `.githooks/pre-commit` hook runs `oxfmt` on staged files before they're ever committed.
 - **`deploy-web.yml`** — on push to `main`, builds the web export and publishes it to GitHub Pages (`gh-pages` branch) via `npm run deploy`. Requires the `EXPO_PUBLIC_SUPABASE_URL` / `EXPO_PUBLIC_SUPABASE_ANON_KEY` repo secrets (baked into the client bundle at build time — same public, RLS-scoped values as local `.env`). Live at [arberhh.github.io/mobile-portofolio](https://arberhh.github.io/mobile-portofolio/). `app.json`'s `experiments.baseUrl` (`/mobile-portofolio`) prefixes exported asset paths to match the Pages subpath.
 - **`eas-update-on-release.yml`** — on push to `main`, runs an EAS Update workflow (`.eas/workflows/publish-update.yml`) to publish an OTA update to the production channel.
 - **`claude.yml` / `claude-code-review.yml`** — Claude Code GitHub Actions for automated PR review/assistance.
