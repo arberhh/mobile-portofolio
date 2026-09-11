@@ -1,6 +1,5 @@
 -- Replace Nectar's non_technical_contributions with the actual biggest
--- non-technical contributions, per direct manager feedback, rather than
--- the more generic wording used previously.
+-- non-technical contributions
 update public.projects
 set
   non_technical_contributions = array[
