@@ -1,12 +1,15 @@
 // Config for the "Audit dependencies" step in .github/workflows/ci.yml.
 //
 // Fails CI on any high or critical advisory EXCEPT the ones allowlisted
-// below. A plain `npm audit` can't express an exception, and these
-// advisories have no patched release anywhere (checked 2026-10-15:
-// the advisories list no fixed version and the npm registry's latest
-// release of each package is a vulnerable one), so neither an upgrade
-// nor an `overrides` pin can clear them. Leaving them un-allowlisted
-// kept main red and hid any NEW advisory behind the same failure.
+// below. A plain `npm audit` can't express an exception. These two
+// packages have no patched release (checked 2026-10-15: the advisories
+// list no fixed version and the npm registry's latest release of each
+// is vulnerable), so an `overrides` pin cannot clear them. The only
+// routes `npm audit` suggests are breaking parent changes: a jest 30
+// major for braces (jest-expo 57 is on the jest 29 line) and, for
+// node-forge, a downgrade from expo-updates 58.0.9 to 0.11.7. Leaving
+// them un-allowlisted kept main red and hid any NEW advisory behind the
+// same failure.
 //
 // Remove an entry as soon as its package ships a fix. The audit output
 // says "Consider not allowlisting advisory ..." once it is no longer
