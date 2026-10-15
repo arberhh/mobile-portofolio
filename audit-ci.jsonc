@@ -1,0 +1,25 @@
+// Config for the "Audit dependencies" step in .github/workflows/ci.yml.
+//
+// Fails CI on any high or critical advisory EXCEPT the ones allowlisted
+// below. A plain `npm audit` can't express an exception, and these
+// advisories have no patched release anywhere (checked 2026-10-15:
+// the advisories list no fixed version and the npm registry's latest
+// release of each package is a vulnerable one), so neither an upgrade
+// nor an `overrides` pin can clear them. Leaving them un-allowlisted
+// kept main red and hid any NEW advisory behind the same failure.
+//
+// Remove an entry as soon as its package ships a fix. The audit output
+// says "Consider not allowlisting advisory ..." once it is no longer
+// vulnerable.
+{
+  "high": true,
+  "allowlist": [
+    // braces <= 3.0.3: stack-exhaustion DoS on deeply nested patterns.
+    // Reached via jest and Metro (micromatch), i.e. test/build tooling.
+    "GHSA-vfj7-8cjw-p6xm",
+    // node-forge <= 1.4.0: RSA PKCS#1 v1.5 signature verification accepts
+    // extra nested DigestAlgorithm elements. Reached via @expo/cli and
+    // expo-updates' code-signing certificate tooling.
+    "GHSA-86w9-cpqp-85rv",
+  ],
+}
